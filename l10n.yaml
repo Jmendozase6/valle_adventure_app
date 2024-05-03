@@ -1,0 +1,7 @@
+arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart
+
+# References: 
+# https://www.flutterbeads.com/
+# https://www.flutterbeads.com/internationalization-and-localization-in-flutter/

@@ -1,0 +1,28 @@
+{
+  "hello": "Hello, How are you?",
+  "user_status": "{username} is {status}",
+  "@user_status": {
+    "placeholders": {
+      "username": {},
+      "status": {}
+    }
+  },
+  "population": "Population in US is {value}",
+  "@population": {
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "format": "decimalPattern"
+      }
+    }
+  },
+  "networth": "xyz's net worth is {value}",
+  "@networth": {
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "format": "compactCurrency"
+      }
+    }
+  }
+}

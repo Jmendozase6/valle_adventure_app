@@ -76,7 +76,7 @@ Main dependencies
   - [url_launcher: ^6.2.6](https://pub.dev/packages/url_launcher)
   - [dio: ^5.4.3+1](https://pub.dev/packages/dio)
   - [cached_network_image: ^3.3.1](https://pub.dev/packages/cached_network_image)
-  - [intl: ^0.19.0](https://pub.dev/packages/intl)
+  - [intl: ^0.18.1](https://pub.dev/packages/intl)
 
 Dev dependencies
 
