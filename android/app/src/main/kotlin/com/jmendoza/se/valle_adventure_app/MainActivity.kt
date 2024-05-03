@@ -1,4 +1,4 @@
-package com.example.valle_adventure_app
+package com.jmendoza.se.valle_adventure_app
 
 import io.flutter.embedding.android.FlutterActivity
 
