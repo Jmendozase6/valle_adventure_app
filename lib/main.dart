@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 
 // Localization
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+// State management
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Responsive
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+// Environment variables
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+Future<void> main() async {
+  await dotenv.load(fileName: ".env");
   runApp(
     const ProviderScope(
       child: MyApp(),
@@ -50,7 +56,8 @@ class TestScreen extends StatelessWidget {
               width: 1.sw,
               height: 100.h,
               color: Colors.red,
-            )
+            ),
+            Text(dotenv.get("ENV_TEST"))
           ],
         ),
       ),
