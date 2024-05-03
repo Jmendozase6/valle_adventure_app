@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+// Localization
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+// Responsive
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,10 +16,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Valle Adventure',
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
+    return ScreenUtilInit(
+      designSize: const Size(428, 926),
+      builder: (_, __) => const MaterialApp(
+        title: 'Valle Adventure',
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+      ),
     );
   }
 }
