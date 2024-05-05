@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
-import 'package:valle_adventure_app/core/providers/onboarding_provider.dart';
+import 'package:valle_adventure_app/features/onboarding/providers/providers.dart';
 
 class AppRoot extends ConsumerWidget {
   const AppRoot({super.key});
