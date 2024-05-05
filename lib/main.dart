@@ -14,6 +14,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Router
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
+import 'package:valle_adventure_app/core/config/theme/app_theme.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
@@ -38,6 +39,7 @@ class MyApp extends ConsumerWidget {
         debugShowCheckedModeBanner: false,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
+        theme: AppTheme.lightTheme,
       ),
     );
   }
