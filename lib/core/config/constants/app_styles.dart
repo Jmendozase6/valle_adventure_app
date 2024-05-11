@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppStyles {
   static TextStyle title({Color? color}) => TextStyle(fontSize: 20.sp, color: color);
 
+  static TextStyle button({Color? color}) => TextStyle(fontSize: 18.sp, color: color);
+
   static TextStyle subtitle({Color? color, FontWeight? fontWeight}) => TextStyle(
         fontSize: 16.sp,
         color: color,
