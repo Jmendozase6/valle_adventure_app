@@ -18,7 +18,7 @@ This mobile application was developed for Valle Adventure, a travel and tourism 
 - Save favourite places: Personalized Favorites Collection
 - Popular and recommended tours: Discover Trending and Recommended Tours
 - Tour details: Comprehensive Tour Information
-- Light and dark mode: Customizable Interface Modes
+<!-- - Light and dark mode: Customizable Interface Modes -->
 
 
 ## Color Reference
@@ -77,6 +77,7 @@ Main dependencies
   - [dio: ^5.4.3+1](https://pub.dev/packages/dio)
   - [cached_network_image: ^3.3.1](https://pub.dev/packages/cached_network_image)
   - [intl: ^0.18.1](https://pub.dev/packages/intl)
+  - [fpdart: ^1.1.0](https://pub.dev/packages/fpdart)
 
 Dev dependencies
 

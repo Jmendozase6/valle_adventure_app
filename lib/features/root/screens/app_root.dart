@@ -21,8 +21,8 @@ class AppRoot extends ConsumerWidget {
               });
               return const SizedBox();
             },
-            error: (error, stackTrace) => const Text('Error'),
-            loading: () => const CircularProgressIndicator(),
+            error: (_, __) => const Text('Error'),
+            loading: () => const SizedBox(),
           ),
     );
   }
