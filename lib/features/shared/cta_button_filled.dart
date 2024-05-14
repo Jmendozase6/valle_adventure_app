@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
@@ -20,9 +19,11 @@ class CtaButtonFilled extends StatelessWidget {
         onPressed: onPressed,
         style: const ButtonStyle().copyWith(
           backgroundColor: MaterialStateProperty.all(AppColors.darkColor),
-          shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConstants.defaultRadius),
-          )),
+          shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppConstants.defaultRadius),
+            ),
+          ),
         ),
         child: Text(
           text,

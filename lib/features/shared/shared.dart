@@ -3,3 +3,7 @@ export 'name_location.dart';
 export 'button_like.dart';
 export 'custom_cached_network_image.dart';
 export 'card_tour_title.dart';
+export 'cta_button_filled.dart';
+export 'error_image.dart';
+export 'loading_image.dart';
+export 'account_link.dart';

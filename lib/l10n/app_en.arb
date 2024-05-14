@@ -1,28 +1,14 @@
 {
-  "hello": "Hello, How are you?",
-  "user_status": "{username} is {status}",
-  "@user_status": {
-    "placeholders": {
-      "username": {},
-      "status": {}
-    }
-  },
-  "population": "Population in US is {value}",
-  "@population": {
-    "placeholders": {
-      "value": {
-        "type": "int",
-        "format": "decimalPattern"
-      }
-    }
-  },
-  "networth": "xyz's net worth is {value}",
-  "@networth": {
-    "placeholders": {
-      "value": {
-        "type": "int",
-        "format": "compactCurrency"
-      }
-    }
-  }
+  "onboarding_title_01": "Somos Valle Adventure",
+  "onboarding_title_02": "Agencia de viajes a nivel nacional",
+  "onboarding_title_03": "Contáctanos para tu próximo viaje",
+  "onboarding_title_04": "Presentes en cada evento o festividad",
+  "onboarding_subtitle_01": "Conociendo lo maravilloso de nuestro Perú, viaja con nosotros en una aventura que nunca olvidarás.",
+  "onboarding_subtitle_02": "Con una amplia trayectoria a nivel nacional, nos respalda la opinión de nuestros clientes.",
+  "onboarding_subtitle_03": "Visualiza nuestros destinos turísticos, realiza reservas y conoce información sobre tu próximo viaje.",
+  "onboarding_subtitle_04": "Conoce pueblitos Mágicos y aldeas pequeñas con encantos y rincones únicos.",
+  "button_skip": "Omitir",
+  "have_account": "¿Ya tienes una cuenta? ",
+  "sign_in": "Iniciar sesión",
+  "discover_places": "Descubre lugares"
 }
