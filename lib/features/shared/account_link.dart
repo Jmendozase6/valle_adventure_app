@@ -9,13 +9,17 @@ class AccountLink extends ConsumerWidget {
     super.key,
     required this.text,
     required this.ctaText,
-    required this.route,
+    this.route,
+    this.isPop = false,
   });
 
-  final String text, ctaText, route;
+  final String text, ctaText;
+  final String? route;
+  final bool isPop;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.read(routerProvider);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -24,7 +28,12 @@ class AccountLink extends ConsumerWidget {
           style: AppStyles.subtitle(fontWeight: FontWeight.normal),
         ),
         TextButton(
-          onPressed: () => ref.read(routerProvider).pushNamed(route),
+          onPressed: () {
+            isPop ? router.pop() : router.pushNamed(route!);
+          },
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.zero,
+          ),
           child: Text(
             ctaText,
             style: AppStyles.subtitle(color: AppColors.mainColor),

@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:valle_adventure_app/core/config/constants/app_images.dart';
+import 'package:valle_adventure_app/core/config/constants/app_assets.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/onboarding/providers/onboarding_provider.dart';
@@ -24,10 +24,10 @@ class _OnboardingView extends ConsumerWidget {
   _OnboardingView();
 
   final images = [
-    AppImages.onboarding01,
-    AppImages.onboarding02,
-    AppImages.onboarding01,
-    AppImages.onboarding02,
+    AppAssets.onboarding01,
+    AppAssets.onboarding02,
+    AppAssets.onboarding03,
+    AppAssets.onboarding04,
   ];
   final titles = [
     'Somos Valle Adventure',

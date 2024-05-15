@@ -38,7 +38,11 @@ final routerProvider = Provider<GoRouter>(
       GoRoute(
         path: AppRoutes.signUp.path,
         name: AppRoutes.signUp.name,
-        builder: (context, state) => const SignUpScreen(),
+        pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+          context: _,
+          state: __,
+          child: const SignUpScreen(),
+        ),
       ),
     ],
   ),

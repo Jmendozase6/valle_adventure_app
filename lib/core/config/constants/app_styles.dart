@@ -5,9 +5,9 @@ import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 class AppStyles {
   static TextStyle title({Color? color}) => TextStyle(fontSize: 48.sp, color: color);
 
-  static TextStyle onboardingSubtitle() => TextStyle(
+  static TextStyle onboardingSubtitle({Color? color}) => TextStyle(
         fontSize: 24.sp,
-        color: AppColors.whiteColor,
+        color: color ?? AppColors.whiteColor,
       );
 
   static TextStyle button({Color? color}) => TextStyle(fontSize: 18.sp, color: color);

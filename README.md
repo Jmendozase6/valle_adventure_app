@@ -78,6 +78,10 @@ Main dependencies
   - [cached_network_image: ^3.3.1](https://pub.dev/packages/cached_network_image)
   - [intl: ^0.18.1](https://pub.dev/packages/intl)
   - [fpdart: ^1.1.0](https://pub.dev/packages/fpdart)
+  - [animate_do: ^3.3.4](https://pub.dev/packages/animate_do)
+  - [flutter_svg: ^2.0.10+1](https://pub.dev/packages/flutter_svg)
+  - [vector_graphics_compiler: ^1.1.11+1](https://pub.dev/packages/vector_graphics_compiler)
+  - [flutter_gen: ^5.4.0](https://pub.dev/packages/flutter_gen)
 
 Dev dependencies
 
@@ -101,5 +105,5 @@ Run this steps in order
     flutter pub get
 ```
 ```bash
-    flutter pub run build_runner_build --delete-conflicting-outputs
+    dart run build_runner build --delete-conflicting-outputs
 ```
