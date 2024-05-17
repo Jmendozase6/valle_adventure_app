@@ -80,8 +80,7 @@ Main dependencies
   - [fpdart: ^1.1.0](https://pub.dev/packages/fpdart)
   - [animate_do: ^3.3.4](https://pub.dev/packages/animate_do)
   - [flutter_svg: ^2.0.10+1](https://pub.dev/packages/flutter_svg)
-  - [vector_graphics_compiler: ^1.1.11+1](https://pub.dev/packages/vector_graphics_compiler)
-  - [flutter_gen: ^5.4.0](https://pub.dev/packages/flutter_gen)
+  - [supabase_flutter: ^2.5.3](https://pub.dev/packages/supabase_flutter)
 
 Dev dependencies
 
