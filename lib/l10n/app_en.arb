@@ -6,7 +6,7 @@
   "sign_up": "Registrarse",
   "discover_places": "Descubre lugares",
   "welcome_again": "¡Bienvenido de nuevo!",
-  "sign_in_to_continue": "¡Inicia sesión para continuar tu aventura!",
+  "sign_in_to_continue": "Inicia sesión para continuar tu aventura",
   "join_us": "¡Únete a nosotros!",
   "sign_up_to_continue": "Nos emociona que te unas a nuestra comunidad.",
   "email": "Correo electrónico",
@@ -20,5 +20,8 @@
   "sign_in_with_google": "Iniciar sesión con Google",
   "sign_up_with_google": "Registrarse con Google",
   "name": "Nombres",
-  "last_names": "Apellidos"
+  "last_names": "Apellidos",
+  "popular_places": "Lugares populares",
+  "see_all": "Ver todo",
+  "recommended_places": "Recomendaciones"
 }

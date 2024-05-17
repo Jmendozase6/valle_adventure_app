@@ -7,6 +7,7 @@ import 'package:valle_adventure_app/utils/transition/custom_transition_screen.da
 import 'package:valle_adventure_app/features/root/screens/screens.dart';
 import 'package:valle_adventure_app/features/onboarding/screens/screens.dart';
 import 'package:valle_adventure_app/features/auth/screens/screens.dart';
+import 'package:valle_adventure_app/features/home/screens/screens.dart';
 
 final routerProvider = Provider<GoRouter>(
   (ref) => GoRouter(
@@ -43,6 +44,35 @@ final routerProvider = Provider<GoRouter>(
           state: __,
           child: const SignUpScreen(),
         ),
+      ),
+      GoRoute(
+        path: AppRoutes.home.path,
+        name: AppRoutes.home.name,
+        pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+          context: _,
+          state: __,
+          child: const HomeScreen(),
+        ),
+        routes: [
+          GoRoute(
+            path: AppRoutes.popular.path,
+            name: AppRoutes.popular.name,
+            pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+              context: _,
+              state: __,
+              child: const PopularScreen(),
+            ),
+          ),
+          GoRoute(
+            path: AppRoutes.recommended.path,
+            name: AppRoutes.recommended.name,
+            pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+              context: _,
+              state: __,
+              child: const RecommendedScreen(),
+            ),
+          ),
+        ],
       ),
     ],
   ),

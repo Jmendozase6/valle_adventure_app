@@ -3,6 +3,9 @@ enum AppRoutes {
   onboarding,
   signIn,
   signUp,
+  home,
+  popular,
+  recommended,
 }
 
 extension AppRoutesExtension on AppRoutes {
@@ -16,6 +19,12 @@ extension AppRoutesExtension on AppRoutes {
         return 'signIn';
       case AppRoutes.signUp:
         return 'signUp';
+      case AppRoutes.home:
+        return 'home';
+      case AppRoutes.popular:
+        return 'popular';
+      case AppRoutes.recommended:
+        return 'recommended';
     }
   }
 
@@ -29,6 +38,12 @@ extension AppRoutesExtension on AppRoutes {
         return '/signIn';
       case AppRoutes.signUp:
         return '/signUp';
+      case AppRoutes.home:
+        return '/home';
+      case AppRoutes.popular:
+        return 'popular';
+      case AppRoutes.recommended:
+        return 'recommended';
     }
   }
 }

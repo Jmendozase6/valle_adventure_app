@@ -10,16 +10,17 @@ class CardTourTitle extends StatelessWidget {
     required this.title,
     required this.location,
     this.textColor,
+    this.width,
   });
 
-  final String title;
+  final String title, location;
   final Color? textColor;
-  final String location;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 0.5.sw,
+      width: width ?? 0.5.sw,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,

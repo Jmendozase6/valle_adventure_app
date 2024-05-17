@@ -15,14 +15,19 @@ class ButtonLike extends StatelessWidget {
       padding: REdgeInsets.all(AppConstants.defaultPadding),
       child: CircleAvatar(
         backgroundColor: Colors.white,
-        maxRadius: AppConstants.defaultRadius * 2,
+        maxRadius: AppConstants.defaultRadius * 1.5,
         child: IconButton(
           onPressed: onPressed,
           icon: isLiked
-              ? const FaIcon(FontAwesomeIcons.solidHeart, color: AppColors.redColor)
+              ? FaIcon(
+                  FontAwesomeIcons.solidHeart,
+                  color: AppColors.redColor,
+                  size: AppConstants.defaultRadius * 1.5,
+                )
               : FaIcon(
                   FontAwesomeIcons.heart,
                   color: AppColors.darkColor20,
+                  size: AppConstants.defaultRadius * 1.5,
                 ),
         ),
       ),

@@ -24,8 +24,9 @@ class CardTour extends StatelessWidget {
     final borderSide = BorderSide(
       color: AppColors.darkColor20,
     );
-    return SizedBox(
+    return Container(
       height: 0.25.sh,
+      margin: EdgeInsets.only(bottom: AppConstants.defaultPadding),
       child: Stack(
         children: [
           _CardTourImage(imageUrl: imageUrl),

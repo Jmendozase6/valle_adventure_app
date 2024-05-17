@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
-import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -33,48 +32,46 @@ class _SignUpView extends StatelessWidget {
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context)!;
 
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            HeaderImage(
-              title: locale.join_us,
-              subtitle: locale.sign_up_to_continue,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          HeaderImage(
+            title: locale.join_us,
+            subtitle: locale.sign_up_to_continue,
+          ),
+          SizedBox(height: AppConstants.defaultPadding),
+          CustomInput(
+            labelText: locale.name,
+          ),
+          SizedBox(height: AppConstants.defaultPadding),
+          CustomInput(
+            labelText: locale.last_names,
+          ),
+          SizedBox(height: AppConstants.defaultPadding),
+          CustomInput(
+            labelText: locale.email,
+          ),
+          SizedBox(height: AppConstants.defaultPadding),
+          CustomInputPassword(
+            labelText: locale.password,
+          ),
+          SizedBox(height: AppConstants.defaultPadding * 0.5),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: AppConstants.defaultPaddingHorizontal,
+              vertical: AppConstants.defaultPadding * 0.5,
             ),
-            SizedBox(height: AppConstants.defaultPadding),
-            CustomInput(
-              labelText: locale.name,
+            child: CtaButtonFilled(
+              text: locale.forward,
             ),
-            SizedBox(height: AppConstants.defaultPadding),
-            CustomInput(
-              labelText: locale.last_names,
-            ),
-            SizedBox(height: AppConstants.defaultPadding),
-            CustomInput(
-              labelText: locale.email,
-            ),
-            SizedBox(height: AppConstants.defaultPadding),
-            CustomInputPassword(
-              labelText: locale.password,
-            ),
-            SizedBox(height: AppConstants.defaultPadding * 0.5),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: AppConstants.defaultPaddingHorizontal,
-                vertical: AppConstants.defaultPadding * 0.5,
-              ),
-              child: CtaButtonFilled(
-                text: locale.forward,
-              ),
-            ),
-            SizedBox(height: AppConstants.defaultPadding),
-            const AccessUsing(),
-            SizedBox(height: AppConstants.defaultPadding),
-            ButtonSocialMedia(
-              text: locale.sign_up_with_google,
-            ),
-          ],
-        ),
+          ),
+          SizedBox(height: AppConstants.defaultPadding),
+          const AccessUsing(),
+          SizedBox(height: AppConstants.defaultPadding),
+          ButtonSocialMedia(
+            text: locale.sign_up_with_google,
+          ),
+        ],
       ),
     );
   }
