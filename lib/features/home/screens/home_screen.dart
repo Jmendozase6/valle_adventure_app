@@ -8,6 +8,7 @@ import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
+import 'package:valle_adventure_app/features/home/widgets/widgets.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -27,6 +28,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: const _HomeView(),
+      bottomNavigationBar: const CustomBottomNavBar(),
     );
   }
 }

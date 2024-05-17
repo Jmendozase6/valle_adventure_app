@@ -23,5 +23,9 @@
   "last_names": "Apellidos",
   "popular_places": "Lugares populares",
   "see_all": "Ver todo",
-  "recommended_places": "Recomendaciones"
+  "recommended_places": "Recomendaciones",
+  "home": "Inicio",
+  "search": "Buscar",
+  "saved": "Guardados",
+  "settings": "Ajustes"
 }
