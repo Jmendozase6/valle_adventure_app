@@ -27,5 +27,7 @@
   "home": "Inicio",
   "search": "Buscar",
   "saved": "Guardados",
-  "settings": "Ajustes"
+  "settings": "Ajustes",
+  "place_detaails": "Detalles del lugar",
+  "saved_paces": "Lugares guardados"
 }

@@ -13,6 +13,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // Environment variables
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+// Supabase
+// import 'package:supabase_flutter/supabase_flutter.dart';
+
 // Router
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/theme/app_theme.dart';
@@ -23,6 +26,10 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
   ]);
   await dotenv.load(fileName: ".env");
+  // await Supabase.initialize(
+  //   url: dotenv.get('SUPABASE_URL'),
+  //   anonKey: dotenv.get('SUPABASE_ANON_KEY'),
+  // );
   runApp(
     const ProviderScope(
       child: MyApp(),

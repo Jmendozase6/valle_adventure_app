@@ -1,17 +1,22 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
+import 'package:valle_adventure_app/core/config/router/app_router.dart';
+import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
-class CardTour extends StatelessWidget {
-  final String imageUrl, title, location;
+class CardTour extends ConsumerWidget {
+  final String id, imageUrl, title, location;
   final double price;
   final bool isLiked;
 
   const CardTour({
     super.key,
+    required this.id,
     required this.imageUrl,
     required this.title,
     required this.location,
@@ -20,49 +25,57 @@ class CardTour extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final borderSide = BorderSide(
       color: AppColors.darkColor20,
     );
-    return Container(
-      height: 0.25.sh,
-      margin: EdgeInsets.only(bottom: AppConstants.defaultPadding),
-      child: Stack(
-        children: [
-          _CardTourImage(imageUrl: imageUrl),
-          Align(
-            alignment: Alignment.topRight,
-            child: ButtonLike(isLiked: isLiked, onPressed: () {}),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 0.08.sh,
-              padding: EdgeInsets.symmetric(
-                horizontal: AppConstants.defaultPaddingHorizontal,
+    return ZoomIn(
+      child: GestureDetector(
+        onTap: () => ref.read(routerProvider).goNamed(
+          AppRoutes.placeDetails.name,
+          pathParameters: {'id': id},
+        ),
+        child: Container(
+          height: 0.25.sh,
+          margin: EdgeInsets.only(bottom: AppConstants.defaultPadding),
+          child: Stack(
+            children: [
+              _CardTourImage(imageUrl: imageUrl),
+              Align(
+                alignment: Alignment.topRight,
+                child: ButtonLike(isLiked: isLiked, onPressed: () {}),
               ),
-              decoration: BoxDecoration(
-                color: AppColors.whiteColor,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(AppConstants.defaultRadius),
-                  bottomRight: Radius.circular(AppConstants.defaultRadius),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: 0.08.sh,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppConstants.defaultPaddingHorizontal,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.whiteColor,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(AppConstants.defaultRadius),
+                      bottomRight: Radius.circular(AppConstants.defaultRadius),
+                    ),
+                    border: Border(
+                      left: borderSide,
+                      right: borderSide,
+                      bottom: borderSide,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      CardTourTitle(title: title, location: location),
+                      const VerticalDivider(),
+                      _CardTourPrice(price: price),
+                    ],
+                  ),
                 ),
-                border: Border(
-                  left: borderSide,
-                  right: borderSide,
-                  bottom: borderSide,
-                ),
               ),
-              child: Row(
-                children: [
-                  CardTourTitle(title: title, location: location),
-                  const VerticalDivider(),
-                  _CardTourPrice(price: price),
-                ],
-              ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -87,6 +100,7 @@ class _CardTourPrice extends StatelessWidget {
         ),
         SizedBox(height: AppConstants.defaultPadding * 0.5),
         Text(
+          // TODO: Translate this text
           'Por persona',
           style: AppStyles.body(),
         ),

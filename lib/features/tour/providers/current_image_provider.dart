@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final currentImageProvider =
-    StateNotifierProvider<CurrentImageNotifier, int>((ref) => CurrentImageNotifier());
+    StateNotifierProvider.autoDispose<CurrentImageNotifier, int>((ref) => CurrentImageNotifier());
 
 class CurrentImageNotifier extends StateNotifier<int> {
   CurrentImageNotifier() : super(0);

@@ -12,3 +12,4 @@ export 'name_location.dart';
 export 'custom_input_password.dart';
 export 'button_social_media.dart';
 export 'access_using.dart';
+export 'custom_app_bar.dart';

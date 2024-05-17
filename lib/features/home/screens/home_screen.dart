@@ -15,18 +15,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.darkColor,
-        centerTitle: true,
-        title: Text(
-          'Valle Adventure',
-          style: TextStyle(
-            color: AppColors.whiteColor,
-          ),
-        ),
+    return const Scaffold(
+      appBar: CustomAppBar(
+        title: 'Valle Adventure',
       ),
-      body: const _HomeView(),
+      body: _HomeView(),
     );
   }
 }
@@ -38,49 +31,72 @@ class _HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: AppConstants.defaultPaddingHorizontal),
-      child: Column(
-        children: [
-          _TitleSeeAll(
-            title: AppLocalizations.of(context)!.popular_places,
-            route: AppRoutes.popular.name,
-          ),
-          Container(
-            height: 0.2.sh,
-            margin: EdgeInsets.symmetric(vertical: AppConstants.defaultPadding * 0.5),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 3,
-              itemBuilder: (_, index) {
-                return const CardTourPopular(
-                  id: 'ABC123',
-                  image:
-                      'https://images.unsplash.com/photo-1618338421860-1bf61dd9c1b4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  title: 'Montaña Bravo',
-                  location: 'Piura',
-                );
-              },
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _TitleSeeAll(
+              title: AppLocalizations.of(context)!.popular_places,
+              route: AppRoutes.popular.name,
             ),
-          ),
-          _TitleSeeAll(
-            title: AppLocalizations.of(context)!.recommended_places,
-            route: AppRoutes.recommended.name,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 3,
-              itemBuilder: (_, index) {
-                return const CardTour(
-                  isLiked: true,
-                  price: 10,
-                  imageUrl:
-                      'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                  title: 'Montaña Bravo',
-                  location: 'Piura',
-                );
-              },
+            const _PopularSection(),
+            _TitleSeeAll(
+              title: AppLocalizations.of(context)!.recommended_places,
+              route: AppRoutes.recommended.name,
             ),
-          ),
-        ],
+            const RecommendedSection(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RecommendedSection extends StatelessWidget {
+  const RecommendedSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 3,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (_, index) {
+        return CardTour(
+          id: '$index',
+          price: (index * 10) + 10,
+          isLiked: index % 2 == 0,
+          imageUrl:
+              'https://res.cloudinary.com/dlfoowzy4/image/upload/v1715927344/valle-adventure-test/$index.jpg',
+          title: 'Montaña Bravo',
+          location: 'Piura',
+        );
+      },
+    );
+  }
+}
+
+class _PopularSection extends StatelessWidget {
+  const _PopularSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 0.2.sh,
+      margin: EdgeInsets.symmetric(vertical: AppConstants.defaultPadding * 0.5),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 3,
+        itemBuilder: (_, index) {
+          return CardTourPopular(
+            id: '$index',
+            image:
+                'https://res.cloudinary.com/dlfoowzy4/image/upload/v1715927344/valle-adventure-test/$index.jpg',
+            title: 'Montaña Bravo',
+            location: 'Piura',
+          );
+        },
       ),
     );
   }
@@ -137,7 +153,7 @@ class CardTourPopular extends ConsumerWidget {
       ),
       child: Container(
         height: 0.2.sh,
-        width: 0.6.sw,
+        width: 0.7.sw,
         alignment: Alignment.bottomCenter,
         margin: EdgeInsets.only(right: AppConstants.defaultPaddingHorizontal),
         decoration: BoxDecoration(
