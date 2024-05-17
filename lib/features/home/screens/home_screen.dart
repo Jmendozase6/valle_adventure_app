@@ -8,7 +8,6 @@ import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
-import 'package:valle_adventure_app/features/home/widgets/widgets.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -28,7 +27,6 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: const _HomeView(),
-      bottomNavigationBar: const CustomBottomNavBar(),
     );
   }
 }
@@ -54,6 +52,7 @@ class _HomeView extends StatelessWidget {
               itemCount: 3,
               itemBuilder: (_, index) {
                 return const CardTourPopular(
+                  id: 'ABC123',
                   image:
                       'https://images.unsplash.com/photo-1618338421860-1bf61dd9c1b4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
                   title: 'Montaña Bravo',
@@ -118,50 +117,57 @@ class _TitleSeeAll extends ConsumerWidget {
   }
 }
 
-class CardTourPopular extends StatelessWidget {
+class CardTourPopular extends ConsumerWidget {
   const CardTourPopular({
     super.key,
+    required this.id,
     required this.image,
     required this.title,
     required this.location,
   });
 
-  final String image, title, location;
+  final String id, image, title, location;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 0.2.sh,
-      width: 0.6.sw,
-      alignment: Alignment.bottomCenter,
-      margin: EdgeInsets.only(right: AppConstants.defaultPaddingHorizontal),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(AppConstants.defaultRadius),
-        ),
-        image: DecorationImage(
-          image: CachedNetworkImageProvider(image),
-          fit: BoxFit.cover,
-          onError: (_, __) => debugPrint("Sad Bro :'v"),
-        ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    return GestureDetector(
+      onTap: () => ref.read(routerProvider).goNamed(
+        AppRoutes.placeDetails.name,
+        pathParameters: {'id': id},
       ),
       child: Container(
-        height: 0.07.sh,
-        width: double.infinity,
+        height: 0.2.sh,
+        width: 0.6.sw,
+        alignment: Alignment.bottomCenter,
+        margin: EdgeInsets.only(right: AppConstants.defaultPaddingHorizontal),
         decoration: BoxDecoration(
-          color: AppColors.darkColor.withOpacity(0.5),
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(AppConstants.defaultRadius),
-            bottomRight: Radius.circular(AppConstants.defaultRadius),
+          borderRadius: BorderRadius.all(
+            Radius.circular(AppConstants.defaultRadius),
+          ),
+          image: DecorationImage(
+            image: CachedNetworkImageProvider(image),
+            fit: BoxFit.cover,
+            onError: (_, __) => debugPrint("Sad Bro :'v"),
           ),
         ),
-        padding: EdgeInsets.symmetric(
-          horizontal: AppConstants.defaultPaddingHorizontal,
-        ),
-        child: CardTourTitle(
-          title: title,
-          location: location,
-          textColor: AppColors.whiteColor,
+        child: Container(
+          height: 0.07.sh,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: AppColors.darkColor.withOpacity(0.5),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(AppConstants.defaultRadius),
+              bottomRight: Radius.circular(AppConstants.defaultRadius),
+            ),
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: AppConstants.defaultPaddingHorizontal,
+          ),
+          child: CardTourTitle(
+            title: title,
+            location: location,
+            textColor: AppColors.whiteColor,
+          ),
         ),
       ),
     );

@@ -6,6 +6,10 @@ enum AppRoutes {
   home,
   popular,
   recommended,
+  search,
+  saved,
+  settings,
+  placeDetails,
 }
 
 extension AppRoutesExtension on AppRoutes {
@@ -25,6 +29,14 @@ extension AppRoutesExtension on AppRoutes {
         return 'popular';
       case AppRoutes.recommended:
         return 'recommended';
+      case AppRoutes.placeDetails:
+        return 'placeDetails';
+      case AppRoutes.search:
+        return 'search';
+      case AppRoutes.saved:
+        return 'saved';
+      case AppRoutes.settings:
+        return 'settings';
     }
   }
 
@@ -44,6 +56,14 @@ extension AppRoutesExtension on AppRoutes {
         return 'popular';
       case AppRoutes.recommended:
         return 'recommended';
+      case AppRoutes.placeDetails:
+        return 'placeDetails';
+      case AppRoutes.search:
+        return '/search';
+      case AppRoutes.saved:
+        return '/saved';
+      case AppRoutes.settings:
+        return '/settings';
     }
   }
 }
