@@ -140,6 +140,7 @@ class CardTourPopular extends StatelessWidget {
         image: DecorationImage(
           image: CachedNetworkImageProvider(image),
           fit: BoxFit.cover,
+          onError: (_, __) => debugPrint("Sad Bro :'v"),
         ),
       ),
       child: Container(
