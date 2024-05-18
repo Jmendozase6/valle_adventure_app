@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:valle_adventure_app/features/shared/custom_app_bar.dart';
+import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -17,14 +17,12 @@ class SearchScreen extends StatelessWidget {
 }
 
 class _SearchView extends StatelessWidget {
-  const _SearchView({
-    super.key,
-  });
+  const _SearchView();
 
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('Search Screen'),
+      child: Text('SearchScreen'),
     );
   }
 }

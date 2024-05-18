@@ -29,5 +29,8 @@
   "saved": "Guardados",
   "settings": "Ajustes",
   "place_detaails": "Detalles del lugar",
-  "saved_paces": "Lugares guardados"
+  "saved_paces": "Lugares guardados",
+  "by_person": "Por persona",
+  "profile": "Perfil",
+  "not_logged_message": "Ingresa para ver tu perfil"
 }

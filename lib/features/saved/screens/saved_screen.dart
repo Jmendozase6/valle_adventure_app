@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
-import 'package:valle_adventure_app/features/shared/card_tour.dart';
-import 'package:valle_adventure_app/features/shared/custom_app_bar.dart';
+import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class SavedScreen extends StatelessWidget {
   const SavedScreen({super.key});

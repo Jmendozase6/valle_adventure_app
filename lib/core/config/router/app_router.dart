@@ -10,6 +10,7 @@ import 'package:valle_adventure_app/features/auth/screens/screens.dart';
 import 'package:valle_adventure_app/features/home/screens/screens.dart';
 import 'package:valle_adventure_app/features/root/screens/screens.dart';
 import 'package:valle_adventure_app/features/saved/screens/screens.dart';
+import 'package:valle_adventure_app/features/profile/screens/screens.dart';
 import 'package:valle_adventure_app/features/settings/screens/screens.dart';
 import 'package:valle_adventure_app/features/onboarding/screens/screens.dart';
 import 'package:valle_adventure_app/features/search/screens/search_screen.dart';
@@ -89,6 +90,58 @@ final routerProvider = Provider<GoRouter>(
             ),
             routes: [
               GoRoute(
+                path: AppRoutes.settings.path,
+                name: AppRoutes.settings.name,
+                parentNavigatorKey: _rootNavigatorKey,
+                pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+                  context: _,
+                  state: __,
+                  child: const SettingsScreen(),
+                ),
+                routes: [
+                  GoRoute(
+                    path: AppRoutes.about.path,
+                    name: AppRoutes.about.name,
+                    parentNavigatorKey: _rootNavigatorKey,
+                    pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+                      context: _,
+                      state: __,
+                      child: const AboutScreen(),
+                    ),
+                  ),
+                  GoRoute(
+                    path: AppRoutes.language.path,
+                    name: AppRoutes.language.name,
+                    parentNavigatorKey: _rootNavigatorKey,
+                    pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+                      context: _,
+                      state: __,
+                      child: const LanguageScreen(),
+                    ),
+                  ),
+                  GoRoute(
+                    path: AppRoutes.privacy.path,
+                    name: AppRoutes.privacy.name,
+                    parentNavigatorKey: _rootNavigatorKey,
+                    pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+                      context: _,
+                      state: __,
+                      child: const PrivacyScreen(),
+                    ),
+                  ),
+                  GoRoute(
+                    path: AppRoutes.terms.path,
+                    name: AppRoutes.terms.name,
+                    parentNavigatorKey: _rootNavigatorKey,
+                    pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+                      context: _,
+                      state: __,
+                      child: const TermsScreen(),
+                    ),
+                  ),
+                ],
+              ),
+              GoRoute(
                 path: AppRoutes.popular.path,
                 name: AppRoutes.popular.name,
                 parentNavigatorKey: _rootNavigatorKey,
@@ -108,16 +161,6 @@ final routerProvider = Provider<GoRouter>(
                   child: const RecommendedScreen(),
                 ),
               ),
-              GoRoute(
-                path: AppRoutes.saved.path,
-                name: AppRoutes.saved.name,
-                parentNavigatorKey: _rootNavigatorKey,
-                pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
-                  context: _,
-                  state: __,
-                  child: const SavedScreen(),
-                ),
-              ),
             ],
           ),
           GoRoute(
@@ -131,13 +174,23 @@ final routerProvider = Provider<GoRouter>(
             ),
           ),
           GoRoute(
-            path: AppRoutes.settings.path,
-            name: AppRoutes.settings.name,
+            path: AppRoutes.profile.path,
+            name: AppRoutes.profile.name,
             parentNavigatorKey: _shellNavigatorKey,
             pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
               context: _,
               state: __,
-              child: const SettingsScreen(),
+              child: const ProfileScreen(),
+            ),
+          ),
+          GoRoute(
+            path: AppRoutes.saved.path,
+            name: AppRoutes.saved.name,
+            parentNavigatorKey: _shellNavigatorKey,
+            pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+              context: _,
+              state: __,
+              child: const SavedScreen(),
             ),
           ),
         ],

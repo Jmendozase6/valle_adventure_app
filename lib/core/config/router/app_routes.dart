@@ -10,6 +10,11 @@ enum AppRoutes {
   search,
   settings,
   placeDetails,
+  profile,
+  language,
+  privacy,
+  terms,
+  about,
 }
 
 extension AppRoutesExtension on AppRoutes {
@@ -33,10 +38,20 @@ extension AppRoutesExtension on AppRoutes {
         return 'saved';
       case AppRoutes.placeDetails:
         return 'placeDetails';
+      case AppRoutes.profile:
+        return 'profile';
       case AppRoutes.search:
         return 'search';
       case AppRoutes.settings:
         return 'settings';
+      case AppRoutes.language:
+        return 'language';
+      case AppRoutes.privacy:
+        return 'privacy';
+      case AppRoutes.terms:
+        return 'terms';
+      case AppRoutes.about:
+        return 'about';
     }
   }
 
@@ -57,13 +72,23 @@ extension AppRoutesExtension on AppRoutes {
       case AppRoutes.recommended:
         return 'recommended';
       case AppRoutes.saved:
-        return 'saved';
+        return '/saved';
       case AppRoutes.placeDetails:
         return '/placeDetails';
       case AppRoutes.search:
         return '/search';
+      case AppRoutes.profile:
+        return '/profile';
       case AppRoutes.settings:
-        return '/settings';
+        return 'settings';
+      case AppRoutes.language:
+        return 'language';
+      case AppRoutes.privacy:
+        return 'privacy';
+      case AppRoutes.terms:
+        return 'terms';
+      case AppRoutes.about:
+        return 'about';
     }
   }
 }

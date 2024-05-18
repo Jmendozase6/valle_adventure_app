@@ -1,5 +1,6 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:animate_do/animate_do.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
@@ -100,8 +101,7 @@ class _CardTourPrice extends StatelessWidget {
         ),
         SizedBox(height: AppConstants.defaultPadding * 0.5),
         Text(
-          // TODO: Translate this text
-          'Por persona',
+          AppLocalizations.of(context)!.by_person,
           style: AppStyles.body(),
         ),
       ],

@@ -25,21 +25,32 @@ class CustomBottomNavBar extends ConsumerWidget {
       body: body,
       bottomNavigationBar: FlashyTabBar(
         selectedIndex: currentScreen,
+        showElevation: false,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         items: [
           FlashyTabBarItem(
             icon: const Icon(FontAwesomeIcons.house),
             title: Text(locale.home),
             activeColor: AppColors.darkColor,
+            inactiveColor: AppColors.darkColor20,
           ),
           FlashyTabBarItem(
             icon: const Icon(FontAwesomeIcons.magnifyingGlass),
             title: Text(locale.search),
             activeColor: AppColors.darkColor,
+            inactiveColor: AppColors.darkColor20,
           ),
           FlashyTabBarItem(
-            icon: const Icon(FontAwesomeIcons.gear),
-            title: Text(locale.settings),
+            icon: const Icon(FontAwesomeIcons.user),
+            title: Text(locale.profile),
             activeColor: AppColors.darkColor,
+            inactiveColor: AppColors.darkColor20,
+          ),
+          FlashyTabBarItem(
+            icon: const Icon(FontAwesomeIcons.heart),
+            title: Text(locale.saved),
+            activeColor: AppColors.darkColor,
+            inactiveColor: AppColors.darkColor20,
           ),
         ],
         onItemSelected: (value) {
@@ -53,7 +64,10 @@ class CustomBottomNavBar extends ConsumerWidget {
               router.goNamed(AppRoutes.search.name);
               break;
             case 2:
-              router.goNamed(AppRoutes.settings.name);
+              router.goNamed(AppRoutes.profile.name);
+              break;
+            case 3:
+              router.goNamed(AppRoutes.saved.name);
               break;
           }
         },

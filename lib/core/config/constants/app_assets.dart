@@ -9,8 +9,5 @@ class AppAssets {
   static const String onboarding04 = 'assets/images/onboarding/onboarding_01.jpg';
 
   static const String signInHeaderBg = 'assets/images/auth/header_bg.png';
-
-  // Icons
-  static const String eyeIcon = 'assets/icons/eye_icon.svg.vec';
-  static const String eyeClosedIcon = 'assets/icons/eye_closed_icon.svg.vec';
+  static const String noLoggedUser = 'assets/images/auth/no_logged_user.png';
 }

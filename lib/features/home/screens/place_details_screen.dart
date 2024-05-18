@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
-import 'package:valle_adventure_app/features/shared/custom_app_bar.dart';
+import 'package:valle_adventure_app/features/shared/shared.dart';
 import 'package:valle_adventure_app/features/tour/widgets/card_tour_default_image.dart';
 
 class PlaceDetailsScreen extends ConsumerWidget {
