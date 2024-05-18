@@ -31,7 +31,7 @@ class CardTour extends ConsumerWidget {
     );
     return ZoomIn(
       child: GestureDetector(
-        onTap: () => ref.read(routerProvider).goNamed(
+        onTap: () => ref.read(routerProvider).pushNamed(
           AppRoutes.placeDetails.name,
           pathParameters: {'id': id},
         ),

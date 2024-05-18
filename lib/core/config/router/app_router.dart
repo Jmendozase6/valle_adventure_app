@@ -58,6 +58,18 @@ final routerProvider = Provider<GoRouter>(
           child: const SignUpScreen(),
         ),
       ),
+      GoRoute(
+        path: '${AppRoutes.placeDetails.path}/:id',
+        name: AppRoutes.placeDetails.name,
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (_, state) => buildPageWithDefaultTransition<void>(
+          context: _,
+          state: state,
+          child: PlaceDetailsScreen(
+            id: state.pathParameters['id'] ?? '',
+          ),
+        ),
+      ),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (_, __, child) {
@@ -97,15 +109,13 @@ final routerProvider = Provider<GoRouter>(
                 ),
               ),
               GoRoute(
-                path: '${AppRoutes.placeDetails.path}/:id',
-                name: AppRoutes.placeDetails.name,
+                path: AppRoutes.saved.path,
+                name: AppRoutes.saved.name,
                 parentNavigatorKey: _rootNavigatorKey,
-                pageBuilder: (_, state) => buildPageWithDefaultTransition<void>(
+                pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
                   context: _,
-                  state: state,
-                  child: PlaceDetailsScreen(
-                    id: state.pathParameters['id'] ?? '',
-                  ),
+                  state: __,
+                  child: const SavedScreen(),
                 ),
               ),
             ],
@@ -118,16 +128,6 @@ final routerProvider = Provider<GoRouter>(
               context: _,
               state: __,
               child: const SearchScreen(),
-            ),
-          ),
-          GoRoute(
-            path: AppRoutes.saved.path,
-            name: AppRoutes.saved.name,
-            parentNavigatorKey: _shellNavigatorKey,
-            pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
-              context: _,
-              state: __,
-              child: const SavedScreen(),
             ),
           ),
           GoRoute(

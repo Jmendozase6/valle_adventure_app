@@ -18,6 +18,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Router
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
+
+// Theme
 import 'package:valle_adventure_app/core/config/theme/app_theme.dart';
 
 Future<void> main() async {

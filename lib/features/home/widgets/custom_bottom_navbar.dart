@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
+import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/home/providers/bottom_nav_provider.dart';
 
 class CustomBottomNavBar extends ConsumerWidget {
@@ -28,18 +29,17 @@ class CustomBottomNavBar extends ConsumerWidget {
           FlashyTabBarItem(
             icon: const Icon(FontAwesomeIcons.house),
             title: Text(locale.home),
+            activeColor: AppColors.darkColor,
           ),
           FlashyTabBarItem(
             icon: const Icon(FontAwesomeIcons.magnifyingGlass),
             title: Text(locale.search),
-          ),
-          FlashyTabBarItem(
-            icon: const Icon(FontAwesomeIcons.floppyDisk),
-            title: Text(locale.saved),
+            activeColor: AppColors.darkColor,
           ),
           FlashyTabBarItem(
             icon: const Icon(FontAwesomeIcons.gear),
             title: Text(locale.settings),
+            activeColor: AppColors.darkColor,
           ),
         ],
         onItemSelected: (value) {
@@ -53,9 +53,6 @@ class CustomBottomNavBar extends ConsumerWidget {
               router.goNamed(AppRoutes.search.name);
               break;
             case 2:
-              router.goNamed(AppRoutes.saved.name);
-              break;
-            case 3:
               router.goNamed(AppRoutes.settings.name);
               break;
           }
