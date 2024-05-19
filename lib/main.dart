@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+
+// Config Portraits
 import 'package:flutter/services.dart';
 
 // Localization
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:valle_adventure_app/features/settings/providers/providers.dart';
 
 // State management
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,7 +17,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Supabase
-// import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 // Router
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
@@ -24,12 +27,11 @@ import 'package:valle_adventure_app/core/config/theme/app_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await dotenv.load(fileName: ".env");
-  // await Supabase.initialize(
-  //   url: dotenv.get('SUPABASE_URL'),
-  //   anonKey: dotenv.get('SUPABASE_ANON_KEY'),
-  // );
+  await Supabase.initialize(
+    url: dotenv.get('SUPABASE_URL'),
+    anonKey: dotenv.get('SUPABASE_ANON_KEY'),
+  );
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
@@ -46,6 +48,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
+    final locale = ref.watch(localeProvider);
     return ScreenUtilInit(
       designSize: const Size(428, 926),
       builder: (_, __) => MaterialApp.router(
@@ -55,6 +58,7 @@ class MyApp extends ConsumerWidget {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         theme: AppTheme.lightTheme,
+        locale: locale,
       ),
     );
   }

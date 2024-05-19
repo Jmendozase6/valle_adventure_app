@@ -32,5 +32,11 @@
   "saved_paces": "Lugares guardados",
   "by_person": "Por persona",
   "profile": "Perfil",
-  "not_logged_message": "Ingresa para ver tu perfil"
+  "not_logged_message": "Ingresa para ver tu perfil",
+  "select_language": "Selecciona un idioma",
+  "language": "Lenguaje",
+  "notifications": "Notificaciones",
+  "privacy_policy": "Privacidad",
+  "terms_and_conditions": "Términos y Condiciones",
+  "about_us": "Acerca"
 }

@@ -25,34 +25,35 @@ class _SettingsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
+    final locale = AppLocalizations.of(context)!;
     return Column(
       children: [
         // Language
         ListTile(
-          title: const Text('Lenguaje'),
+          title: Text(locale.language),
           trailing: const Icon(Icons.arrow_forward_ios),
           onTap: () => router.pushNamed(AppRoutes.language.name),
         ),
         // Notifications
         ListTile(
-          title: const Text('Notificaciones'),
+          title: Text(locale.notifications),
           trailing: Switch(value: true, onChanged: (value) {}),
         ),
         // Privacy
         ListTile(
-          title: const Text('Privacidad'),
+          title: Text(locale.privacy_policy),
           trailing: const Icon(Icons.arrow_forward_ios),
           onTap: () => router.pushNamed(AppRoutes.privacy.name),
         ),
         // Terms and conditions
         ListTile(
-          title: const Text('Términos y condiciones'),
+          title: Text(locale.terms_and_conditions),
           trailing: const Icon(Icons.arrow_forward_ios),
           onTap: () => router.pushNamed(AppRoutes.terms.name),
         ),
         // About
         ListTile(
-          title: const Text('Acerca'),
+          title: Text(locale.about_us),
           trailing: const Icon(Icons.arrow_forward_ios),
           onTap: () => router.pushNamed(AppRoutes.about.name),
         ),
