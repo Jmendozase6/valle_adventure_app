@@ -18,8 +18,8 @@ class CtaButtonFilled extends StatelessWidget {
       child: FilledButton(
         onPressed: onPressed,
         style: const ButtonStyle().copyWith(
-          backgroundColor: MaterialStateProperty.all(AppColors.darkColor),
-          shape: MaterialStatePropertyAll(
+          backgroundColor: const WidgetStatePropertyAll(AppColors.darkColor),
+          shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppConstants.defaultRadius),
             ),

@@ -17,36 +17,39 @@ class OnboardingNavBar extends ConsumerWidget {
     final currentPage = ref.watch(currentPageProvider);
     final pageController = ref.watch(pageControllerProvider);
     return Container(
-      height: 0.2.sh,
+      height: 0.22.sh,
       width: 1.sw,
       padding: EdgeInsets.symmetric(horizontal: AppConstants.defaultPadding),
-      child: Column(
-        children: [
-          SizedBox(height: AppConstants.defaultPadding),
-          const SlideOnboarding(),
-          SizedBox(height: AppConstants.defaultPadding * 2),
-          CtaButtonFilled(
-            text: AppLocalizations.of(context)!.discover_places,
-            onPressed: () {
-              if (currentPage < 3) {
-                pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-                ref.read(currentPageProvider.notifier).update((state) => state + 1);
-              } else {
-                ref.read(setOnboardingProvider);
-                ref.read(routerProvider).goNamed(AppRoutes.signIn.name);
-              }
-            },
-          ),
-          SizedBox(height: AppConstants.defaultPadding),
-          AccountLink(
-            text: AppLocalizations.of(context)!.have_account,
-            ctaText: AppLocalizations.of(context)!.sign_in,
-            route: AppRoutes.signIn.name,
-          ),
-        ],
+      child: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: Column(
+          children: [
+            SizedBox(height: AppConstants.defaultPadding),
+            const SlideOnboarding(),
+            SizedBox(height: AppConstants.defaultPadding * 2),
+            CtaButtonFilled(
+              text: AppLocalizations.of(context)!.discover_places,
+              onPressed: () {
+                if (currentPage < 3) {
+                  pageController.nextPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                  ref.read(currentPageProvider.notifier).update((state) => state + 1);
+                } else {
+                  ref.read(setOnboardingProvider);
+                  ref.read(routerProvider).goNamed(AppRoutes.signIn.name);
+                }
+              },
+            ),
+            SizedBox(height: AppConstants.defaultPadding),
+            AccountLink(
+              text: AppLocalizations.of(context)!.have_account,
+              ctaText: AppLocalizations.of(context)!.sign_in,
+              route: AppRoutes.signIn.name,
+            ),
+          ],
+        ),
       ),
     );
   }

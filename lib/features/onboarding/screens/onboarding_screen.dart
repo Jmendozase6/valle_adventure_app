@@ -48,6 +48,9 @@ class _OnboardingView extends ConsumerWidget {
     return PageView.builder(
       itemCount: images.length,
       controller: pageController,
+      onPageChanged: (value) {
+        ref.read(currentPageProvider.notifier).update((state) => value);
+      },
       itemBuilder: (context, index) => _OnboardingSlide(
         title: titles[index],
         subtitle: subtitles[index],

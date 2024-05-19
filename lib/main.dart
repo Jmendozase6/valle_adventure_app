@@ -24,14 +24,15 @@ import 'package:valle_adventure_app/core/config/theme/app_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
+
   await dotenv.load(fileName: ".env");
   // await Supabase.initialize(
   //   url: dotenv.get('SUPABASE_URL'),
   //   anonKey: dotenv.get('SUPABASE_ANON_KEY'),
   // );
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(
     const ProviderScope(
       child: MyApp(),

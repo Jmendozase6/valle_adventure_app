@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
@@ -14,6 +15,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: const CustomAppBar(),
       body: const _SignInView(),
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
@@ -23,7 +25,7 @@ class SignInScreen extends StatelessWidget {
             ctaText: AppLocalizations.of(context)!.sign_up,
             route: AppRoutes.signUp.name,
           ),
-          SizedBox(height: AppConstants.defaultPadding),
+          const SizedBox(height: 16),
         ],
       ),
     );
@@ -44,15 +46,17 @@ class _SignInView extends ConsumerWidget {
             title: locale.welcome_again,
             subtitle: locale.sign_in_to_continue,
           ),
-          SizedBox(height: AppConstants.defaultPadding),
+          // Bug
+          const SizedBox(height: 16),
           CustomInput(
             labelText: locale.email,
           ),
-          SizedBox(height: AppConstants.defaultPadding),
+          // Bug
+          const SizedBox(height: 16),
           CustomInputPassword(
             labelText: locale.password,
           ),
-          SizedBox(height: AppConstants.defaultPadding * 0.5),
+          const SizedBox(height: 8),
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
@@ -68,10 +72,10 @@ class _SignInView extends ConsumerWidget {
               ),
             ),
           ),
+          const SizedBox(height: 16),
           Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: AppConstants.defaultPaddingHorizontal,
-              vertical: AppConstants.defaultPadding * 0.25,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
             ),
             child: CtaButtonFilled(
               text: locale.forward,
@@ -80,9 +84,9 @@ class _SignInView extends ConsumerWidget {
               },
             ),
           ),
-          SizedBox(height: AppConstants.defaultPadding),
+          const SizedBox(height: 16),
           const AccessUsing(),
-          SizedBox(height: AppConstants.defaultPadding),
+          const SizedBox(height: 16),
           ButtonSocialMedia(
             text: locale.sign_in_with_google,
           ),

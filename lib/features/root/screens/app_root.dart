@@ -19,10 +19,10 @@ class AppRoot extends ConsumerWidget {
                     ? router.goNamed(AppRoutes.signIn.name)
                     : router.goNamed(AppRoutes.onboarding.name);
               });
-              return const SizedBox();
+              return const Scaffold();
             },
-            error: (_, __) => const Text('Error'),
-            loading: () => const SizedBox(),
+            error: (_, __) => const Scaffold(body: Text('Error')),
+            loading: () => const Scaffold(body: SizedBox()),
           ),
     );
   }
