@@ -81,6 +81,7 @@ Main dependencies
   - [animate_do: ^3.3.4](https://pub.dev/packages/animate_do)
   - [flutter_svg: ^2.0.10+1](https://pub.dev/packages/flutter_svg)
   - [supabase_flutter: ^2.5.3](https://pub.dev/packages/supabase_flutter)
+  - [google_sign_in: ^6.2.1](https://pub.dev/packages/google_sign_in)
 
 Dev dependencies
 

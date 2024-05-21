@@ -5,10 +5,10 @@ import 'package:flutter/services.dart';
 
 // Localization
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:valle_adventure_app/features/settings/providers/providers.dart';
 
 // State management
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:valle_adventure_app/features/settings/providers/providers.dart';
 
 // Responsive
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,24 +16,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // Environment variables
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-// Supabase
-import 'package:supabase_flutter/supabase_flutter.dart';
-
 // Router
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 
 // Theme
 import 'package:valle_adventure_app/core/config/theme/app_theme.dart';
 
+// Supabase
+import 'package:valle_adventure_app/features/supabase/supabase_service.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-  await Supabase.initialize(
-    url: dotenv.get('SUPABASE_URL'),
-    anonKey: dotenv.get('SUPABASE_ANON_KEY'),
-  );
+  await SupabaseService.init();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
   ]);
   runApp(
     const ProviderScope(

@@ -55,6 +55,8 @@ class _PlaceDetailsView extends StatelessWidget {
             CardTourImageDetails(
               images: [
                 'https://res.cloudinary.com/dlfoowzy4/image/upload/v1715927344/valle-adventure-test/$id.jpg',
+                'https://res.cloudinary.com/dlfoowzy4/image/upload/v1715927344/valle-adventure-test/9.jpg',
+                'https://res.cloudinary.com/dlfoowzy4/image/upload/v1715927344/valle-adventure-test/8.jpg',
                 'https://res.cloudinary.com/dlfoowzy4/image/upload/v1715927344/valle-adventure-test/10.jpg',
               ],
               title: 'MONTAÑA BRAVO',
