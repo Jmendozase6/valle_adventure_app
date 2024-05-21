@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
+import 'package:valle_adventure_app/features/auth/data/repositories/repositories.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -25,12 +28,13 @@ class SignUpScreen extends StatelessWidget {
   }
 }
 
-class _SignUpView extends StatelessWidget {
+class _SignUpView extends ConsumerWidget {
   const _SignUpView();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final locale = AppLocalizations.of(context)!;
+    final authProvider = ref.watch(authRepositoryProvider);
 
     return SingleChildScrollView(
       child: Column(
@@ -42,18 +46,22 @@ class _SignUpView extends StatelessWidget {
           SizedBox(height: AppConstants.defaultPadding),
           CustomInput(
             labelText: locale.name,
+            controller: authProvider.nameController,
           ),
           SizedBox(height: AppConstants.defaultPadding),
           CustomInput(
             labelText: locale.last_names,
+            controller: authProvider.lastNameController,
           ),
           SizedBox(height: AppConstants.defaultPadding),
           CustomInput(
             labelText: locale.email,
+            controller: authProvider.emailController,
           ),
           SizedBox(height: AppConstants.defaultPadding),
           CustomInputPassword(
             labelText: locale.password,
+            controller: authProvider.passwordController,
           ),
           SizedBox(height: AppConstants.defaultPadding * 0.5),
           Padding(
@@ -63,6 +71,22 @@ class _SignUpView extends StatelessWidget {
             ),
             child: CtaButtonFilled(
               text: locale.forward,
+              onPressed: () async {
+                final response = await authProvider.signUp(
+                  email: authProvider.emailController.text,
+                  password: authProvider.passwordController.text,
+                  name: authProvider.nameController.text,
+                  lastName: authProvider.lastNameController.text,
+                );
+                response.fold(
+                  (l) {
+                    print(l);
+                  },
+                  (r) {
+                    print('Success');
+                  },
+                );
+              },
             ),
           ),
           SizedBox(height: AppConstants.defaultPadding),

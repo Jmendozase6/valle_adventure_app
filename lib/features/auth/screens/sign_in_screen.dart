@@ -6,6 +6,7 @@ import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
+import 'package:valle_adventure_app/features/auth/data/repositories/repositories.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -37,6 +38,7 @@ class _SignInView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = AppLocalizations.of(context)!;
+    final authProvider = ref.watch(authRepositoryProvider);
 
     return SingleChildScrollView(
       child: Column(
@@ -49,11 +51,13 @@ class _SignInView extends ConsumerWidget {
           const SizedBox(height: 16),
           CustomInput(
             labelText: locale.email,
+            controller: authProvider.emailController,
           ),
           // Bug
           const SizedBox(height: 16),
           CustomInputPassword(
             labelText: locale.password,
+            controller: authProvider.passwordController,
           ),
           const SizedBox(height: 8),
           Align(
@@ -78,8 +82,18 @@ class _SignInView extends ConsumerWidget {
             ),
             child: CtaButtonFilled(
               text: locale.forward,
-              onPressed: () {
-                ref.read(routerProvider).goNamed(AppRoutes.home.name);
+              onPressed: () async {
+                final response = await authProvider.signIn(
+                    email: authProvider.emailController.text,
+                    password: authProvider.passwordController.text);
+                response.fold(
+                  (l) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l)));
+                  },
+                  (r) {
+                    ref.read(routerProvider).goNamed(AppRoutes.home.name);
+                  },
+                );
               },
             ),
           ),

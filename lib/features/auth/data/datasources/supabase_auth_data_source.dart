@@ -37,7 +37,7 @@ abstract class AuthDataSource {
   Future<void> signOut();
 }
 
-class AuthDataSourceImpl implements AuthDataSource {
+class SupabaseAuthDataSourceImpl implements AuthDataSource {
   final _supabase = Supabase.instance.client;
   @override
   EitherStringBool signUp({
@@ -46,11 +46,31 @@ class AuthDataSourceImpl implements AuthDataSource {
     required String name,
     required String lastName,
   }) async {
-    final response = await _supabase.auth.signUp(password: password, email: email, data: {
-      'name': name,
-      'last_name': lastName,
-    });
-    return response.user == null ? left('Error') : right(true);
+    String error = '';
+    // TaskEither.tryCatch(
+    //   () async {
+    //     await _supabase.auth.signUp(password: password, email: email, data: {
+    //       'name': name,
+    //       'last_name': lastName,
+    //     });
+    //     return true;
+    //   },
+    //   (error, _) {
+    //     error = error.toString();
+    //     return error.toString();
+    //   },
+    // );
+    try {
+      await _supabase.auth.signUp(password: password, email: email, data: {
+        'name': name,
+        'last_name': lastName,
+      });
+      return right(true);
+    } catch (e) {
+      error = e.toString();
+      return left(error);
+    }
+    // return left(error);
   }
 
   @override
@@ -58,8 +78,24 @@ class AuthDataSourceImpl implements AuthDataSource {
     required String email,
     required String password,
   }) async {
-    final response = await _supabase.auth.signInWithPassword(email: email, password: password);
-    return response.user == null ? left('Error') : right(true);
+    String error = '';
+    // TaskEither.tryCatch(
+    //   () async {
+    //     await _supabase.auth.signInWithPassword(email: email, password: password);
+    //     return true;
+    //   },
+    //   (error, _) {
+    //     error = error.toString();
+    //     return error.toString();
+    //   },
+    // );
+    try {
+      await _supabase.auth.signInWithPassword(password: password, email: email);
+      return right(true);
+    } catch (e) {
+      error = e.toString();
+      return left(error.toString());
+    }
   }
 
   @override

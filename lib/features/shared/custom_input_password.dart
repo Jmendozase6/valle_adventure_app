@@ -23,6 +23,7 @@ class CustomInputPassword extends ConsumerWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: padding ?? AppConstants.defaultPaddingHorizontal),
       child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
           label: Text(labelText),
           border: OutlineInputBorder(

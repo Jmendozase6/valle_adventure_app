@@ -1,16 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:valle_adventure_app/features/auth/data/datasources/auth_data_source.dart';
+import 'package:valle_adventure_app/features/auth/data/datasources/supabase_auth_data_source.dart';
 import 'package:valle_adventure_app/features/auth/domain/repositories/auth_repository.dart';
 
-final supabaseAuthRepositoryProvider = Provider((ref) {
-  final datasource = AuthDataSourceImpl();
-  return SupabaseAuthRepositoryImpl(datasource: datasource);
+final authRepositoryProvider = Provider.autoDispose((ref) {
+  final datasource = SupabaseAuthDataSourceImpl();
+  return AuthRepositoryImpl(datasource: datasource);
 });
 
-class SupabaseAuthRepositoryImpl implements AuthRepository {
+class AuthRepositoryImpl implements AuthRepository {
   final AuthDataSource datasource;
-  SupabaseAuthRepositoryImpl({required this.datasource});
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final nameController = TextEditingController();
+  final lastNameController = TextEditingController();
+
+  AuthRepositoryImpl({required this.datasource});
 
   @override
   EitherStringBool signUp({
@@ -20,10 +26,10 @@ class SupabaseAuthRepositoryImpl implements AuthRepository {
     required String lastName,
   }) async {
     final response = await datasource.signUp(
-      email: email,
-      password: password,
-      name: name,
-      lastName: lastName,
+      email: email.trim(),
+      password: password.trim(),
+      name: name.trim(),
+      lastName: lastName.trim(),
     );
     return response.fold(
       (leftValue) => left(leftValue),
@@ -37,8 +43,8 @@ class SupabaseAuthRepositoryImpl implements AuthRepository {
     required String password,
   }) async {
     final response = await datasource.signIn(
-      email: email,
-      password: password,
+      email: email.trim(),
+      password: password.trim(),
     );
     return response.fold(
       (leftValue) => left(leftValue),
