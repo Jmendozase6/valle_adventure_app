@@ -33,6 +33,7 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  await ScreenUtil.ensureScreenSize();
   runApp(
     const ProviderScope(
       child: MyApp(),
@@ -48,7 +49,7 @@ class MyApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
     final locale = ref.watch(localeProvider);
     return ScreenUtilInit(
-      designSize: const Size(428, 926),
+      // designSize: const Size(428, 926),
       builder: (_, __) => MaterialApp.router(
         routerConfig: router,
         title: 'Valle Adventure',

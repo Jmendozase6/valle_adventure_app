@@ -13,7 +13,7 @@ class ButtonSocialMedia extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 1.sw,
-      height: 60.h,
+      height: 50.h,
       padding: EdgeInsets.symmetric(horizontal: AppConstants.defaultPaddingHorizontal),
       child: OutlinedButton(
         onPressed: () {},

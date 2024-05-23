@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/features/auth/data/repositories/repositories.dart';
@@ -12,7 +13,7 @@ class AppRoot extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
     final authProvider = ref.watch(authRepositoryProvider);
-
+    ScreenUtil.init(context);
     return Scaffold(
       body: ref.watch(onboardingProvider).when(
             data: (value) {

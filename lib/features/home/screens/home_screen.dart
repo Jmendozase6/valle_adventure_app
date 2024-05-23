@@ -90,9 +90,8 @@ class _PopularSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 0.2.sh,
-      margin: EdgeInsets.symmetric(vertical: AppConstants.defaultPadding * 0.5),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 3,
@@ -133,7 +132,7 @@ class _TitleSeeAll extends ConsumerWidget {
           },
           child: Text(
             AppLocalizations.of(context)!.see_all,
-            style: AppStyles.button(color: AppColors.mainColor),
+            style: AppStyles.subtitle(color: AppColors.mainColor),
           ),
         ),
       ],

@@ -44,36 +44,7 @@ class CardTourImageDetails extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          if (images.length > 1)
-            GestureDetector(
-              onTap: () {
-                currentImage.nextImage(images.length);
-              },
-              child: Container(
-                height: 100.h,
-                width: 100.h,
-                alignment: Alignment.topCenter,
-                margin: EdgeInsets.only(
-                  right: AppConstants.defaultPaddingHorizontal,
-                  bottom: AppConstants.defaultPadding,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppConstants.defaultRadius),
-                  border: Border.all(
-                    color: AppColors.whiteColor,
-                    width: 2,
-                  ),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(AppConstants.defaultRadius),
-                  ),
-                  child: CustomCachedNetworkImage(
-                    imageUrl: images[currentImage.imageIndexPlusOne],
-                  ),
-                ),
-              ),
-            ),
+          if (images.length > 1) _BoxImage(currentImage: currentImage, images: images),
           Container(
             height: 0.1.sh,
             padding: EdgeInsets.symmetric(
@@ -86,37 +57,100 @@ class CardTourImageDetails extends ConsumerWidget {
                 bottomRight: Radius.circular(AppConstants.defaultPadding),
               ),
             ),
-            child: Row(
-              children: [
-                CardTourTitle(
-                  title: title,
-                  location: location,
-                  textColor: AppColors.whiteColor,
-                ),
-                const VerticalDivider(),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '⭐️ $stars',
-                      style: AppStyles.body(
-                        color: AppColors.whiteColor,
-                      ),
-                    ),
-                    SizedBox(height: AppConstants.defaultPadding * 0.5),
-                    Text(
-                      '$reviewsAmount reseñas',
-                      style: AppStyles.body(
-                        color: AppColors.whiteColor,
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
+            child: _TourGeneralInfo(
+                title: title, location: location, stars: stars, reviewsAmount: reviewsAmount),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _TourGeneralInfo extends StatelessWidget {
+  const _TourGeneralInfo({
+    required this.title,
+    required this.location,
+    required this.stars,
+    required this.reviewsAmount,
+  });
+
+  final String title;
+  final String location;
+  final double stars;
+  final int reviewsAmount;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        CardTourTitle(
+          title: title,
+          location: location,
+          textColor: AppColors.whiteColor,
+        ),
+        const VerticalDivider(),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '⭐️ $stars',
+              style: AppStyles.body(
+                color: AppColors.whiteColor,
+              ),
+            ),
+            SizedBox(height: AppConstants.defaultPadding * 0.5),
+            Text(
+              '$reviewsAmount reseñas',
+              style: AppStyles.body(
+                color: AppColors.whiteColor,
+              ),
+            ),
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class _BoxImage extends StatelessWidget {
+  const _BoxImage({
+    required this.currentImage,
+    required this.images,
+  });
+
+  final CurrentImageNotifier currentImage;
+  final List<String> images;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        currentImage.nextImage(images.length);
+      },
+      child: Container(
+        height: 70.h,
+        width: 70.h,
+        alignment: Alignment.topCenter,
+        margin: EdgeInsets.only(
+          right: AppConstants.defaultPadding,
+          bottom: AppConstants.defaultPadding,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppConstants.defaultRadius),
+          border: Border.all(
+            color: AppColors.whiteColor,
+            width: 2,
+          ),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(
+            AppConstants.defaultRadius,
+          ),
+          child: CustomCachedNetworkImage(
+            imageUrl: images[currentImage.imageIndexPlusOne],
+          ),
+        ),
       ),
     );
   }

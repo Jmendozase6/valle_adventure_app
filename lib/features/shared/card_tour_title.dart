@@ -29,7 +29,7 @@ class CardTourTitle extends StatelessWidget {
             title,
             style: AppStyles.body(color: textColor),
           ),
-          SizedBox(height: AppConstants.defaultPadding * 0.5),
+          SizedBox(height: AppConstants.defaultPadding * 0.3),
           NameLocation(
             location: location,
             textColor: textColor,

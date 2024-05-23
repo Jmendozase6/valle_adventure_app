@@ -14,7 +14,7 @@ class CtaButtonFilled extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 1.sw,
-      height: 60.h,
+      height: 50.h,
       child: FilledButton(
         onPressed: onPressed,
         style: const ButtonStyle().copyWith(

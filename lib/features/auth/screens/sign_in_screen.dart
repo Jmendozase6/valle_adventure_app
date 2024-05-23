@@ -48,18 +48,18 @@ class _SignInView extends ConsumerWidget {
             subtitle: locale.sign_in_to_continue,
           ),
           // Bug
-          const SizedBox(height: 16),
+          SizedBox(height: AppConstants.defaultPadding),
           CustomInput(
             labelText: locale.email,
             controller: authProvider.signInEmailController,
           ),
           // Bug
-          const SizedBox(height: 16),
+          SizedBox(height: AppConstants.defaultPadding),
           CustomInputPassword(
             labelText: locale.password,
             controller: authProvider.signInPasswordController,
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: AppConstants.defaultPadding * 0.5),
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
@@ -75,10 +75,10 @@ class _SignInView extends ConsumerWidget {
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: AppConstants.defaultPadding),
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
+            padding: EdgeInsets.symmetric(
+              horizontal: AppConstants.defaultPaddingHorizontal,
             ),
             child: CtaButtonFilled(
               text: locale.forward,
@@ -98,13 +98,13 @@ class _SignInView extends ConsumerWidget {
               },
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: AppConstants.defaultPadding),
           const AccessUsing(),
-          const SizedBox(height: 16),
+          SizedBox(height: AppConstants.defaultPadding),
           ButtonSocialMedia(
             text: locale.sign_in_with_google,
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: AppConstants.defaultPadding),
           // TODO: traslate
           TextButton(
             onPressed: () {
