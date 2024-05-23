@@ -11,7 +11,7 @@ class AppRoot extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
-    final authRepository = ref.watch(authRepositoryProvider);
+    final authProvider = ref.watch(authRepositoryProvider);
 
     return Scaffold(
       body: ref.watch(onboardingProvider).when(
@@ -19,7 +19,7 @@ class AppRoot extends ConsumerWidget {
               Future.delayed(Duration.zero, () {
                 value
                     ? {
-                        if (authRepository.isAuthenticated())
+                        if (authProvider.isAuthenticated())
                           router.goNamed(AppRoutes.home.name)
                         else
                           router.goNamed(AppRoutes.signIn.name)

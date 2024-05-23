@@ -106,11 +106,11 @@ class AuthRepositoryImpl implements AuthRepository {
   ///
   /// This method is called when the provider is disposed
   void disposeControllers() {
-    signUpEmailController.dispose();
-    signUpPasswordController.dispose();
-    signUpNameController.dispose();
-    signUpLastNameController.dispose();
-    signInEmailController.dispose();
-    signInPasswordController.dispose();
+    signUpEmailController.text = '';
+    signUpPasswordController.text = '';
+    signUpNameController.text = '';
+    signUpLastNameController.text = '';
+    signInEmailController.text = '';
+    signInPasswordController.text = '';
   }
 }

@@ -20,11 +20,16 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
+  @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "user_metadata")
   UserMetadata get userMetadata => throw _privateConstructorUsedError;
+  @JsonKey(name: "new_email")
   dynamic get newEmail => throw _privateConstructorUsedError;
+  @JsonKey(name: "email")
   String get email => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: "phone")
+  dynamic get phone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,11 +43,11 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {String id,
-      UserMetadata userMetadata,
-      dynamic newEmail,
-      String email,
-      String phone});
+      {@JsonKey(name: "id") String id,
+      @JsonKey(name: "user_metadata") UserMetadata userMetadata,
+      @JsonKey(name: "new_email") dynamic newEmail,
+      @JsonKey(name: "email") String email,
+      @JsonKey(name: "phone") dynamic phone});
 
   $UserMetadataCopyWith<$Res> get userMetadata;
 }
@@ -64,7 +69,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? userMetadata = null,
     Object? newEmail = freezed,
     Object? email = null,
-    Object? phone = null,
+    Object? phone = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -83,10 +88,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      phone: null == phone
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
     ) as $Val);
   }
 
@@ -108,11 +113,11 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      UserMetadata userMetadata,
-      dynamic newEmail,
-      String email,
-      String phone});
+      {@JsonKey(name: "id") String id,
+      @JsonKey(name: "user_metadata") UserMetadata userMetadata,
+      @JsonKey(name: "new_email") dynamic newEmail,
+      @JsonKey(name: "email") String email,
+      @JsonKey(name: "phone") dynamic phone});
 
   @override
   $UserMetadataCopyWith<$Res> get userMetadata;
@@ -133,7 +138,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? userMetadata = null,
     Object? newEmail = freezed,
     Object? email = null,
-    Object? phone = null,
+    Object? phone = freezed,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
@@ -152,10 +157,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      phone: null == phone
+      phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
     ));
   }
 }
@@ -164,25 +169,30 @@ class __$$UserModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserModelImpl implements _UserModel {
   const _$UserModelImpl(
-      {required this.id,
-      required this.userMetadata,
-      required this.newEmail,
-      required this.email,
-      required this.phone});
+      {@JsonKey(name: "id") required this.id,
+      @JsonKey(name: "user_metadata") required this.userMetadata,
+      @JsonKey(name: "new_email") required this.newEmail,
+      @JsonKey(name: "email") required this.email,
+      @JsonKey(name: "phone") required this.phone});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
 
   @override
+  @JsonKey(name: "id")
   final String id;
   @override
+  @JsonKey(name: "user_metadata")
   final UserMetadata userMetadata;
   @override
+  @JsonKey(name: "new_email")
   final dynamic newEmail;
   @override
+  @JsonKey(name: "email")
   final String email;
   @override
-  final String phone;
+  @JsonKey(name: "phone")
+  final dynamic phone;
 
   @override
   String toString() {
@@ -199,13 +209,18 @@ class _$UserModelImpl implements _UserModel {
                 other.userMetadata == userMetadata) &&
             const DeepCollectionEquality().equals(other.newEmail, newEmail) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.phone, phone) || other.phone == phone));
+            const DeepCollectionEquality().equals(other.phone, phone));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userMetadata,
-      const DeepCollectionEquality().hash(newEmail), email, phone);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      userMetadata,
+      const DeepCollectionEquality().hash(newEmail),
+      email,
+      const DeepCollectionEquality().hash(phone));
 
   @JsonKey(ignore: true)
   @override
@@ -223,25 +238,30 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-      {required final String id,
-      required final UserMetadata userMetadata,
-      required final dynamic newEmail,
-      required final String email,
-      required final String phone}) = _$UserModelImpl;
+      {@JsonKey(name: "id") required final String id,
+      @JsonKey(name: "user_metadata") required final UserMetadata userMetadata,
+      @JsonKey(name: "new_email") required final dynamic newEmail,
+      @JsonKey(name: "email") required final String email,
+      @JsonKey(name: "phone") required final dynamic phone}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
 
   @override
+  @JsonKey(name: "id")
   String get id;
   @override
+  @JsonKey(name: "user_metadata")
   UserMetadata get userMetadata;
   @override
+  @JsonKey(name: "new_email")
   dynamic get newEmail;
   @override
+  @JsonKey(name: "email")
   String get email;
   @override
-  String get phone;
+  @JsonKey(name: "phone")
+  dynamic get phone;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>
@@ -254,8 +274,11 @@ UserMetadata _$UserMetadataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserMetadata {
+  @JsonKey(name: "email")
   String get email => throw _privateConstructorUsedError;
+  @JsonKey(name: "last_name")
   String get lastName => throw _privateConstructorUsedError;
+  @JsonKey(name: "name")
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -270,7 +293,10 @@ abstract class $UserMetadataCopyWith<$Res> {
           UserMetadata value, $Res Function(UserMetadata) then) =
       _$UserMetadataCopyWithImpl<$Res, UserMetadata>;
   @useResult
-  $Res call({String email, String lastName, String name});
+  $Res call(
+      {@JsonKey(name: "email") String email,
+      @JsonKey(name: "last_name") String lastName,
+      @JsonKey(name: "name") String name});
 }
 
 /// @nodoc
@@ -315,7 +341,10 @@ abstract class _$$UserMetadataImplCopyWith<$Res>
       __$$UserMetadataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String lastName, String name});
+  $Res call(
+      {@JsonKey(name: "email") String email,
+      @JsonKey(name: "last_name") String lastName,
+      @JsonKey(name: "name") String name});
 }
 
 /// @nodoc
@@ -354,16 +383,21 @@ class __$$UserMetadataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserMetadataImpl implements _UserMetadata {
   const _$UserMetadataImpl(
-      {required this.email, required this.lastName, required this.name});
+      {@JsonKey(name: "email") required this.email,
+      @JsonKey(name: "last_name") required this.lastName,
+      @JsonKey(name: "name") required this.name});
 
   factory _$UserMetadataImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserMetadataImplFromJson(json);
 
   @override
+  @JsonKey(name: "email")
   final String email;
   @override
+  @JsonKey(name: "last_name")
   final String lastName;
   @override
+  @JsonKey(name: "name")
   final String name;
 
   @override
@@ -402,18 +436,21 @@ class _$UserMetadataImpl implements _UserMetadata {
 
 abstract class _UserMetadata implements UserMetadata {
   const factory _UserMetadata(
-      {required final String email,
-      required final String lastName,
-      required final String name}) = _$UserMetadataImpl;
+      {@JsonKey(name: "email") required final String email,
+      @JsonKey(name: "last_name") required final String lastName,
+      @JsonKey(name: "name") required final String name}) = _$UserMetadataImpl;
 
   factory _UserMetadata.fromJson(Map<String, dynamic> json) =
       _$UserMetadataImpl.fromJson;
 
   @override
+  @JsonKey(name: "email")
   String get email;
   @override
+  @JsonKey(name: "last_name")
   String get lastName;
   @override
+  @JsonKey(name: "name")
   String get name;
   @override
   @JsonKey(ignore: true)

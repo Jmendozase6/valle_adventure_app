@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:valle_adventure_app/core/config/constants/app_assets.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
@@ -42,14 +43,22 @@ class _ProfileView extends ConsumerWidget {
         return FutureBuilder(
           future: data,
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final user = snapshot.data as UserModel;
-              return _UserLoggedView(user: user);
-            } else {
+            if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
+            if (snapshot.hasError) {
+              return const Center(
+                child: Text('Error'),
+              );
+            }
+            final user = Right(snapshot.data).value;
+            final userModel = user!.fold(
+              (error) => null,
+              (data) => data,
+            );
+            return _UserLoggedView(user: userModel!);
           },
         );
       },
@@ -96,13 +105,13 @@ class _NotUserLoggedView extends ConsumerWidget {
   }
 }
 
-class _UserLoggedView extends StatelessWidget {
+class _UserLoggedView extends ConsumerWidget {
   const _UserLoggedView({required this.user});
 
   final UserModel user;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
         SizedBox(height: AppConstants.defaultPadding * 3),
@@ -119,17 +128,17 @@ class _UserLoggedView extends StatelessWidget {
           ),
           child: const Divider(),
         ),
-        const UserDataRow(
+        UserDataRow(
           title: 'Nombres',
-          value: 'Jhair',
+          value: user.userMetadata.name,
         ),
-        const UserDataRow(
+        UserDataRow(
           title: 'Apellidos',
-          value: 'Mendoza Sernaqué',
+          value: user.userMetadata.lastName,
         ),
-        const UserDataRow(
+        UserDataRow(
           title: 'Correo',
-          value: 'papu@gmail.com',
+          value: user.email,
         ),
       ],
     );

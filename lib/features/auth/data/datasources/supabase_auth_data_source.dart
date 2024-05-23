@@ -135,6 +135,7 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
       if (user == null) {
         return left('No user found');
       } else {
+        log(user.toJson().toString());
         final userModel = UserModel.fromJson(user.toJson());
         return right(userModel);
       }

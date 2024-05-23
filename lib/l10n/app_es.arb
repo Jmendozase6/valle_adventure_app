@@ -38,5 +38,6 @@
   "notifications": "Notificaciones",
   "privacy_policy": "Privacidad",
   "terms_and_conditions": "Términos y Condiciones",
-  "about_us": "Acerca"
+  "about_us": "Acerca",
+  "sign_out": "Cerrar sesión"
 }

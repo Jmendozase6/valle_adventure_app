@@ -3,6 +3,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
+import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
+import 'package:valle_adventure_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -25,7 +27,9 @@ class _SettingsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
+    final authProvider = ref.watch(authRepositoryProvider);
     final locale = AppLocalizations.of(context)!;
+
     return Column(
       children: [
         // Language
@@ -57,6 +61,23 @@ class _SettingsView extends ConsumerWidget {
           trailing: const Icon(Icons.arrow_forward_ios),
           onTap: () => router.pushNamed(AppRoutes.about.name),
         ),
+        if (authProvider.isAuthenticated())
+          ListTile(
+            title: Text(
+              locale.sign_out,
+              style: const TextStyle(
+                color: AppColors.redColor,
+              ),
+            ),
+            trailing: const Icon(
+              Icons.logout,
+              color: AppColors.redColor,
+            ),
+            onTap: () {
+              authProvider.signOut();
+              router.pop();
+            },
+          ),
         // Logout or Sign in
       ],
     );

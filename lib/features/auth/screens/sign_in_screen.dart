@@ -7,6 +7,7 @@ import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/auth/data/repositories/repositories.dart';
+import 'package:valle_adventure_app/features/home/providers/bottom_nav_provider.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -15,7 +16,6 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: const CustomAppBar(),
       body: const _SignInView(),
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
@@ -84,8 +84,8 @@ class _SignInView extends ConsumerWidget {
               text: locale.forward,
               onPressed: () async {
                 final response = await authProvider.signIn(
-                    email: authProvider.signUpEmailController.text,
-                    password: authProvider.signUpPasswordController.text);
+                    email: authProvider.signInEmailController.text,
+                    password: authProvider.signInPasswordController.text);
                 response.fold(
                   (l) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l)));
@@ -94,6 +94,7 @@ class _SignInView extends ConsumerWidget {
                     ref.read(routerProvider).goNamed(AppRoutes.home.name);
                   },
                 );
+                ref.read(bottomNavProvider.notifier).state = 0;
               },
             ),
           ),
@@ -102,6 +103,14 @@ class _SignInView extends ConsumerWidget {
           const SizedBox(height: 16),
           ButtonSocialMedia(
             text: locale.sign_in_with_google,
+          ),
+          const SizedBox(height: 16),
+          // TODO: traslate
+          TextButton(
+            onPressed: () {
+              ref.read(routerProvider).goNamed(AppRoutes.home.name);
+            },
+            child: const Text('Ingresar sin iniciar sesión'),
           ),
         ],
       ),
