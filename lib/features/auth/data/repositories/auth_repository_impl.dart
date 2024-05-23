@@ -3,18 +3,31 @@ import 'package:fpdart/fpdart.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/features/auth/data/datasources/supabase_auth_data_source.dart';
 import 'package:valle_adventure_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:valle_adventure_app/utils/types/type_defs.dart';
 
 final authRepositoryProvider = Provider.autoDispose((ref) {
   final datasource = SupabaseAuthDataSourceImpl();
   return AuthRepositoryImpl(datasource: datasource);
 });
 
+/// Get the current user using the [AuthRepository] - [FutureProvider]
+///
+/// Returns a [User] with the current user
+final currentUserProvider = FutureProvider.autoDispose<EitherStringUserModel>(
+  (ref) {
+    final authRepository = ref.watch(authRepositoryProvider);
+    return authRepository.getCurrentUser();
+  },
+);
+
 class AuthRepositoryImpl implements AuthRepository {
   final AuthDataSource datasource;
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final nameController = TextEditingController();
-  final lastNameController = TextEditingController();
+  final signUpEmailController = TextEditingController();
+  final signUpPasswordController = TextEditingController();
+  final signUpNameController = TextEditingController();
+  final signUpLastNameController = TextEditingController();
+  final signInEmailController = TextEditingController();
+  final signInPasswordController = TextEditingController();
 
   AuthRepositoryImpl({required this.datasource});
 
@@ -33,7 +46,10 @@ class AuthRepositoryImpl implements AuthRepository {
     );
     return response.fold(
       (leftValue) => left(leftValue),
-      (rightValue) => right(rightValue),
+      (rightValue) {
+        disposeControllers();
+        return right(rightValue);
+      },
     );
   }
 
@@ -48,7 +64,10 @@ class AuthRepositoryImpl implements AuthRepository {
     );
     return response.fold(
       (leftValue) => left(leftValue),
-      (rightValue) => right(rightValue),
+      (rightValue) {
+        disposeControllers();
+        return right(rightValue);
+      },
     );
   }
 
@@ -60,5 +79,38 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   EitherStringBool signInWithGoogle() {
     throw UnimplementedError();
+  }
+
+  @override
+  bool isAuthenticated() => datasource.isAuthenticated();
+
+  @override
+  Future<void> resetPassword({required String email}) {
+    // TODO: implement resetPassword
+    throw UnimplementedError();
+  }
+
+  /// Get the current user
+  ///
+  /// Returns a [User] with the current user
+  @override
+  EitherStringUserModel getCurrentUser() async {
+    final response = await datasource.getCurrentUser();
+    return response.fold(
+      (leftValue) => left(leftValue),
+      (rightValue) => right(rightValue),
+    );
+  }
+
+  /// Clean up the controllers
+  ///
+  /// This method is called when the provider is disposed
+  void disposeControllers() {
+    signUpEmailController.dispose();
+    signUpPasswordController.dispose();
+    signUpNameController.dispose();
+    signUpLastNameController.dispose();
+    signInEmailController.dispose();
+    signInPasswordController.dispose();
   }
 }

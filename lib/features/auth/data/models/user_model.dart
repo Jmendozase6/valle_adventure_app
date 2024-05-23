@@ -1,17 +1,3 @@
-import 'package:valle_adventure_app/features/auth/domain/entities/user.dart';
-
-// class UserModel extends User {
-//   UserModel({
-//     required super.id,
-//     required super.createdAt,
-//     super.name,
-//     super.lastName,
-//     required super.email,
-//     super.idCard,
-//     super.phone,
-//   });
-// }
-
 // To parse this JSON data, do
 //
 //     final userModel = userModelFromJson(jsonString);
@@ -30,13 +16,22 @@ String userModelToJson(UserModel data) => json.encode(data.toJson());
 class UserModel with _$UserModel {
   const factory UserModel({
     required String id,
-    required String createdAt,
-    required dynamic name,
-    required dynamic lastName,
+    required UserMetadata userMetadata,
+    required dynamic newEmail,
     required String email,
-    required String idCard,
     required String phone,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
+}
+
+@freezed
+class UserMetadata with _$UserMetadata {
+  const factory UserMetadata({
+    required String email,
+    required String lastName,
+    required String name,
+  }) = _UserMetadata;
+
+  factory UserMetadata.fromJson(Map<String, dynamic> json) => _$UserMetadataFromJson(json);
 }

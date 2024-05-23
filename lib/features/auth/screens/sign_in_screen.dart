@@ -51,13 +51,13 @@ class _SignInView extends ConsumerWidget {
           const SizedBox(height: 16),
           CustomInput(
             labelText: locale.email,
-            controller: authProvider.emailController,
+            controller: authProvider.signInEmailController,
           ),
           // Bug
           const SizedBox(height: 16),
           CustomInputPassword(
             labelText: locale.password,
-            controller: authProvider.passwordController,
+            controller: authProvider.signInPasswordController,
           ),
           const SizedBox(height: 8),
           Align(
@@ -84,8 +84,8 @@ class _SignInView extends ConsumerWidget {
               text: locale.forward,
               onPressed: () async {
                 final response = await authProvider.signIn(
-                    email: authProvider.emailController.text,
-                    password: authProvider.passwordController.text);
+                    email: authProvider.signUpEmailController.text,
+                    password: authProvider.signUpPasswordController.text);
                 response.fold(
                   (l) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l)));

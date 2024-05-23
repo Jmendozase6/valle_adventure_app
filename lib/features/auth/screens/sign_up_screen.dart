@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/features/auth/data/repositories/repositories.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
@@ -46,22 +45,22 @@ class _SignUpView extends ConsumerWidget {
           SizedBox(height: AppConstants.defaultPadding),
           CustomInput(
             labelText: locale.name,
-            controller: authProvider.nameController,
+            controller: authProvider.signUpNameController,
           ),
           SizedBox(height: AppConstants.defaultPadding),
           CustomInput(
             labelText: locale.last_names,
-            controller: authProvider.lastNameController,
+            controller: authProvider.signUpLastNameController,
           ),
           SizedBox(height: AppConstants.defaultPadding),
           CustomInput(
             labelText: locale.email,
-            controller: authProvider.emailController,
+            controller: authProvider.signUpEmailController,
           ),
           SizedBox(height: AppConstants.defaultPadding),
           CustomInputPassword(
             labelText: locale.password,
-            controller: authProvider.passwordController,
+            controller: authProvider.signUpPasswordController,
           ),
           SizedBox(height: AppConstants.defaultPadding * 0.5),
           Padding(
@@ -73,17 +72,24 @@ class _SignUpView extends ConsumerWidget {
               text: locale.forward,
               onPressed: () async {
                 final response = await authProvider.signUp(
-                  email: authProvider.emailController.text,
-                  password: authProvider.passwordController.text,
-                  name: authProvider.nameController.text,
-                  lastName: authProvider.lastNameController.text,
+                  email: authProvider.signUpEmailController.text,
+                  password: authProvider.signUpPasswordController.text,
+                  name: authProvider.signUpNameController.text,
+                  lastName: authProvider.signUpLastNameController.text,
                 );
                 response.fold(
                   (l) {
-                    print(l);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l)));
                   },
                   (r) {
-                    print('Success');
+                    showDialog(
+                      context: context,
+                      builder: (context) => const AlertDialog(
+                        title: Text('Éxito'),
+                        content: Text(
+                            'Se creó su cuenta correctamente, por favor confirme su correo electrónico'),
+                      ),
+                    );
                   },
                 );
               },

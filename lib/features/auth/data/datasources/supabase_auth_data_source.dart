@@ -1,13 +1,15 @@
+import 'dart:developer';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:valle_adventure_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:valle_adventure_app/features/auth/data/models/user_model.dart';
+import 'package:valle_adventure_app/utils/types/type_defs.dart';
 
 abstract class AuthDataSource {
   /// Sign in with email and password
   ///
   /// Returns a [EitherStringBool] with the result of the operation
-
   EitherStringBool signIn({
     required String email,
     required String password,
@@ -16,7 +18,6 @@ abstract class AuthDataSource {
   /// Sign up with email and password
   ///
   /// Returns a [EitherStringBool] with the result of the operation
-
   EitherStringBool signUp({
     required String email,
     required String password,
@@ -27,14 +28,27 @@ abstract class AuthDataSource {
   /// Sign in with Google
   ///
   /// Returns a [EitherStringBool] with the result of the operation
-
   EitherStringBool signInWithGoogle();
 
   /// Sign out
   ///
   /// No return value
-
   Future<void> signOut();
+
+  /// Reset password
+  ///
+  /// Returns a [EitherStringBool] with the result of the operation
+  Future<EitherStringBool> resetPassword({required String email});
+
+  /// Check if the user is authenticated
+  ///
+  /// Returns a [Future<bool>] with the result of the operation
+  bool isAuthenticated();
+
+  /// Get the current user
+  ///
+  /// Returns a [User] with the current user
+  EitherStringUserModel getCurrentUser();
 }
 
 class SupabaseAuthDataSourceImpl implements AuthDataSource {
@@ -46,31 +60,17 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
     required String name,
     required String lastName,
   }) async {
-    String error = '';
-    // TaskEither.tryCatch(
-    //   () async {
-    //     await _supabase.auth.signUp(password: password, email: email, data: {
-    //       'name': name,
-    //       'last_name': lastName,
-    //     });
-    //     return true;
-    //   },
-    //   (error, _) {
-    //     error = error.toString();
-    //     return error.toString();
-    //   },
-    // );
     try {
       await _supabase.auth.signUp(password: password, email: email, data: {
         'name': name,
         'last_name': lastName,
       });
       return right(true);
+    } on AuthException catch (error) {
+      return left(error.message);
     } catch (e) {
-      error = e.toString();
-      return left(error);
+      return left('Ocurrió un Error');
     }
-    // return left(error);
   }
 
   @override
@@ -78,23 +78,13 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
     required String email,
     required String password,
   }) async {
-    String error = '';
-    // TaskEither.tryCatch(
-    //   () async {
-    //     await _supabase.auth.signInWithPassword(email: email, password: password);
-    //     return true;
-    //   },
-    //   (error, _) {
-    //     error = error.toString();
-    //     return error.toString();
-    //   },
-    // );
     try {
       await _supabase.auth.signInWithPassword(password: password, email: email);
       return right(true);
+    } on AuthException catch (error) {
+      return left(error.message);
     } catch (e) {
-      error = e.toString();
-      return left(error.toString());
+      return left('Ocurrió un Error');
     }
   }
 
@@ -133,5 +123,29 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
   @override
   Future<void> signOut() async {
     await _supabase.auth.signOut();
+  }
+
+  @override
+  bool isAuthenticated() => _supabase.auth.currentUser != null;
+
+  @override
+  EitherStringUserModel getCurrentUser() async {
+    try {
+      final user = _supabase.auth.currentUser;
+      if (user == null) {
+        return left('No user found');
+      } else {
+        final userModel = UserModel.fromJson(user.toJson());
+        return right(userModel);
+      }
+    } catch (e) {
+      return left('Error');
+    }
+  }
+
+  @override
+  Future<EitherStringBool> resetPassword({required String email}) {
+    // TODO: implement resetPassword
+    throw UnimplementedError();
   }
 }
