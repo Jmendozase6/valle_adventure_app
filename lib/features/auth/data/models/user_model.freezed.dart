@@ -20,16 +20,16 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "user_metadata")
-  UserMetadata get userMetadata => throw _privateConstructorUsedError;
-  @JsonKey(name: "new_email")
-  dynamic get newEmail => throw _privateConstructorUsedError;
-  @JsonKey(name: "email")
+  String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'last_name')
+  String get lastName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  @JsonKey(name: "phone")
-  dynamic get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id_card')
+  String get idCard => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_url')
+  String get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,13 +43,13 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id") String id,
-      @JsonKey(name: "user_metadata") UserMetadata userMetadata,
-      @JsonKey(name: "new_email") dynamic newEmail,
-      @JsonKey(name: "email") String email,
-      @JsonKey(name: "phone") dynamic phone});
-
-  $UserMetadataCopyWith<$Res> get userMetadata;
+      {String id,
+      String name,
+      @JsonKey(name: 'last_name') String lastName,
+      String email,
+      @JsonKey(name: 'id_card') String idCard,
+      String phone,
+      @JsonKey(name: 'image_url') String imageUrl});
 }
 
 /// @nodoc
@@ -66,41 +66,43 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   $Res call({
     Object? id = null,
-    Object? userMetadata = null,
-    Object? newEmail = freezed,
+    Object? name = null,
+    Object? lastName = null,
     Object? email = null,
-    Object? phone = freezed,
+    Object? idCard = null,
+    Object? phone = null,
+    Object? imageUrl = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      userMetadata: null == userMetadata
-          ? _value.userMetadata
-          : userMetadata // ignore: cast_nullable_to_non_nullable
-              as UserMetadata,
-      newEmail: freezed == newEmail
-          ? _value.newEmail
-          : newEmail // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      phone: freezed == phone
+      idCard: null == idCard
+          ? _value.idCard
+          : idCard // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserMetadataCopyWith<$Res> get userMetadata {
-    return $UserMetadataCopyWith<$Res>(_value.userMetadata, (value) {
-      return _then(_value.copyWith(userMetadata: value) as $Val);
-    });
   }
 }
 
@@ -113,14 +115,13 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id") String id,
-      @JsonKey(name: "user_metadata") UserMetadata userMetadata,
-      @JsonKey(name: "new_email") dynamic newEmail,
-      @JsonKey(name: "email") String email,
-      @JsonKey(name: "phone") dynamic phone});
-
-  @override
-  $UserMetadataCopyWith<$Res> get userMetadata;
+      {String id,
+      String name,
+      @JsonKey(name: 'last_name') String lastName,
+      String email,
+      @JsonKey(name: 'id_card') String idCard,
+      String phone,
+      @JsonKey(name: 'image_url') String imageUrl});
 }
 
 /// @nodoc
@@ -135,32 +136,42 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? userMetadata = null,
-    Object? newEmail = freezed,
+    Object? name = null,
+    Object? lastName = null,
     Object? email = null,
-    Object? phone = freezed,
+    Object? idCard = null,
+    Object? phone = null,
+    Object? imageUrl = null,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      userMetadata: null == userMetadata
-          ? _value.userMetadata
-          : userMetadata // ignore: cast_nullable_to_non_nullable
-              as UserMetadata,
-      newEmail: freezed == newEmail
-          ? _value.newEmail
-          : newEmail // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      phone: freezed == phone
+      idCard: null == idCard
+          ? _value.idCard
+          : idCard // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -168,35 +179,40 @@ class __$$UserModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserModelImpl implements _UserModel {
-  const _$UserModelImpl(
-      {@JsonKey(name: "id") required this.id,
-      @JsonKey(name: "user_metadata") required this.userMetadata,
-      @JsonKey(name: "new_email") required this.newEmail,
-      @JsonKey(name: "email") required this.email,
-      @JsonKey(name: "phone") required this.phone});
+  _$UserModelImpl(
+      {required this.id,
+      required this.name,
+      @JsonKey(name: 'last_name') required this.lastName,
+      required this.email,
+      @JsonKey(name: 'id_card') this.idCard = '',
+      this.phone = '',
+      @JsonKey(name: 'image_url') required this.imageUrl});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
 
   @override
-  @JsonKey(name: "id")
   final String id;
   @override
-  @JsonKey(name: "user_metadata")
-  final UserMetadata userMetadata;
+  final String name;
   @override
-  @JsonKey(name: "new_email")
-  final dynamic newEmail;
+  @JsonKey(name: 'last_name')
+  final String lastName;
   @override
-  @JsonKey(name: "email")
   final String email;
   @override
-  @JsonKey(name: "phone")
-  final dynamic phone;
+  @JsonKey(name: 'id_card')
+  final String idCard;
+  @override
+  @JsonKey()
+  final String phone;
+  @override
+  @JsonKey(name: 'image_url')
+  final String imageUrl;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, userMetadata: $userMetadata, newEmail: $newEmail, email: $email, phone: $phone)';
+    return 'UserModel(id: $id, name: $name, lastName: $lastName, email: $email, idCard: $idCard, phone: $phone, imageUrl: $imageUrl)';
   }
 
   @override
@@ -205,22 +221,20 @@ class _$UserModelImpl implements _UserModel {
         (other.runtimeType == runtimeType &&
             other is _$UserModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.userMetadata, userMetadata) ||
-                other.userMetadata == userMetadata) &&
-            const DeepCollectionEquality().equals(other.newEmail, newEmail) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.email, email) || other.email == email) &&
-            const DeepCollectionEquality().equals(other.phone, phone));
+            (identical(other.idCard, idCard) || other.idCard == idCard) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      userMetadata,
-      const DeepCollectionEquality().hash(newEmail),
-      email,
-      const DeepCollectionEquality().hash(phone));
+      runtimeType, id, name, lastName, email, idCard, phone, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -237,223 +251,38 @@ class _$UserModelImpl implements _UserModel {
 }
 
 abstract class _UserModel implements UserModel {
-  const factory _UserModel(
-      {@JsonKey(name: "id") required final String id,
-      @JsonKey(name: "user_metadata") required final UserMetadata userMetadata,
-      @JsonKey(name: "new_email") required final dynamic newEmail,
-      @JsonKey(name: "email") required final String email,
-      @JsonKey(name: "phone") required final dynamic phone}) = _$UserModelImpl;
+  factory _UserModel(
+          {required final String id,
+          required final String name,
+          @JsonKey(name: 'last_name') required final String lastName,
+          required final String email,
+          @JsonKey(name: 'id_card') final String idCard,
+          final String phone,
+          @JsonKey(name: 'image_url') required final String imageUrl}) =
+      _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
 
   @override
-  @JsonKey(name: "id")
   String get id;
   @override
-  @JsonKey(name: "user_metadata")
-  UserMetadata get userMetadata;
+  String get name;
   @override
-  @JsonKey(name: "new_email")
-  dynamic get newEmail;
+  @JsonKey(name: 'last_name')
+  String get lastName;
   @override
-  @JsonKey(name: "email")
   String get email;
   @override
-  @JsonKey(name: "phone")
-  dynamic get phone;
+  @JsonKey(name: 'id_card')
+  String get idCard;
+  @override
+  String get phone;
+  @override
+  @JsonKey(name: 'image_url')
+  String get imageUrl;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-UserMetadata _$UserMetadataFromJson(Map<String, dynamic> json) {
-  return _UserMetadata.fromJson(json);
-}
-
-/// @nodoc
-mixin _$UserMetadata {
-  @JsonKey(name: "email")
-  String get email => throw _privateConstructorUsedError;
-  @JsonKey(name: "last_name")
-  String get lastName => throw _privateConstructorUsedError;
-  @JsonKey(name: "name")
-  String get name => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UserMetadataCopyWith<UserMetadata> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UserMetadataCopyWith<$Res> {
-  factory $UserMetadataCopyWith(
-          UserMetadata value, $Res Function(UserMetadata) then) =
-      _$UserMetadataCopyWithImpl<$Res, UserMetadata>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: "email") String email,
-      @JsonKey(name: "last_name") String lastName,
-      @JsonKey(name: "name") String name});
-}
-
-/// @nodoc
-class _$UserMetadataCopyWithImpl<$Res, $Val extends UserMetadata>
-    implements $UserMetadataCopyWith<$Res> {
-  _$UserMetadataCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-    Object? lastName = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$UserMetadataImplCopyWith<$Res>
-    implements $UserMetadataCopyWith<$Res> {
-  factory _$$UserMetadataImplCopyWith(
-          _$UserMetadataImpl value, $Res Function(_$UserMetadataImpl) then) =
-      __$$UserMetadataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: "email") String email,
-      @JsonKey(name: "last_name") String lastName,
-      @JsonKey(name: "name") String name});
-}
-
-/// @nodoc
-class __$$UserMetadataImplCopyWithImpl<$Res>
-    extends _$UserMetadataCopyWithImpl<$Res, _$UserMetadataImpl>
-    implements _$$UserMetadataImplCopyWith<$Res> {
-  __$$UserMetadataImplCopyWithImpl(
-      _$UserMetadataImpl _value, $Res Function(_$UserMetadataImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-    Object? lastName = null,
-    Object? name = null,
-  }) {
-    return _then(_$UserMetadataImpl(
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$UserMetadataImpl implements _UserMetadata {
-  const _$UserMetadataImpl(
-      {@JsonKey(name: "email") required this.email,
-      @JsonKey(name: "last_name") required this.lastName,
-      @JsonKey(name: "name") required this.name});
-
-  factory _$UserMetadataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserMetadataImplFromJson(json);
-
-  @override
-  @JsonKey(name: "email")
-  final String email;
-  @override
-  @JsonKey(name: "last_name")
-  final String lastName;
-  @override
-  @JsonKey(name: "name")
-  final String name;
-
-  @override
-  String toString() {
-    return 'UserMetadata(email: $email, lastName: $lastName, name: $name)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserMetadataImpl &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.name, name) || other.name == name));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, email, lastName, name);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserMetadataImplCopyWith<_$UserMetadataImpl> get copyWith =>
-      __$$UserMetadataImplCopyWithImpl<_$UserMetadataImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserMetadataImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _UserMetadata implements UserMetadata {
-  const factory _UserMetadata(
-      {@JsonKey(name: "email") required final String email,
-      @JsonKey(name: "last_name") required final String lastName,
-      @JsonKey(name: "name") required final String name}) = _$UserMetadataImpl;
-
-  factory _UserMetadata.fromJson(Map<String, dynamic> json) =
-      _$UserMetadataImpl.fromJson;
-
-  @override
-  @JsonKey(name: "email")
-  String get email;
-  @override
-  @JsonKey(name: "last_name")
-  String get lastName;
-  @override
-  @JsonKey(name: "name")
-  String get name;
-  @override
-  @JsonKey(ignore: true)
-  _$$UserMetadataImplCopyWith<_$UserMetadataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

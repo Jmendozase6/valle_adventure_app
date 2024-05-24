@@ -117,9 +117,7 @@ class _UserLoggedView extends ConsumerWidget {
         SizedBox(height: AppConstants.defaultPadding * 3),
         CircleAvatar(
           radius: AppConstants.defaultRadius * 4,
-          backgroundImage: const CachedNetworkImageProvider(
-            'https://res.cloudinary.com/dlfoowzy4/image/upload/v1716010098/valle-adventure-test/avatar-1.jpg',
-          ),
+          backgroundImage: CachedNetworkImageProvider(user.imageUrl),
         ),
         SizedBox(height: AppConstants.defaultPadding),
         Padding(
@@ -130,15 +128,22 @@ class _UserLoggedView extends ConsumerWidget {
         ),
         UserDataRow(
           title: 'Nombres',
-          value: user.userMetadata.name,
+          value: user.name,
         ),
         UserDataRow(
           title: 'Apellidos',
-          value: user.userMetadata.lastName,
+          value: user.lastName,
         ),
         UserDataRow(
           title: 'Correo',
           value: user.email,
+        ),
+        FilledButton(
+          onPressed: () {
+            final authRepository = ref.read(authRepositoryProvider);
+            authRepository.getCurrentUser();
+          },
+          child: const Text('Get User Data From public.public_users'),
         ),
       ],
     );

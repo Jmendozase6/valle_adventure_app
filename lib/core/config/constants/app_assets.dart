@@ -10,4 +10,7 @@ class AppAssets {
 
   static const String signInHeaderBg = 'assets/images/auth/header_bg.png';
   static const String noLoggedUser = 'assets/images/auth/no_logged_user.png';
+
+  static const String noImageUser =
+      'https://res.cloudinary.com/dlfoowzy4/image/upload/v1716509488/valle-adventure-app/utils/no-image-user.png';
 }

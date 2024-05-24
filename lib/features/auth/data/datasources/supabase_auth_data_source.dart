@@ -130,15 +130,15 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
 
   @override
   EitherStringUserModel getCurrentUser() async {
+    if (isAuthenticated() == false) return left('No user found');
     try {
-      final user = _supabase.auth.currentUser;
-      if (user == null) {
-        return left('No user found');
-      } else {
-        log(user.toJson().toString());
-        final userModel = UserModel.fromJson(user.toJson());
-        return right(userModel);
-      }
+      final user = await _supabase
+          .from('public_users')
+          .select()
+          .eq('id', _supabase.auth.currentUser!.id)
+          .single();
+      final userModel = UserModel.fromJson(user);
+      return right(userModel);
     } catch (e) {
       return left('Error');
     }

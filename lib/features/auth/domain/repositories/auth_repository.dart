@@ -1,3 +1,4 @@
+import 'package:fpdart/fpdart.dart';
 import 'package:valle_adventure_app/utils/types/type_defs.dart';
 
 abstract class AuthRepository {
