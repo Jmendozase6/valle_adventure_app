@@ -59,7 +59,6 @@ class _SignInView extends ConsumerWidget {
             labelText: locale.password,
             controller: authProvider.signInPasswordController,
           ),
-          SizedBox(height: AppConstants.defaultPadding * 0.5),
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
@@ -75,7 +74,6 @@ class _SignInView extends ConsumerWidget {
               ),
             ),
           ),
-          SizedBox(height: AppConstants.defaultPadding),
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: AppConstants.defaultPaddingHorizontal,
@@ -104,7 +102,6 @@ class _SignInView extends ConsumerWidget {
           ButtonSocialMedia(
             text: locale.sign_in_with_google,
           ),
-          SizedBox(height: AppConstants.defaultPadding),
           // TODO: traslate
           TextButton(
             onPressed: () {

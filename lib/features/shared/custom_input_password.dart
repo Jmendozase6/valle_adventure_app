@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/features/shared/providers/providers.dart';
@@ -28,6 +29,10 @@ class CustomInputPassword extends ConsumerWidget {
           label: Text(labelText),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppConstants.defaultRadius),
+          ),
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 14.h,
+            horizontal: AppConstants.defaultPaddingHorizontal,
           ),
           suffixIcon: Padding(
             padding: EdgeInsets.only(
