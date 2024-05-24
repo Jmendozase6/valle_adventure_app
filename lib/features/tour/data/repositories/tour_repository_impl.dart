@@ -61,4 +61,40 @@ class TourRepositoryImpl implements TourRepository {
       (r) => right(r),
     );
   }
+
+  @override
+  EitherBoolBool likeTour({required String userId, required String tourId}) async {
+    final response = await datasource.likeTour(userId: userId, tourId: tourId);
+    return response.fold(
+      (l) => left(l),
+      (r) => right(r),
+    );
+  }
+
+  @override
+  EitherBoolBool unlikeTour({required String userId, required String tourId}) async {
+    final response = await datasource.unlikeTour(userId: userId, tourId: tourId);
+    return response.fold(
+      (l) => left(l),
+      (r) => right(r),
+    );
+  }
+
+  @override
+  EitherBoolBool isTourLiked({required String userId, required String tourId}) async {
+    final response = await datasource.isTourLiked(userId: userId, tourId: tourId);
+    return response.fold(
+      (l) => left(l),
+      (r) => right(r),
+    );
+  }
+
+  @override
+  EitherTours getSavedTours() async {
+    final response = await datasource.getSavedTours();
+    return response.fold(
+      (l) => left(l),
+      (r) => right(r),
+    );
+  }
 }

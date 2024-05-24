@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -36,6 +37,26 @@ abstract class TourDataSource {
   ///
   /// Returns a [List<Tour>] with the list of tours
   EitherListTourBool getToursByUser({required String userId});
+
+  /// Like a tour
+  ///
+  /// Returns a [bool] with the result of the operation
+  EitherBoolBool likeTour({required String userId, required String tourId});
+
+  /// Unlike a tour
+  ///
+  /// Returns a [bool] with the result of the operation
+  EitherBoolBool unlikeTour({required String userId, required String tourId});
+
+  /// Get if a tour is liked
+  ///
+  /// Returns a [bool] with the result of the operation
+  EitherBoolBool isTourLiked({required String userId, required String tourId});
+
+  /// Get the list of saved tours
+  ///
+  /// Returns a [List<Tour>] with the list of saved tours
+  EitherTours getSavedTours();
 }
 
 class SupabaseTourDataSourceImpl implements TourDataSource {
@@ -55,7 +76,11 @@ class SupabaseTourDataSourceImpl implements TourDataSource {
   @override
   EitherBoolTour getTourById({required String id}) async {
     try {
-      final tourResponse = await _supabase.from('tours').select().eq('id', id).single();
+      // final tourResponse = await _supabase.from('tours').select().eq('id', id).single();
+
+      final tourResponse =
+          await _supabase.rpc('get_tour_by_id', params: {'tour_id_param': id}).single();
+
       final tour = Tour.fromJson(tourResponse);
       return Right(tour);
     } catch (e) {
@@ -78,7 +103,11 @@ class SupabaseTourDataSourceImpl implements TourDataSource {
   @override
   EitherListTourBool getToursOrderBy({required String orderType}) async {
     try {
-      final toursResponse = await _supabase.from('tours').select().order(orderType);
+      final userId = _supabase.auth.currentUser?.id ?? '';
+      final toursResponse = userId.isEmpty
+          ? await _supabase.rpc('get_tour_info_filtered', params: {'filter': orderType})
+          : await _supabase
+              .rpc('get_tour_info', params: {'filter': orderType, 'user_id_param': userId});
       final tours = tourFromJson(jsonEncode(toursResponse));
       return Right(tours);
     } catch (e) {
@@ -90,5 +119,63 @@ class SupabaseTourDataSourceImpl implements TourDataSource {
   EitherListTourBool getToursByUser({required String userId}) async {
     // TODO: implement getToursByUser
     throw UnimplementedError();
+  }
+
+  @override
+  EitherBoolBool likeTour({required String userId, required String tourId}) async {
+    try {
+      if (userId.isEmpty || tourId.isEmpty) return left(false);
+      await _supabase.from('liked_tours').upsert(
+        {'user_id': userId, 'tour_id': tourId},
+      );
+      return right(true);
+    } catch (e) {
+      return left(false);
+    }
+  }
+
+  @override
+  EitherBoolBool unlikeTour({required String userId, required String tourId}) async {
+    try {
+      if (userId.isEmpty || tourId.isEmpty) return left(false);
+      await _supabase.from('liked_tours').delete().eq('user_id', userId).eq(
+            'tour_id',
+            tourId,
+          );
+      return right(true);
+    } catch (e) {
+      return left(false);
+    }
+  }
+
+  @override
+  EitherBoolBool isTourLiked({required String userId, required String tourId}) async {
+    try {
+      if (userId.isEmpty || tourId.isEmpty) return left(false);
+      final response = await _supabase
+          .from('liked_tours')
+          .select()
+          .eq('user_id', userId)
+          .eq('tour_id', tourId)
+          .single();
+
+      final isLiked = response.isNotEmpty;
+      return right(isLiked);
+    } catch (e) {
+      return left(false);
+    }
+  }
+
+  @override
+  EitherTours getSavedTours() async {
+    try {
+      final userId = _supabase.auth.currentUser?.id ?? '';
+      final toursResponse =
+          await _supabase.rpc('get_saved_tours', params: {'user_id_param': userId});
+      final tours = tourFromJson(jsonEncode(toursResponse));
+      return Right(tours);
+    } catch (e) {
+      return left([]);
+    }
   }
 }

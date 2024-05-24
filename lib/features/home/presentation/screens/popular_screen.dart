@@ -52,7 +52,7 @@ class _PopularView extends ConsumerWidget {
                 isLiked: true,
                 imageUrl: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
                 title: tour.name,
-                location: tour.idDepartment.substring(0, 10),
+                location: tour.department,
               );
             },
           );

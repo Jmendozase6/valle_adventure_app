@@ -24,28 +24,29 @@ class Tour with _$Tour {
     @JsonKey(name: "price") required double price,
     @Default('') @JsonKey(name: "packing") String? packing,
     @Default('') @JsonKey(name: "important") String important,
-    @JsonKey(name: "id_department") required String idDepartment,
+    @JsonKey(name: "department") required String department,
     @Default([]) @JsonKey(name: "included_items") List<String>? includedItems,
     @Default([]) @JsonKey(name: "not_included_items") List<String>? notIncludedItems,
     @JsonKey(name: "is_available") required bool isAvailable,
     @JsonKey(name: "rating") required double rating,
+    @Default(false) @JsonKey(name: "is_liked") bool? isLiked,
   }) = _Tour;
 
   factory Tour.empty() => const Tour(
-        id: '',
-        createdAt: '',
-        name: '',
-        overview: '',
-        images: [],
-        price: 0.0,
-        packing: '',
-        important: '',
-        idDepartment: '',
-        includedItems: [],
-        notIncludedItems: [],
-        isAvailable: false,
-        rating: 0.0,
-      );
+      id: '',
+      createdAt: '',
+      name: '',
+      overview: '',
+      images: [],
+      price: 0.0,
+      packing: '',
+      important: '',
+      department: '',
+      includedItems: [],
+      notIncludedItems: [],
+      isAvailable: false,
+      rating: 0.0,
+      isLiked: false);
 
   factory Tour.fromJson(Map<String, dynamic> json) => _$TourFromJson(json);
 }

@@ -59,7 +59,7 @@ class _PlaceDetailsView extends StatelessWidget {
             CardTourImageDetails(
               images: tour.images!,
               title: tour.name,
-              location: tour.idDepartment.substring(0, 10),
+              location: tour.department,
               // TODO: Change this to the real value
               reviewsAmount: tour.rating.toInt(),
               stars: tour.rating,

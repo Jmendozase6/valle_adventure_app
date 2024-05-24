@@ -14,6 +14,7 @@ import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 import 'package:valle_adventure_app/features/tour/data/models/tour.dart';
+import 'package:valle_adventure_app/features/tour/presentation/providers/like_tour_provider.dart';
 import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -75,13 +76,13 @@ class RecommendedSection extends ConsumerWidget {
 
     return CustomFutureBuilder(
       future: () => tourProvider.getToursOrderBy(orderType: 'created_at'),
-      dataBuilder: (user) {
-        final tours = user.fold(
+      dataBuilder: (tourData) {
+        final tours = tourData.fold(
           (error) => [Tour.empty()],
           (data) => data,
         );
         return ListView.builder(
-          itemCount: tours.getRange(0, 3).length,
+          itemCount: tours.length > 1 ? tours.getRange(0, 3).length : 1,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (_, index) {
@@ -90,10 +91,10 @@ class RecommendedSection extends ConsumerWidget {
               id: tour.id,
               price: tour.price,
               // TODO: Change this to the real value
-              isLiked: true,
+              isLiked: tour.isLiked ?? false,
               imageUrl: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
               title: tour.name,
-              location: tour.idDepartment.substring(0, 10),
+              location: tour.department,
             );
           },
         );
@@ -120,7 +121,7 @@ class _PopularSection extends ConsumerWidget {
           );
           return ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: tours.getRange(0, 3).length,
+            itemCount: tours.length > 1 ? tours.getRange(0, 3).length : 1,
             itemBuilder: (_, index) {
               final tour = tours[index];
               return CardTourPopular(
@@ -128,7 +129,7 @@ class _PopularSection extends ConsumerWidget {
                 image: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
                 title: tour.name,
                 // TODO: Change this to the department name
-                location: tour.idDepartment.substring(0, 10),
+                location: tour.department,
               );
             },
           );

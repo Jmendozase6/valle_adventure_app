@@ -31,4 +31,24 @@ abstract class TourRepository {
   ///
   /// Returns a [List<Tour>] with the list of tours
   EitherListTourBool getToursByUser({required String userId});
+
+  /// Like a tour
+  ///
+  /// Returns a [bool] with the result of the operation
+  EitherBoolBool likeTour({required String userId, required String tourId});
+
+  /// Unlike a tour
+  ///
+  /// Returns a [bool] with the result of the operation
+  EitherBoolBool unlikeTour({required String userId, required String tourId});
+
+  /// Get if a tour is liked
+  ///
+  /// Returns a [bool] with the result of the operation
+  EitherBoolBool isTourLiked({required String userId, required String tourId});
+
+  /// Get the list of saved tours
+  ///
+  /// Returns a [List<Tour>] with the list of saved tours
+  EitherTours getSavedTours();
 }

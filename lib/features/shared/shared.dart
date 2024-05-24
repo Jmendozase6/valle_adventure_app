@@ -14,3 +14,4 @@ export 'button_social_media.dart';
 export 'access_using.dart';
 export 'custom_app_bar.dart';
 export 'custom_future_builder.dart';
+export 'no_logged_view.dart';

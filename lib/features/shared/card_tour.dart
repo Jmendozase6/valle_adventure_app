@@ -10,13 +10,14 @@ import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/auth/presentation/providers/providers.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
+import 'package:valle_adventure_app/features/tour/presentation/providers/like_tour_provider.dart';
 
-class CardTour extends ConsumerWidget {
+class CardTour extends ConsumerStatefulWidget {
   final String id, imageUrl, title, location;
   final double price;
-  final bool isLiked;
+  bool isLiked;
 
-  const CardTour({
+  CardTour({
     super.key,
     required this.id,
     required this.imageUrl,
@@ -27,7 +28,12 @@ class CardTour extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<CardTour> createState() => _CardTourState();
+}
+
+class _CardTourState extends ConsumerState<CardTour> {
+  @override
+  Widget build(BuildContext context) {
     final authProvider = ref.watch(authRepositoryProvider);
     final borderSide = BorderSide(
       color: AppColors.darkColor20,
@@ -36,21 +42,25 @@ class CardTour extends ConsumerWidget {
       child: GestureDetector(
         onTap: () => ref.read(routerProvider).pushNamed(
           AppRoutes.placeDetails.name,
-          pathParameters: {'id': id},
+          pathParameters: {'id': widget.id},
         ),
         child: Container(
           height: 0.25.sh,
           margin: EdgeInsets.only(bottom: AppConstants.defaultPadding),
           child: Stack(
             children: [
-              _CardTourImage(imageUrl: imageUrl),
+              _CardTourImage(imageUrl: widget.imageUrl),
               Align(
                 alignment: Alignment.topRight,
                 child: ButtonLike(
-                    isLiked: isLiked,
+                    key: UniqueKey(),
+                    isLiked: widget.isLiked,
                     onPressed: () {
                       if (authProvider.isAuthenticated()) {
-                        //TODO: Implement like functionality
+                        setState(() {
+                          widget.isLiked = !widget.isLiked;
+                        });
+                        ref.read(likeTourProvider([widget.id, widget.isLiked.toString()]));
                       } else {
                         ///TODO: Show a dialog to login
                         // TODO: Translate
@@ -83,9 +93,9 @@ class CardTour extends ConsumerWidget {
                   ),
                   child: Row(
                     children: [
-                      CardTourTitle(title: title, location: location),
+                      CardTourTitle(title: widget.title, location: widget.location),
                       const VerticalDivider(),
-                      _CardTourPrice(price: price),
+                      _CardTourPrice(price: widget.price),
                     ],
                   ),
                 ),

@@ -36,8 +36,8 @@ mixin _$Tour {
   String? get packing => throw _privateConstructorUsedError;
   @JsonKey(name: "important")
   String get important => throw _privateConstructorUsedError;
-  @JsonKey(name: "id_department")
-  String get idDepartment => throw _privateConstructorUsedError;
+  @JsonKey(name: "department")
+  String get department => throw _privateConstructorUsedError;
   @JsonKey(name: "included_items")
   List<String>? get includedItems => throw _privateConstructorUsedError;
   @JsonKey(name: "not_included_items")
@@ -46,6 +46,8 @@ mixin _$Tour {
   bool get isAvailable => throw _privateConstructorUsedError;
   @JsonKey(name: "rating")
   double get rating => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_liked")
+  bool? get isLiked => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -66,11 +68,12 @@ abstract class $TourCopyWith<$Res> {
       @JsonKey(name: "price") double price,
       @JsonKey(name: "packing") String? packing,
       @JsonKey(name: "important") String important,
-      @JsonKey(name: "id_department") String idDepartment,
+      @JsonKey(name: "department") String department,
       @JsonKey(name: "included_items") List<String>? includedItems,
       @JsonKey(name: "not_included_items") List<String>? notIncludedItems,
       @JsonKey(name: "is_available") bool isAvailable,
-      @JsonKey(name: "rating") double rating});
+      @JsonKey(name: "rating") double rating,
+      @JsonKey(name: "is_liked") bool? isLiked});
 }
 
 /// @nodoc
@@ -94,11 +97,12 @@ class _$TourCopyWithImpl<$Res, $Val extends Tour>
     Object? price = null,
     Object? packing = freezed,
     Object? important = null,
-    Object? idDepartment = null,
+    Object? department = null,
     Object? includedItems = freezed,
     Object? notIncludedItems = freezed,
     Object? isAvailable = null,
     Object? rating = null,
+    Object? isLiked = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -133,9 +137,9 @@ class _$TourCopyWithImpl<$Res, $Val extends Tour>
           ? _value.important
           : important // ignore: cast_nullable_to_non_nullable
               as String,
-      idDepartment: null == idDepartment
-          ? _value.idDepartment
-          : idDepartment // ignore: cast_nullable_to_non_nullable
+      department: null == department
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
               as String,
       includedItems: freezed == includedItems
           ? _value.includedItems
@@ -153,6 +157,10 @@ class _$TourCopyWithImpl<$Res, $Val extends Tour>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double,
+      isLiked: freezed == isLiked
+          ? _value.isLiked
+          : isLiked // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -173,11 +181,12 @@ abstract class _$$TourImplCopyWith<$Res> implements $TourCopyWith<$Res> {
       @JsonKey(name: "price") double price,
       @JsonKey(name: "packing") String? packing,
       @JsonKey(name: "important") String important,
-      @JsonKey(name: "id_department") String idDepartment,
+      @JsonKey(name: "department") String department,
       @JsonKey(name: "included_items") List<String>? includedItems,
       @JsonKey(name: "not_included_items") List<String>? notIncludedItems,
       @JsonKey(name: "is_available") bool isAvailable,
-      @JsonKey(name: "rating") double rating});
+      @JsonKey(name: "rating") double rating,
+      @JsonKey(name: "is_liked") bool? isLiked});
 }
 
 /// @nodoc
@@ -198,11 +207,12 @@ class __$$TourImplCopyWithImpl<$Res>
     Object? price = null,
     Object? packing = freezed,
     Object? important = null,
-    Object? idDepartment = null,
+    Object? department = null,
     Object? includedItems = freezed,
     Object? notIncludedItems = freezed,
     Object? isAvailable = null,
     Object? rating = null,
+    Object? isLiked = freezed,
   }) {
     return _then(_$TourImpl(
       id: null == id
@@ -237,9 +247,9 @@ class __$$TourImplCopyWithImpl<$Res>
           ? _value.important
           : important // ignore: cast_nullable_to_non_nullable
               as String,
-      idDepartment: null == idDepartment
-          ? _value.idDepartment
-          : idDepartment // ignore: cast_nullable_to_non_nullable
+      department: null == department
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
               as String,
       includedItems: freezed == includedItems
           ? _value._includedItems
@@ -257,6 +267,10 @@ class __$$TourImplCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double,
+      isLiked: freezed == isLiked
+          ? _value.isLiked
+          : isLiked // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -273,13 +287,14 @@ class _$TourImpl implements _Tour {
       @JsonKey(name: "price") required this.price,
       @JsonKey(name: "packing") this.packing = '',
       @JsonKey(name: "important") this.important = '',
-      @JsonKey(name: "id_department") required this.idDepartment,
+      @JsonKey(name: "department") required this.department,
       @JsonKey(name: "included_items")
       final List<String>? includedItems = const [],
       @JsonKey(name: "not_included_items")
       final List<String>? notIncludedItems = const [],
       @JsonKey(name: "is_available") required this.isAvailable,
-      @JsonKey(name: "rating") required this.rating})
+      @JsonKey(name: "rating") required this.rating,
+      @JsonKey(name: "is_liked") this.isLiked = false})
       : _images = images,
         _includedItems = includedItems,
         _notIncludedItems = notIncludedItems;
@@ -320,8 +335,8 @@ class _$TourImpl implements _Tour {
   @JsonKey(name: "important")
   final String important;
   @override
-  @JsonKey(name: "id_department")
-  final String idDepartment;
+  @JsonKey(name: "department")
+  final String department;
   final List<String>? _includedItems;
   @override
   @JsonKey(name: "included_items")
@@ -351,10 +366,13 @@ class _$TourImpl implements _Tour {
   @override
   @JsonKey(name: "rating")
   final double rating;
+  @override
+  @JsonKey(name: "is_liked")
+  final bool? isLiked;
 
   @override
   String toString() {
-    return 'Tour(id: $id, createdAt: $createdAt, name: $name, overview: $overview, images: $images, price: $price, packing: $packing, important: $important, idDepartment: $idDepartment, includedItems: $includedItems, notIncludedItems: $notIncludedItems, isAvailable: $isAvailable, rating: $rating)';
+    return 'Tour(id: $id, createdAt: $createdAt, name: $name, overview: $overview, images: $images, price: $price, packing: $packing, important: $important, department: $department, includedItems: $includedItems, notIncludedItems: $notIncludedItems, isAvailable: $isAvailable, rating: $rating, isLiked: $isLiked)';
   }
 
   @override
@@ -373,15 +391,16 @@ class _$TourImpl implements _Tour {
             (identical(other.packing, packing) || other.packing == packing) &&
             (identical(other.important, important) ||
                 other.important == important) &&
-            (identical(other.idDepartment, idDepartment) ||
-                other.idDepartment == idDepartment) &&
+            (identical(other.department, department) ||
+                other.department == department) &&
             const DeepCollectionEquality()
                 .equals(other._includedItems, _includedItems) &&
             const DeepCollectionEquality()
                 .equals(other._notIncludedItems, _notIncludedItems) &&
             (identical(other.isAvailable, isAvailable) ||
                 other.isAvailable == isAvailable) &&
-            (identical(other.rating, rating) || other.rating == rating));
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.isLiked, isLiked) || other.isLiked == isLiked));
   }
 
   @JsonKey(ignore: true)
@@ -396,11 +415,12 @@ class _$TourImpl implements _Tour {
       price,
       packing,
       important,
-      idDepartment,
+      department,
       const DeepCollectionEquality().hash(_includedItems),
       const DeepCollectionEquality().hash(_notIncludedItems),
       isAvailable,
-      rating);
+      rating,
+      isLiked);
 
   @JsonKey(ignore: true)
   @override
@@ -426,11 +446,12 @@ abstract class _Tour implements Tour {
       @JsonKey(name: "price") required final double price,
       @JsonKey(name: "packing") final String? packing,
       @JsonKey(name: "important") final String important,
-      @JsonKey(name: "id_department") required final String idDepartment,
+      @JsonKey(name: "department") required final String department,
       @JsonKey(name: "included_items") final List<String>? includedItems,
       @JsonKey(name: "not_included_items") final List<String>? notIncludedItems,
       @JsonKey(name: "is_available") required final bool isAvailable,
-      @JsonKey(name: "rating") required final double rating}) = _$TourImpl;
+      @JsonKey(name: "rating") required final double rating,
+      @JsonKey(name: "is_liked") final bool? isLiked}) = _$TourImpl;
 
   factory _Tour.fromJson(Map<String, dynamic> json) = _$TourImpl.fromJson;
 
@@ -459,8 +480,8 @@ abstract class _Tour implements Tour {
   @JsonKey(name: "important")
   String get important;
   @override
-  @JsonKey(name: "id_department")
-  String get idDepartment;
+  @JsonKey(name: "department")
+  String get department;
   @override
   @JsonKey(name: "included_items")
   List<String>? get includedItems;
@@ -473,6 +494,9 @@ abstract class _Tour implements Tour {
   @override
   @JsonKey(name: "rating")
   double get rating;
+  @override
+  @JsonKey(name: "is_liked")
+  bool? get isLiked;
   @override
   @JsonKey(ignore: true)
   _$$TourImplCopyWith<_$TourImpl> get copyWith =>

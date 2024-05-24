@@ -18,7 +18,7 @@ _$TourImpl _$$TourImplFromJson(Map<String, dynamic> json) => _$TourImpl(
       price: (json['price'] as num).toDouble(),
       packing: json['packing'] as String? ?? '',
       important: json['important'] as String? ?? '',
-      idDepartment: json['id_department'] as String,
+      department: json['department'] as String,
       includedItems: (json['included_items'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -29,6 +29,7 @@ _$TourImpl _$$TourImplFromJson(Map<String, dynamic> json) => _$TourImpl(
           const [],
       isAvailable: json['is_available'] as bool,
       rating: (json['rating'] as num).toDouble(),
+      isLiked: json['is_liked'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$TourImplToJson(_$TourImpl instance) =>
@@ -41,9 +42,10 @@ Map<String, dynamic> _$$TourImplToJson(_$TourImpl instance) =>
       'price': instance.price,
       'packing': instance.packing,
       'important': instance.important,
-      'id_department': instance.idDepartment,
+      'department': instance.department,
       'included_items': instance.includedItems,
       'not_included_items': instance.notIncludedItems,
       'is_available': instance.isAvailable,
       'rating': instance.rating,
+      'is_liked': instance.isLiked,
     };

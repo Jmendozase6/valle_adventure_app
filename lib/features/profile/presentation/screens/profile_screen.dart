@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/constants/app_assets.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
-import 'package:valle_adventure_app/core/config/router/app_router.dart';
-import 'package:valle_adventure_app/core/config/router/app_routes.dart';
-import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/auth/data/models/user_model.dart';
 import 'package:valle_adventure_app/features/auth/presentation/providers/providers.dart';
 import 'package:valle_adventure_app/features/profile/presentation/widgets/widgets.dart';
@@ -44,40 +39,7 @@ class _ProfileView extends ConsumerWidget {
               return _UserLoggedView(user: userModel);
             },
           )
-        : const _NotUserLoggedView();
-  }
-}
-
-class _NotUserLoggedView extends ConsumerWidget {
-  const _NotUserLoggedView();
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(routerProvider);
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              AppAssets.noLoggedUser,
-              width: 0.7.sw,
-            ),
-            SizedBox(height: AppConstants.defaultPadding),
-            Text(
-              AppLocalizations.of(context)!.not_logged_message,
-              style: AppStyles.button(color: AppColors.darkColor),
-            ),
-            TextButton(
-              onPressed: () => router.pushNamed(AppRoutes.signIn.name),
-              child: Text(
-                AppLocalizations.of(context)!.sign_in,
-                style: AppStyles.button(),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+        : const NotUserLoggedView();
   }
 }
 
@@ -130,9 +92,7 @@ class _UserLoggedView extends ConsumerWidget {
 }
 
 class _CustomDivider extends StatelessWidget {
-  const _CustomDivider({
-    super.key,
-  });
+  const _CustomDivider();
 
   @override
   Widget build(BuildContext context) {

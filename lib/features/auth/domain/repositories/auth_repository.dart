@@ -49,4 +49,9 @@ abstract class AuthRepository {
   ///
   /// Returns a [User] with the current user
   EitherStringUserModel getCurrentUser();
+
+  /// Get the current user id
+  ///
+  /// Returns a [String] with the current user id
+  EitherStringString getCurrentUserId();
 }

@@ -36,8 +36,8 @@ class _RecommendedView extends ConsumerWidget {
       ),
       child: CustomFutureBuilder(
         future: () => tourProvider.getToursOrderBy(orderType: 'created_at'),
-        dataBuilder: (user) {
-          final tours = user.fold(
+        dataBuilder: (toursData) {
+          final tours = toursData.fold(
             (error) => [Tour.empty()],
             (data) => data,
           );
@@ -52,7 +52,7 @@ class _RecommendedView extends ConsumerWidget {
                 isLiked: true,
                 imageUrl: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
                 title: tour.name,
-                location: tour.idDepartment.substring(0, 10),
+                location: tour.department,
               );
             },
           );

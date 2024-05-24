@@ -97,4 +97,13 @@ class AuthRepositoryImpl implements AuthRepository {
     signInEmailController.text = '';
     signInPasswordController.text = '';
   }
+
+  @override
+  EitherStringString getCurrentUserId() {
+    final response = datasource.getCurrentUserId();
+    return response.fold(
+      (leftValue) => left(leftValue),
+      (rightValue) => right(rightValue),
+    );
+  }
 }
