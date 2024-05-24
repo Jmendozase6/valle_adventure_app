@@ -12,6 +12,7 @@ import 'package:valle_adventure_app/features/auth/presentation/providers/provide
 import 'package:valle_adventure_app/features/shared/shared.dart';
 import 'package:valle_adventure_app/features/tour/presentation/providers/like_tour_provider.dart';
 
+// ignore: must_be_immutable
 class CardTour extends ConsumerStatefulWidget {
   final String id, imageUrl, title, location;
   final double price;

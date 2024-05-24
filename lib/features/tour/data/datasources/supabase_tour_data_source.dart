@@ -1,10 +1,8 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:valle_adventure_app/features/tour/data/models/tour.dart';
-import 'package:valle_adventure_app/features/tour/domain/repositories/tour_repository.dart';
 import 'package:valle_adventure_app/utils/types/type_defs.dart';
 
 abstract class TourDataSource {
@@ -76,11 +74,8 @@ class SupabaseTourDataSourceImpl implements TourDataSource {
   @override
   EitherBoolTour getTourById({required String id}) async {
     try {
-      // final tourResponse = await _supabase.from('tours').select().eq('id', id).single();
-
       final tourResponse =
           await _supabase.rpc('get_tour_by_id', params: {'tour_id_param': id}).single();
-
       final tour = Tour.fromJson(tourResponse);
       return Right(tour);
     } catch (e) {

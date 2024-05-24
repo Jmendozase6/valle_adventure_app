@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -14,7 +12,6 @@ import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 import 'package:valle_adventure_app/features/tour/data/models/tour.dart';
-import 'package:valle_adventure_app/features/tour/presentation/providers/like_tour_provider.dart';
 import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
