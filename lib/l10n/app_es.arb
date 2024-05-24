@@ -39,5 +39,6 @@
   "privacy_policy": "Privacidad",
   "terms_and_conditions": "Términos y Condiciones",
   "about_us": "Acerca",
-  "sign_out": "Cerrar sesión"
+  "sign_out": "Cerrar sesión",
+  "continue_without_sign_in": "Continuar sin iniciar sesión"
 }

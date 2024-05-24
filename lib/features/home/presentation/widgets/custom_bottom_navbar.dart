@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
-import 'package:valle_adventure_app/features/home/providers/bottom_nav_provider.dart';
+import 'package:valle_adventure_app/features/home/presentation/providers/bottom_nav_provider.dart';
 
 class CustomBottomNavBar extends ConsumerWidget {
   const CustomBottomNavBar({

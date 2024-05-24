@@ -39,5 +39,6 @@
   "privacy_policy": "Privacy Policy",
   "terms_and_conditions": "Terms and Conditions",
   "about_us": "About us",
-  "sign_out": "Sign Out"
+  "sign_out": "Sign Out",
+  "continue_without_sign_in": "Continue without sign in"
 }

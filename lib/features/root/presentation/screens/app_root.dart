@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
-import 'package:valle_adventure_app/features/auth/data/repositories/repositories.dart';
-import 'package:valle_adventure_app/features/onboarding/providers/providers.dart';
+import 'package:valle_adventure_app/features/auth/presentation/providers/providers.dart';
+import 'package:valle_adventure_app/features/settings/providers/onboarding/presentation/providers/providers.dart';
 
 class AppRoot extends ConsumerWidget {
   const AppRoot({super.key});

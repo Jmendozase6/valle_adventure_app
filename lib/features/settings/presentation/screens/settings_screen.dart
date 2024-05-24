@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
-import 'package:valle_adventure_app/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:valle_adventure_app/features/auth/presentation/providers/providers.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class SettingsScreen extends StatelessWidget {

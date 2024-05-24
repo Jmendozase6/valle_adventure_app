@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
-import 'package:valle_adventure_app/features/tour/widgets/card_tour_default_image.dart';
+import 'package:valle_adventure_app/features/tour/presentation/widgets/card_tour_default_image.dart';
 
 class PlaceDetailsScreen extends ConsumerWidget {
   const PlaceDetailsScreen({super.key, required this.id});

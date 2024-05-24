@@ -11,8 +11,8 @@ import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/auth/data/models/user_model.dart';
-import 'package:valle_adventure_app/features/auth/data/repositories/repositories.dart';
-import 'package:valle_adventure_app/features/profile/widgets/widgets.dart';
+import 'package:valle_adventure_app/features/auth/presentation/providers/providers.dart';
+import 'package:valle_adventure_app/features/profile/presentation/widgets/widgets.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});

@@ -3,16 +3,16 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/utils/transition/custom_transition_screen.dart';
-import 'package:valle_adventure_app/features/home/widgets/custom_bottom_navbar.dart';
+import 'package:valle_adventure_app/features/home/presentation/widgets/custom_bottom_navbar.dart';
 
 // Screens
-import 'package:valle_adventure_app/features/auth/screens/screens.dart';
-import 'package:valle_adventure_app/features/home/screens/screens.dart';
-import 'package:valle_adventure_app/features/root/screens/screens.dart';
-import 'package:valle_adventure_app/features/saved/screens/screens.dart';
-import 'package:valle_adventure_app/features/profile/screens/screens.dart';
-import 'package:valle_adventure_app/features/settings/screens/screens.dart';
-import 'package:valle_adventure_app/features/onboarding/screens/screens.dart';
+import 'package:valle_adventure_app/features/auth/presentation/screens/screens.dart';
+import 'package:valle_adventure_app/features/home/presentation/screens/screens.dart';
+import 'package:valle_adventure_app/features/root/presentation/screens/screens.dart';
+import 'package:valle_adventure_app/features/saved/presentation/screens/screens.dart';
+import 'package:valle_adventure_app/features/profile/presentation/screens/screens.dart';
+import 'package:valle_adventure_app/features/settings/presentation/screens/screens.dart';
+import 'package:valle_adventure_app/features/settings/providers/onboarding/presentation/screens/screens.dart';
 import 'package:valle_adventure_app/features/search/screens/search_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();

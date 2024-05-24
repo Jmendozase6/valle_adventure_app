@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
-import 'package:valle_adventure_app/features/onboarding/providers/onboarding_provider.dart';
-import 'package:valle_adventure_app/features/onboarding/widgets/widgets.dart';
+import 'package:valle_adventure_app/features/settings/providers/onboarding/presentation/providers/onboarding_provider.dart';
+import 'package:valle_adventure_app/features/settings/providers/onboarding/presentation/widgets/widgets.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class OnboardingNavBar extends ConsumerWidget {
@@ -35,9 +35,7 @@ class OnboardingNavBar extends ConsumerWidget {
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
-                  ref
-                      .read(currentPageProvider.notifier)
-                      .update((state) => state + 1);
+                  ref.read(currentPageProvider.notifier).update((state) => state + 1);
                 } else {
                   ref.read(setOnboardingProvider);
                   ref.read(routerProvider).goNamed(AppRoutes.signIn.name);

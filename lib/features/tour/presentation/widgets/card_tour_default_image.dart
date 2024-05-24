@@ -6,7 +6,7 @@ import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
-import 'package:valle_adventure_app/features/tour/providers/providers.dart';
+import 'package:valle_adventure_app/features/tour/presentation/providers/providers.dart';
 
 class CardTourImageDetails extends ConsumerWidget {
   final List<String> images;

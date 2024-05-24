@@ -2,38 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
-import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
-import 'package:valle_adventure_app/core/config/router/app_router.dart';
-import 'package:valle_adventure_app/core/config/router/app_routes.dart';
-import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
-import 'package:valle_adventure_app/features/auth/data/repositories/repositories.dart';
-import 'package:valle_adventure_app/features/home/providers/bottom_nav_provider.dart';
+import 'package:valle_adventure_app/features/auth/presentation/providers/providers.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
-class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const _SignInView(),
+      body: const _SignUpView(),
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           AccountLink(
-            text: AppLocalizations.of(context)!.not_have_account,
-            ctaText: AppLocalizations.of(context)!.sign_up,
-            route: AppRoutes.signUp.name,
+            text: AppLocalizations.of(context)!.have_account,
+            ctaText: AppLocalizations.of(context)!.sign_in,
+            isPop: true,
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: AppConstants.defaultPadding * 0.5),
         ],
       ),
     );
   }
 }
 
-class _SignInView extends ConsumerWidget {
-  const _SignInView();
+class _SignUpView extends ConsumerWidget {
+  const _SignUpView();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,55 +39,59 @@ class _SignInView extends ConsumerWidget {
       child: Column(
         children: [
           HeaderImage(
-            title: locale.welcome_again,
-            subtitle: locale.sign_in_to_continue,
+            title: locale.join_us,
+            subtitle: locale.sign_up_to_continue,
           ),
-          // Bug
+          SizedBox(height: AppConstants.defaultPadding),
+          CustomInput(
+            labelText: locale.name,
+            controller: authProvider.signUpNameController,
+          ),
+          SizedBox(height: AppConstants.defaultPadding),
+          CustomInput(
+            labelText: locale.last_names,
+            controller: authProvider.signUpLastNameController,
+          ),
           SizedBox(height: AppConstants.defaultPadding),
           CustomInput(
             labelText: locale.email,
-            controller: authProvider.signInEmailController,
+            controller: authProvider.signUpEmailController,
           ),
-          // Bug
           SizedBox(height: AppConstants.defaultPadding),
           CustomInputPassword(
             labelText: locale.password,
-            controller: authProvider.signInPasswordController,
+            controller: authProvider.signUpPasswordController,
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton(
-              onPressed: () {
-                showRecoverPassword(context);
-              },
-              child: Text(
-                locale.forgot_password,
-                style: AppStyles.subtitle(
-                  color: AppColors.darkColor,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ),
-          ),
+          SizedBox(height: AppConstants.defaultPadding * 0.5),
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: AppConstants.defaultPaddingHorizontal,
+              vertical: AppConstants.defaultPadding * 0.5,
             ),
             child: CtaButtonFilled(
               text: locale.forward,
               onPressed: () async {
-                final response = await authProvider.signIn(
-                    email: authProvider.signInEmailController.text,
-                    password: authProvider.signInPasswordController.text);
+                final response = await authProvider.signUp(
+                  email: authProvider.signUpEmailController.text,
+                  password: authProvider.signUpPasswordController.text,
+                  name: authProvider.signUpNameController.text,
+                  lastName: authProvider.signUpLastNameController.text,
+                );
                 response.fold(
                   (l) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l)));
                   },
                   (r) {
-                    ref.read(routerProvider).goNamed(AppRoutes.home.name);
+                    showDialog(
+                      context: context,
+                      builder: (context) => const AlertDialog(
+                        title: Text('Éxito'),
+                        content: Text(
+                            'Se creó su cuenta correctamente, por favor confirme su correo electrónico'),
+                      ),
+                    );
                   },
                 );
-                ref.read(bottomNavProvider.notifier).state = 0;
               },
             ),
           ),
@@ -100,14 +99,7 @@ class _SignInView extends ConsumerWidget {
           const AccessUsing(),
           SizedBox(height: AppConstants.defaultPadding),
           ButtonSocialMedia(
-            text: locale.sign_in_with_google,
-          ),
-          // TODO: traslate
-          TextButton(
-            onPressed: () {
-              ref.read(routerProvider).goNamed(AppRoutes.home.name);
-            },
-            child: const Text('Ingresar sin iniciar sesión'),
+            text: locale.sign_up_with_google,
           ),
         ],
       ),

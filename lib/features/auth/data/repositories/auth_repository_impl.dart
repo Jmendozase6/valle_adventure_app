@@ -1,24 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/features/auth/data/datasources/supabase_auth_data_source.dart';
 import 'package:valle_adventure_app/features/auth/domain/repositories/auth_repository.dart';
 import 'package:valle_adventure_app/utils/types/type_defs.dart';
-
-final authRepositoryProvider = Provider.autoDispose((ref) {
-  final datasource = SupabaseAuthDataSourceImpl();
-  return AuthRepositoryImpl(datasource: datasource);
-});
-
-/// Get the current user using the [AuthRepository] - [FutureProvider]
-///
-/// Returns a [User] with the current user
-final currentUserProvider = FutureProvider.autoDispose<EitherStringUserModel>(
-  (ref) {
-    final authRepository = ref.watch(authRepositoryProvider);
-    return authRepository.getCurrentUser();
-  },
-);
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthDataSource datasource;
