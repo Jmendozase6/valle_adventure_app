@@ -3,7 +3,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
-import 'package:valle_adventure_app/features/tour/presentation/widgets/card_tour_default_image.dart';
+import 'package:valle_adventure_app/features/tour/data/models/tour.dart';
+import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
+import 'package:valle_adventure_app/features/tour/presentation/widgets/widgets.dart';
 
 class PlaceDetailsScreen extends ConsumerWidget {
   const PlaceDetailsScreen({super.key, required this.id});
@@ -12,21 +14,23 @@ class PlaceDetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final tourProvider = ref.watch(tourRepositoryProvider);
+
     return Scaffold(
       appBar: CustomAppBar(
+        // TODO: fix place_detaails
         title: AppLocalizations.of(context)!.place_detaails,
       ),
-      body:
-          // TODO: Implement the view to show the place details
-
-          // When has data to show
-          _PlaceDetailsView(id: id),
-
-      // When is loading
-      // _LoadingView(),
-
-      // When has error
-      // _ErrorView(),
+      body: CustomFutureBuilder(
+        future: () => tourProvider.getTourById(id: id),
+        dataBuilder: (tour) {
+          final tourSelected = tour.fold(
+            (error) => Tour.empty(),
+            (data) => data,
+          );
+          return _PlaceDetailsView(tour: tourSelected);
+        },
+      ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(AppConstants.defaultPadding),
         child: CtaButtonFilled(text: 'Reservar', onPressed: () {}),
@@ -36,10 +40,10 @@ class PlaceDetailsScreen extends ConsumerWidget {
 }
 
 class _PlaceDetailsView extends StatelessWidget {
-  const _PlaceDetailsView({required this.id});
+  const _PlaceDetailsView({required this.tour});
 
   // Temporary properties
-  final String id;
+  final Tour tour;
 
   @override
   Widget build(BuildContext context) {
@@ -53,15 +57,12 @@ class _PlaceDetailsView extends StatelessWidget {
         child: Column(
           children: [
             CardTourImageDetails(
-              images: [
-                'https://res.cloudinary.com/dlfoowzy4/image/upload/v1715927344/valle-adventure-test/$id.jpg',
-                'https://res.cloudinary.com/dlfoowzy4/image/upload/v1715927344/valle-adventure-test/9.jpg',
-                'https://res.cloudinary.com/dlfoowzy4/image/upload/v1715927344/valle-adventure-test/8.jpg',
-                'https://res.cloudinary.com/dlfoowzy4/image/upload/v1715927344/valle-adventure-test/10.jpg',
-              ],
-              title: 'MONTAÑA BRAVO',
-              location: 'Piura, Perú',
-              reviewsAmount: 10,
+              images: tour.images!,
+              title: tour.name,
+              location: tour.idDepartment.substring(0, 10),
+              // TODO: Change this to the real value
+              reviewsAmount: tour.rating.toInt(),
+              stars: tour.rating,
             ),
             SizedBox(height: AppConstants.defaultPadding),
             Column(
@@ -82,30 +83,19 @@ class _PlaceDetailsView extends StatelessWidget {
                       ),
                       isExpanded: false,
                     ),
-                    ExpansionPanel(
-                      headerBuilder: (BuildContext context, bool isExpanded) {
-                        return const ListTile(
-                          title: Text('Recomendaciones'),
-                        );
-                      },
-                      body: const ListTile(
-                        title: Text('Item 2 child'),
-                        subtitle: Text('Details goes here'),
+                    if (tour.important.isNotEmpty)
+                      ExpansionPanel(
+                        headerBuilder: (BuildContext context, bool isExpanded) {
+                          return const ListTile(
+                            title: Text('Importante'),
+                          );
+                        },
+                        body: const ListTile(
+                          title: Text('Item 2 child'),
+                          subtitle: Text('Details goes here'),
+                        ),
+                        isExpanded: false,
                       ),
-                      isExpanded: false,
-                    ),
-                    ExpansionPanel(
-                      headerBuilder: (BuildContext context, bool isExpanded) {
-                        return const ListTile(
-                          title: Text('Recomendaciones'),
-                        );
-                      },
-                      body: const ListTile(
-                        title: Text('Item 2 child'),
-                        subtitle: Text('Details goes here'),
-                      ),
-                      isExpanded: false,
-                    ),
                     ExpansionPanel(
                       headerBuilder: (BuildContext context, bool isExpanded) {
                         return const ListTile(

@@ -136,9 +136,16 @@ class _CardTourImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(AppConstants.defaultRadius),
-      child: CustomCachedNetworkImage(
-        imageUrl: imageUrl,
-      ),
+      child: imageUrl.startsWith('https')
+          ? CustomCachedNetworkImage(
+              imageUrl: imageUrl,
+            )
+          : Image.asset(
+              imageUrl,
+              fit: BoxFit.cover,
+              width: 1.sw,
+              height: 0.25.sh,
+            ),
     );
   }
 }

@@ -14,7 +14,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String,
       idCard: json['id_card'] as String? ?? '',
       phone: json['phone'] as String? ?? '',
-      imageUrl: json['image_url'] as String,
+      imageUrl: json['image_url'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>

@@ -1,15 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:valle_adventure_app/core/config/constants/app_assets.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
+import 'package:valle_adventure_app/features/tour/data/models/tour.dart';
+import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -59,49 +64,73 @@ class _HomeView extends StatelessWidget {
   }
 }
 
-class RecommendedSection extends StatelessWidget {
+class RecommendedSection extends ConsumerWidget {
   const RecommendedSection({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 3,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (_, index) {
-        return CardTour(
-          id: '$index',
-          price: (index * 10) + 10,
-          isLiked: index % 2 == 0,
-          imageUrl:
-              'https://res.cloudinary.com/dlfoowzy4/image/upload/v1715927344/valle-adventure-test/$index.jpg',
-          title: 'Montaña Bravo',
-          location: 'Piura',
+  Widget build(BuildContext context, WidgetRef ref) {
+    final tourProvider = ref.watch(tourRepositoryProvider);
+
+    return CustomFutureBuilder(
+      future: () => tourProvider.getToursOrderBy(orderType: 'created_at'),
+      dataBuilder: (user) {
+        final tours = user.fold(
+          (error) => [Tour.empty()],
+          (data) => data,
+        );
+        return ListView.builder(
+          itemCount: tours.getRange(0, 3).length,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (_, index) {
+            final tour = tours[index];
+            return CardTour(
+              id: tour.id,
+              price: tour.price,
+              // TODO: Change this to the real value
+              isLiked: true,
+              imageUrl: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
+              title: tour.name,
+              location: tour.idDepartment.substring(0, 10),
+            );
+          },
         );
       },
     );
   }
 }
 
-class _PopularSection extends StatelessWidget {
+class _PopularSection extends ConsumerWidget {
   const _PopularSection();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final tourProvider = ref.watch(tourRepositoryProvider);
+
     return SizedBox(
       height: 0.2.sh,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 3,
-        itemBuilder: (_, index) {
-          return CardTourPopular(
-            id: '$index',
-            image:
-                'https://res.cloudinary.com/dlfoowzy4/image/upload/v1715927344/valle-adventure-test/$index.jpg',
-            title: 'Montaña Bravo',
-            location: 'Piura',
+      child: CustomFutureBuilder(
+        future: () => tourProvider.getToursOrderBy(orderType: 'rating'),
+        dataBuilder: (user) {
+          final tours = user.fold(
+            (error) => [Tour.empty()],
+            (data) => data,
+          );
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: tours.getRange(0, 3).length,
+            itemBuilder: (_, index) {
+              final tour = tours[index];
+              return CardTourPopular(
+                id: tour.id,
+                image: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
+                title: tour.name,
+                // TODO: Change this to the department name
+                location: tour.idDepartment.substring(0, 10),
+              );
+            },
           );
         },
       ),
@@ -168,7 +197,9 @@ class CardTourPopular extends ConsumerWidget {
             Radius.circular(AppConstants.defaultRadius),
           ),
           image: DecorationImage(
-            image: CachedNetworkImageProvider(image),
+            image: image.startsWith('https')
+                ? CachedNetworkImageProvider(image)
+                : const AssetImage(AppAssets.placeholderError) as ImageProvider<Object>,
             fit: BoxFit.cover,
             onError: (_, __) => debugPrint("Sad Bro :'v"),
           ),

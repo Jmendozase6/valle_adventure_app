@@ -186,7 +186,7 @@ class _$UserModelImpl implements _UserModel {
       required this.email,
       @JsonKey(name: 'id_card') this.idCard = '',
       this.phone = '',
-      @JsonKey(name: 'image_url') required this.imageUrl});
+      @JsonKey(name: 'image_url') this.imageUrl = ''});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -252,14 +252,13 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   factory _UserModel(
-          {required final String id,
-          required final String name,
-          @JsonKey(name: 'last_name') required final String lastName,
-          required final String email,
-          @JsonKey(name: 'id_card') final String idCard,
-          final String phone,
-          @JsonKey(name: 'image_url') required final String imageUrl}) =
-      _$UserModelImpl;
+      {required final String id,
+      required final String name,
+      @JsonKey(name: 'last_name') required final String lastName,
+      required final String email,
+      @JsonKey(name: 'id_card') final String idCard,
+      final String phone,
+      @JsonKey(name: 'image_url') final String imageUrl}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;

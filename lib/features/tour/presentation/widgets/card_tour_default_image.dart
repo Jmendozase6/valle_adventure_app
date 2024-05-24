@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:valle_adventure_app/core/config/constants/app_assets.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
@@ -34,9 +35,9 @@ class CardTourImageDetails extends ConsumerWidget {
         color: AppColors.darkColor20,
         borderRadius: BorderRadius.circular(AppConstants.defaultPadding),
         image: DecorationImage(
-          image: CachedNetworkImageProvider(
-            images[imageIndex],
-          ),
+          image: images.isNotEmpty
+              ? CachedNetworkImageProvider(images[imageIndex])
+              : const AssetImage(AppAssets.placeholderSquare) as ImageProvider,
           fit: BoxFit.cover,
         ),
       ),

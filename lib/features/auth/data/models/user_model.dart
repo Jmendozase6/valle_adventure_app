@@ -12,8 +12,16 @@ class UserModel with _$UserModel {
     required String email,
     @Default('') @JsonKey(name: 'id_card') String idCard,
     @Default('') String phone,
-    @JsonKey(name: 'image_url') required String imageUrl,
+    @Default('') @JsonKey(name: 'image_url') String imageUrl,
   }) = _UserModel;
+
+  factory UserModel.empty() => UserModel(
+        id: '',
+        name: '',
+        lastName: '',
+        email: '',
+        imageUrl: '',
+      );
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 }
