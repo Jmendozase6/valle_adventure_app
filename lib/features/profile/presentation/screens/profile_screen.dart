@@ -52,6 +52,7 @@ class _UserLoggedView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
+        SizedBox(height: AppConstants.defaultPadding * 2),
         CircleAvatar(
           radius: AppConstants.defaultRadius * 4,
           backgroundImage: user.imageUrl.isEmpty

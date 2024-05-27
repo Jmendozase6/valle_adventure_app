@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:valle_adventure_app/features/auth/data/datasources/supabase_auth_data_source.dart';
+import 'package:valle_adventure_app/features/auth/data/datasources/auth_data_source.dart';
 import 'package:valle_adventure_app/features/auth/domain/repositories/auth_repository.dart';
 import 'package:valle_adventure_app/utils/types/type_defs.dart';
 

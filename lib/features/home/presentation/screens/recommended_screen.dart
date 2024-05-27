@@ -48,8 +48,7 @@ class _RecommendedView extends ConsumerWidget {
               return CardTour(
                 id: tour.id,
                 price: tour.price,
-                // TODO: Change this to the real value
-                isLiked: true,
+                isLiked: tour.isLiked ?? false,
                 imageUrl: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
                 title: tour.name,
                 location: tour.department,

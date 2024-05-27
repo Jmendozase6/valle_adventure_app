@@ -18,8 +18,7 @@ class PlaceDetailsScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: CustomAppBar(
-        // TODO: fix place_detaails
-        title: AppLocalizations.of(context)!.place_detaails,
+        title: AppLocalizations.of(context)!.place_details,
       ),
       body: CustomFutureBuilder(
         future: () => tourProvider.getTourById(id: id),
@@ -60,7 +59,6 @@ class _PlaceDetailsView extends StatelessWidget {
               images: tour.images!,
               title: tour.name,
               location: tour.department,
-              // TODO: Change this to the real value
               reviewsAmount: tour.rating.toInt(),
               stars: tour.rating,
             ),

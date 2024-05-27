@@ -87,7 +87,6 @@ class RecommendedSection extends ConsumerWidget {
             return CardTour(
               id: tour.id,
               price: tour.price,
-              // TODO: Change this to the real value
               isLiked: tour.isLiked ?? false,
               imageUrl: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
               title: tour.name,
@@ -125,7 +124,6 @@ class _PopularSection extends ConsumerWidget {
                 id: tour.id,
                 image: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
                 title: tour.name,
-                // TODO: Change this to the department name
                 location: tour.department,
               );
             },

@@ -28,7 +28,7 @@
   "search": "Search",
   "saved": "Saved",
   "settings": "Settings",
-  "place_detaails": "Place Details",
+  "place_details": "Place Details",
   "saved_paces": "Saved Places",
   "by_person": "By person",
   "profile": "Profile",
@@ -40,5 +40,7 @@
   "terms_and_conditions": "Terms and Conditions",
   "about_us": "About us",
   "sign_out": "Sign Out",
-  "continue_without_sign_in": "Continue without sign in"
+  "continue_without_sign_in": "Continue without sign in",
+  "sign_in_to_save": "Sign in to save places",
+  "no_saved_tours": "You don't have any saved places"
 }

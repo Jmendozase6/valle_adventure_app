@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:valle_adventure_app/features/tour/data/datasources/supabase_tour_data_source.dart';
+import 'package:valle_adventure_app/features/tour/data/datasources/tour_data_source.dart';
 import 'package:valle_adventure_app/features/tour/domain/repositories/tour_repository.dart';
 import 'package:valle_adventure_app/utils/types/type_defs.dart';
 

@@ -28,7 +28,7 @@
   "search": "Buscar",
   "saved": "Guardados",
   "settings": "Ajustes",
-  "place_detaails": "Detalles del lugar",
+  "place_details": "Detalles del lugar",
   "saved_paces": "Lugares guardados",
   "by_person": "Por persona",
   "profile": "Perfil",
@@ -40,5 +40,7 @@
   "terms_and_conditions": "Términos y Condiciones",
   "about_us": "Acerca",
   "sign_out": "Cerrar sesión",
-  "continue_without_sign_in": "Continuar sin iniciar sesión"
+  "continue_without_sign_in": "Continuar sin iniciar sesión",
+  "sign_in_to_save": "Inicia sesión para guardar este tour",
+  "no_saved_tours": "No tienes tours guardados"
 }

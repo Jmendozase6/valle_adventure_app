@@ -36,6 +36,7 @@ class _CardTourState extends ConsumerState<CardTour> {
   @override
   Widget build(BuildContext context) {
     final authProvider = ref.watch(authRepositoryProvider);
+    final locale = AppLocalizations.of(context)!;
     final borderSide = BorderSide(
       color: AppColors.darkColor20,
     );
@@ -65,8 +66,8 @@ class _CardTourState extends ConsumerState<CardTour> {
                       } else {
                         ///TODO: Show a dialog to login
                         // TODO: Translate
-                        const snackBar = SnackBar(
-                          content: Text('Inicia sesión para guardar este tour'),
+                        final snackBar = SnackBar(
+                          content: Text(locale.sign_in_to_save),
                         );
                         ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
