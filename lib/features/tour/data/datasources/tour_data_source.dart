@@ -5,7 +5,7 @@ abstract class TourDataSource {
   /// Get the list of tours
   ///
   /// Returns a [List<Tour>] with the list of tours
-  EitherListTourBool getTours();
+  EitherListTourBool getTours({required int limit});
 
   /// Get the list of tours by category
   ///
@@ -15,7 +15,7 @@ abstract class TourDataSource {
   /// Get the list of tours by filter
   ///
   /// Returns a [List<Tour>] with the list of tours
-  EitherListTourBool getToursOrderBy({required String orderType});
+  EitherListTourBool getToursOrderBy({required String orderType, required int limit});
 
   /// Get the list of tours by name
   ///

@@ -15,6 +15,7 @@ enum AppRoutes {
   privacy,
   terms,
   about,
+  reservationForm,
 }
 
 extension AppRoutesExtension on AppRoutes {
@@ -52,6 +53,8 @@ extension AppRoutesExtension on AppRoutes {
         return 'terms';
       case AppRoutes.about:
         return 'about';
+      case AppRoutes.reservationForm:
+        return 'reservationForm';
     }
   }
 
@@ -89,6 +92,8 @@ extension AppRoutesExtension on AppRoutes {
         return 'terms';
       case AppRoutes.about:
         return 'about';
+      case AppRoutes.reservationForm:
+        return '/reservationForm';
     }
   }
 }

@@ -63,11 +63,26 @@ final routerProvider = Provider<GoRouter>(
         path: '${AppRoutes.placeDetails.path}/:id',
         name: AppRoutes.placeDetails.name,
         parentNavigatorKey: _rootNavigatorKey,
-        pageBuilder: (_, state) => buildPageWithDefaultTransition<void>(
-          context: _,
+        pageBuilder: (context, state) => buildPageWithDefaultTransition<void>(
+          context: context,
           state: state,
           child: PlaceDetailsScreen(
             id: state.pathParameters['id'] ?? '',
+          ),
+        ),
+      ),
+      GoRoute(
+        path: '${AppRoutes.reservationForm.path}/:tour_id/:tour_name/:user_name/:user_last_name',
+        name: AppRoutes.reservationForm.name,
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) => buildPageWithDefaultTransition<void>(
+          context: context,
+          state: state,
+          child: ReservationTourScreen(
+            tourId: state.pathParameters['tour_id'] ?? '',
+            tourName: state.pathParameters['tour_name'] ?? 'Error al cargar nombre del tour',
+            userName: state.pathParameters['user_name'] ?? '',
+            userLastName: state.pathParameters['user_last_name'] ?? '',
           ),
         ),
       ),

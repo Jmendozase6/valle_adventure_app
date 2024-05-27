@@ -35,7 +35,7 @@ class _RecommendedView extends ConsumerWidget {
         top: AppConstants.defaultPadding,
       ),
       child: CustomFutureBuilder(
-        future: () => tourProvider.getToursOrderBy(orderType: 'created_at'),
+        future: () => tourProvider.getToursOrderBy(orderType: 'created_at', limit: -1),
         dataBuilder: (toursData) {
           final tours = toursData.fold(
             (error) => [Tour.empty()],

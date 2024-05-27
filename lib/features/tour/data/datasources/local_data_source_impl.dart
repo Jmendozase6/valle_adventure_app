@@ -15,7 +15,7 @@ class LocalDataSourceImpl implements TourDataSource {
   }
 
   @override
-  EitherListTourBool getTours() {
+  EitherListTourBool getTours({required int limit}) {
     // TODO: implement getTours
     throw UnimplementedError();
   }
@@ -39,7 +39,7 @@ class LocalDataSourceImpl implements TourDataSource {
   }
 
   @override
-  EitherListTourBool getToursOrderBy({required String orderType}) {
+  EitherListTourBool getToursOrderBy({required String orderType, required int limit}) {
     // TODO: implement getToursOrderBy
     throw UnimplementedError();
   }

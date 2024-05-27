@@ -65,7 +65,6 @@ class _CardTourState extends ConsumerState<CardTour> {
                         ref.read(likeTourProvider([widget.id, widget.isLiked.toString()]));
                       } else {
                         ///TODO: Show a dialog to login
-                        // TODO: Translate
                         final snackBar = SnackBar(
                           content: Text(locale.sign_in_to_save),
                         );

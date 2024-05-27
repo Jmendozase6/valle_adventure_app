@@ -19,14 +19,8 @@ _$TourImpl _$$TourImplFromJson(Map<String, dynamic> json) => _$TourImpl(
       packing: json['packing'] as String? ?? '',
       important: json['important'] as String? ?? '',
       department: json['department'] as String,
-      includedItems: (json['included_items'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
-      notIncludedItems: (json['not_included_items'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
+      includedItems: json['included_items'] as String? ?? '',
+      notIncludedItems: json['not_included_items'] as String? ?? '',
       isAvailable: json['is_available'] as bool,
       rating: (json['rating'] as num).toDouble(),
       isLiked: json['is_liked'] as bool? ?? false,

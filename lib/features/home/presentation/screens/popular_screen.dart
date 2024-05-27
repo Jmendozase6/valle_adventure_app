@@ -35,7 +35,7 @@ class _PopularView extends ConsumerWidget {
         top: AppConstants.defaultPadding,
       ),
       child: CustomFutureBuilder(
-        future: () => tourProvider.getToursOrderBy(orderType: 'rating'),
+        future: () => tourProvider.getToursOrderBy(orderType: 'rating', limit: -1),
         dataBuilder: (user) {
           final tours = user.fold(
             (error) => [Tour.empty()],

@@ -42,5 +42,10 @@
   "sign_out": "Sign Out",
   "continue_without_sign_in": "Continue without sign in",
   "sign_in_to_save": "Sign in to save places",
-  "no_saved_tours": "You don't have any saved places"
+  "no_saved_tours": "You don't have any saved places",
+  "personal_information": "Personal Information",
+  "tour_information": "Tour Information",
+  "continue_btn": "Continue",
+  "sign_in_to_reserve": "Inicia sesión para reservar este tour",
+  "book_tour": "Reservar"
 }

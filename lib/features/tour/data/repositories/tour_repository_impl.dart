@@ -9,8 +9,8 @@ class TourRepositoryImpl implements TourRepository {
   TourRepositoryImpl({required this.datasource});
 
   @override
-  EitherListTourBool getTours() async {
-    final response = await datasource.getTours();
+  EitherListTourBool getTours({required int limit}) async {
+    final response = await datasource.getTours(limit: limit);
     return response.fold(
       (l) => left(false),
       (r) => right(r),
@@ -45,8 +45,8 @@ class TourRepositoryImpl implements TourRepository {
   }
 
   @override
-  EitherListTourBool getToursOrderBy({required String orderType}) async {
-    final response = await datasource.getToursOrderBy(orderType: orderType);
+  EitherListTourBool getToursOrderBy({required String orderType, required int limit}) async {
+    final response = await datasource.getToursOrderBy(orderType: orderType, limit: limit);
     return response.fold(
       (l) => left(false),
       (r) => right(r),

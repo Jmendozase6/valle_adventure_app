@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -21,8 +22,13 @@ class _SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('SearchScreen'),
+    final locale = AppLocalizations.of(context)!;
+
+    return Column(
+      children: [
+        SizedBox(height: AppConstants.defaultPadding),
+        CustomInput(labelText: locale.search),
+      ],
     );
   }
 }

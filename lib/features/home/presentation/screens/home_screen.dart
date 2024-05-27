@@ -72,7 +72,7 @@ class RecommendedSection extends ConsumerWidget {
     final tourProvider = ref.watch(tourRepositoryProvider);
 
     return CustomFutureBuilder(
-      future: () => tourProvider.getToursOrderBy(orderType: 'created_at'),
+      future: () => tourProvider.getToursOrderBy(orderType: 'created_at', limit: 3),
       dataBuilder: (tourData) {
         final tours = tourData.fold(
           (error) => [Tour.empty()],
@@ -109,7 +109,7 @@ class _PopularSection extends ConsumerWidget {
     return SizedBox(
       height: 0.2.sh,
       child: CustomFutureBuilder(
-        future: () => tourProvider.getToursOrderBy(orderType: 'rating'),
+        future: () => tourProvider.getToursOrderBy(orderType: 'rating', limit: 3),
         dataBuilder: (user) {
           final tours = user.fold(
             (error) => [Tour.empty()],

@@ -10,9 +10,11 @@ class SupabaseTourDataSourceImpl implements TourDataSource {
   final _supabase = Supabase.instance.client;
 
   @override
-  EitherListTourBool getTours() async {
+  EitherListTourBool getTours({required int limit}) async {
     try {
-      final toursResponse = await _supabase.from('tours').select();
+      final toursResponse = limit == -1
+          ? await _supabase.from('tours').select()
+          : await _supabase.from('tours').select().limit(limit);
       final tours = tourFromJson(jsonEncode(toursResponse));
       return Right(tours);
     } catch (e) {
@@ -45,13 +47,25 @@ class SupabaseTourDataSourceImpl implements TourDataSource {
   }
 
   @override
-  EitherListTourBool getToursOrderBy({required String orderType}) async {
+  EitherListTourBool getToursOrderBy({required String orderType, required int limit}) async {
     try {
       final userId = _supabase.auth.currentUser?.id ?? '';
-      final toursResponse = userId.isEmpty
-          ? await _supabase.rpc('get_tour_info_filtered', params: {'filter': orderType})
-          : await _supabase
-              .rpc('get_tour_info', params: {'filter': orderType, 'user_id_param': userId});
+      final toursResponse;
+
+      if (userId.isEmpty) {
+        toursResponse = limit == -1
+            ? await _supabase.rpc('get_tour_info_filtered', params: {
+                'filter': orderType,
+              })
+            : await _supabase
+                .rpc('get_tour_info_filtered', params: {'filter': orderType}).limit(limit);
+      } else {
+        toursResponse = limit == -1
+            ? await _supabase
+                .rpc('get_tour_info', params: {'filter': orderType, 'user_id_param': userId})
+            : await _supabase.rpc('get_tour_info',
+                params: {'filter': orderType, 'user_id_param': userId}).limit(limit);
+      }
       final tours = tourFromJson(jsonEncode(toursResponse));
       return Right(tours);
     } catch (e) {
