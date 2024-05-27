@@ -72,7 +72,7 @@ class RecommendedSection extends ConsumerWidget {
     final tourProvider = ref.watch(tourRepositoryProvider);
 
     return CustomFutureBuilder(
-      future: () => tourProvider.getToursOrderBy(orderType: 'created_at', limit: 3),
+      future: () => tourProvider.getToursOrderBy(orderType: 'name', limit: 3),
       dataBuilder: (tourData) {
         final tours = tourData.fold(
           (error) => [Tour.empty()],

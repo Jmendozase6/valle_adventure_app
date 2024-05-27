@@ -90,6 +90,7 @@ class _SignInView extends ConsumerWidget {
                   },
                   (r) {
                     ref.read(routerProvider).goNamed(AppRoutes.home.name);
+                    ref.read(bottomNavProvider.notifier).state = 0;
                   },
                 );
                 ref.read(bottomNavProvider.notifier).state = 0;

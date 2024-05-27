@@ -50,22 +50,32 @@ class SupabaseTourDataSourceImpl implements TourDataSource {
   EitherListTourBool getToursOrderBy({required String orderType, required int limit}) async {
     try {
       final userId = _supabase.auth.currentUser?.id ?? '';
-      final toursResponse;
 
-      if (userId.isEmpty) {
-        toursResponse = limit == -1
-            ? await _supabase.rpc('get_tour_info_filtered', params: {
-                'filter': orderType,
-              })
-            : await _supabase
-                .rpc('get_tour_info_filtered', params: {'filter': orderType}).limit(limit);
-      } else {
-        toursResponse = limit == -1
-            ? await _supabase
-                .rpc('get_tour_info', params: {'filter': orderType, 'user_id_param': userId})
-            : await _supabase.rpc('get_tour_info',
-                params: {'filter': orderType, 'user_id_param': userId}).limit(limit);
-      }
+      // if (userId.isEmpty) {
+      //   toursResponse = limit == -1
+      //       ? await _supabase.rpc('get_tour_info_filtered', params: {
+      //           'filter': orderType,
+      //         })
+      //       : await _supabase
+      //           .rpc('get_tour_info_filtered', params: {'filter': orderType}).limit(limit);
+      // } else {
+      //   toursResponse = limit == -1
+      //       ? await _supabase
+      //           .rpc('get_tour_info', params: {'filter': orderType, 'user_id_param': userId})
+      //       : await _supabase.rpc('get_tour_info',
+      //           params: {'filter': orderType, 'user_id_param': userId}).limit(limit);
+      // }
+
+      final toursResponse = userId.isEmpty
+          ? await _supabase
+              .rpc('get_tour_info_filtered', params: {'filter': orderType})
+              .order(orderType)
+              .limit(limit)
+          : await _supabase
+              .rpc('get_tour_info', params: {'filter': orderType, 'user_id_param': userId})
+              .order(orderType)
+              .limit(limit);
+
       final tours = tourFromJson(jsonEncode(toursResponse));
       return Right(tours);
     } catch (e) {
