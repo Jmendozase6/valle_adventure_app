@@ -124,7 +124,7 @@ class _CardTourPrice extends StatelessWidget {
       children: [
         Text(
           'S/. $price',
-          style: AppStyles.subtitle(color: AppColors.mainColor),
+          style: AppStyles.heading04(color: AppColors.mainColor),
         ),
         SizedBox(height: AppConstants.defaultPadding * 0.5),
         Text(

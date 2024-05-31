@@ -67,7 +67,7 @@ class _SignInView extends ConsumerWidget {
               },
               child: Text(
                 locale.forgot_password,
-                style: AppStyles.subtitle(
+                style: AppStyles.heading04(
                   color: AppColors.darkColor,
                   fontWeight: FontWeight.normal,
                 ),

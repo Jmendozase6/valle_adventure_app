@@ -27,7 +27,7 @@ class CtaButtonFilled extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: AppStyles.button(color: AppColors.lightColor),
+          style: AppStyles.heading03(color: AppColors.lightColor),
         ),
       ),
     );

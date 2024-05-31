@@ -86,11 +86,11 @@ class _OnboardingSlide extends StatelessWidget {
             SizedBox(height: 0.1.sh),
             Text(
               title,
-              style: AppStyles.title(color: AppColors.whiteColor),
+              style: AppStyles.heading01(color: AppColors.whiteColor),
             ),
             Text(
               subtitle,
-              style: AppStyles.onboardingSubtitle(),
+              style: AppStyles.heading02(),
             ),
           ],
         ),

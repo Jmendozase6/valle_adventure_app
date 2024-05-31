@@ -23,7 +23,7 @@ class UserDataRow extends StatelessWidget {
         children: [
           Text(
             title,
-            style: AppStyles.subtitle(fontWeight: FontWeight.normal),
+            style: AppStyles.heading04(fontWeight: FontWeight.normal),
           ),
           Chip(label: Text(value)),
         ],

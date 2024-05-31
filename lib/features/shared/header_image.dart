@@ -34,11 +34,11 @@ class HeaderImage extends StatelessWidget {
         children: [
           Text(
             title,
-            style: AppStyles.onboardingSubtitle(color: AppColors.yellowColor),
+            style: AppStyles.heading02(color: AppColors.yellowColor),
           ),
           Text(
             subtitle,
-            style: AppStyles.subtitle(color: AppColors.whiteColor),
+            style: AppStyles.heading04(color: AppColors.whiteColor),
           ),
           SizedBox(height: AppConstants.defaultPadding * 2),
         ],

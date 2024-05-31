@@ -27,13 +27,13 @@ class NotUserLoggedView extends ConsumerWidget {
             SizedBox(height: AppConstants.defaultPadding),
             Text(
               AppLocalizations.of(context)!.not_logged_message,
-              style: AppStyles.button(color: AppColors.darkColor),
+              style: AppStyles.heading03(color: AppColors.darkColor),
             ),
             TextButton(
               onPressed: () => router.pushNamed(AppRoutes.signIn.name),
               child: Text(
                 AppLocalizations.of(context)!.sign_in,
-                style: AppStyles.button(),
+                style: AppStyles.heading03(),
               ),
             ),
           ],

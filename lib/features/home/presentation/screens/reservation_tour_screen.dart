@@ -19,9 +19,11 @@ class ReservationTourScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context)!;
+
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: 'Reservar Tour',
+      appBar: CustomAppBar(
+        title: locale.book_tour_now,
       ),
       body: _ReservationTourView(
         tourId: tourId,
@@ -50,45 +52,67 @@ class _ReservationTourView extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppConstants.defaultPaddingHorizontal),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Translated text
-            SizedBox(height: AppConstants.defaultPadding),
-            Text(
-              locale.personal_information,
-              style: AppStyles.subtitle(),
-            ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Translated text
+              SizedBox(height: AppConstants.defaultPadding),
+              Text(
+                locale.personal_information,
+                style: AppStyles.heading04(),
+              ),
 
-            SizedBox(height: AppConstants.defaultPadding),
-            CustomInput(
-              labelText: userName,
-              padding: 0,
-            ),
-            SizedBox(height: AppConstants.defaultPadding),
-            CustomInput(
-              labelText: userLastName,
-              padding: 0,
-            ),
-            SizedBox(height: AppConstants.defaultPadding),
-            Text(
-              locale.tour_information,
-              style: AppStyles.subtitle(),
-            ),
-            SizedBox(height: AppConstants.defaultPadding),
-            CustomInput(
-              labelText: tourName,
-              padding: 0,
-            ),
-            SizedBox(height: AppConstants.defaultPadding),
-            CustomInput(
-              labelText: '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
-              padding: 0,
-            ),
-            SizedBox(height: AppConstants.defaultPadding),
+              SizedBox(height: AppConstants.defaultPadding),
+              CustomInput(
+                labelText: userName,
+                padding: 0,
+              ),
+              SizedBox(height: AppConstants.defaultPadding),
+              CustomInput(
+                labelText: userLastName,
+                padding: 0,
+              ),
+              SizedBox(height: AppConstants.defaultPadding),
+              Text(
+                locale.tour_information,
+                style: AppStyles.heading04(),
+              ),
+              SizedBox(height: AppConstants.defaultPadding),
+              CustomInput(
+                labelText: tourName,
+                padding: 0,
+              ),
+              SizedBox(height: AppConstants.defaultPadding),
+              CustomInput(
+                labelText: '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+                padding: 0,
+              ),
+              SizedBox(height: AppConstants.defaultPadding),
 
-            CtaButtonFilled(text: locale.continue_btn, onPressed: () {}),
-          ],
+              /// TODO: Add a dropdown to select the number of partners
+              CustomInput(
+                labelText: locale.partnerts_qty,
+                padding: 0,
+                keyboardType: TextInputType.number,
+                // Add validator
+              ),
+              SizedBox(height: AppConstants.defaultPadding),
+              Text(
+                locale.partnerts,
+                style: AppStyles.heading04(),
+              ),
+              SizedBox(height: AppConstants.defaultPadding),
+              // TODO: Depends on the number of partners the user wants to add
+              CustomInput(
+                labelText: locale.name,
+                padding: 0,
+                // Add validator
+              ),
+              SizedBox(height: AppConstants.defaultPadding),
+              CtaButtonFilled(text: locale.continue_btn, onPressed: () {}),
+            ],
+          ),
         ),
       ),
     );

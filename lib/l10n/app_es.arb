@@ -47,5 +47,24 @@
   "tour_information": "Tour Information",
   "continue_btn": "Continue",
   "sign_in_to_reserve": "Inicia sesión para reservar este tour",
-  "book_tour": "Reservar"
+  "book_tour": "Reservar",
+  "phone": "Teléfono",
+  "id_card": "DNI",
+  "information": "Información",
+  "description": "Descripción",
+  "important": "Importante",
+  "what_to_bring": "¿Qué debo llevar?",
+  "included": "¿Qué incluye?",
+  "not_included": "¿Qué no incluye?",
+  "location": "Ubicación",
+  "price": "Precio",
+  "price_amount": "$ {price}",
+  "@price_amount": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "book_tour_now": "Book now",
+  "partnerts": "Acompañantes",
+  "partnerts_qty": "Quantity of partners"
 }

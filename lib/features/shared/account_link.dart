@@ -25,7 +25,7 @@ class AccountLink extends ConsumerWidget {
       children: [
         Text(
           text,
-          style: AppStyles.subtitle(fontWeight: FontWeight.normal),
+          style: AppStyles.heading04(fontWeight: FontWeight.normal),
         ),
         TextButton(
           onPressed: () {
@@ -36,7 +36,7 @@ class AccountLink extends ConsumerWidget {
           ),
           child: Text(
             ctaText,
-            style: AppStyles.subtitle(color: AppColors.mainColor),
+            style: AppStyles.heading04(color: AppColors.mainColor),
           ),
         )
       ],

@@ -81,42 +81,42 @@ class _PlaceDetailsView extends ConsumerWidget {
                       headerBuilder: (BuildContext context, bool isExpanded) {
                         return ListTile(
                           title: Text(
-                            'Información',
-                            style: AppStyles.subtitle(),
+                            locale.information,
+                            style: AppStyles.heading04(),
                           ),
                         );
                       },
                       body: Column(
                         children: [
                           ListTile(
-                            title: const Text('Descripción'),
+                            title: Text(locale.description),
                             subtitle: Text(tour.overview),
                           ),
                           ListTile(
-                            title: const Text('Importante'),
+                            title: Text(locale.important),
                             subtitle: Text(tour.important),
                           ),
                           ListTile(
-                            title: const Text('¿Qué debes llevar?'),
+                            title: Text(locale.what_to_bring),
                             subtitle: Text(tour.packing!),
                           ),
                           if (tour.includedItems != null && tour.includedItems!.isNotEmpty)
                             ListTile(
-                              title: const Text('Incluye'),
+                              title: Text(locale.included),
                               subtitle: Text(tour.includedItems!),
                             ),
                           if (tour.notIncludedItems != null && tour.notIncludedItems!.isNotEmpty)
                             ListTile(
-                              title: const Text('No Incluye'),
+                              title: Text(locale.not_included),
                               subtitle: Text(tour.notIncludedItems!),
                             ),
                           ListTile(
-                            title: const Text('Ubicación'),
+                            title: Text(locale.location),
                             subtitle: Text(tour.department),
                           ),
                           ListTile(
-                            title: const Text('Precio'),
-                            subtitle: Text('S/ ${tour.price}'),
+                            title: Text(locale.price),
+                            subtitle: Text(locale.price_amount(tour.price)),
                           ),
                         ],
                       ),

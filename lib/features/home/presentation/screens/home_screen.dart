@@ -149,7 +149,7 @@ class _TitleSeeAll extends ConsumerWidget {
       children: [
         Text(
           title,
-          style: AppStyles.button(),
+          style: AppStyles.heading03(),
         ),
         TextButton(
           onPressed: () {
@@ -157,7 +157,7 @@ class _TitleSeeAll extends ConsumerWidget {
           },
           child: Text(
             AppLocalizations.of(context)!.see_all,
-            style: AppStyles.subtitle(color: AppColors.mainColor),
+            style: AppStyles.heading04(color: AppColors.mainColor),
           ),
         ),
       ],
