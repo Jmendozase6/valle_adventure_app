@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/constants/app_assets.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
-import 'package:valle_adventure_app/features/settings/providers/onboarding/presentation/providers/onboarding_provider.dart';
-import 'package:valle_adventure_app/features/settings/providers/onboarding/presentation/widgets/widgets.dart';
+import 'package:valle_adventure_app/features/onboarding/presentation/providers/onboarding_provider.dart';
+import 'package:valle_adventure_app/features/onboarding/presentation/widgets/widgets.dart';
 
 class OnboardingScreen extends ConsumerWidget {
   const OnboardingScreen({super.key});

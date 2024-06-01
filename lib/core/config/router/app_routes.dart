@@ -16,6 +16,7 @@ enum AppRoutes {
   terms,
   about,
   reservationForm,
+  payment,
 }
 
 extension AppRoutesExtension on AppRoutes {
@@ -55,6 +56,8 @@ extension AppRoutesExtension on AppRoutes {
         return 'about';
       case AppRoutes.reservationForm:
         return 'reservationForm';
+      case AppRoutes.payment:
+        return 'payment';
     }
   }
 
@@ -94,6 +97,8 @@ extension AppRoutesExtension on AppRoutes {
         return 'about';
       case AppRoutes.reservationForm:
         return '/reservationForm';
+      case AppRoutes.payment:
+        return '/payment';
     }
   }
 }

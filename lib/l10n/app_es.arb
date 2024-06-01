@@ -43,9 +43,9 @@
   "continue_without_sign_in": "Continuar sin iniciar sesión",
   "sign_in_to_save": "Inicia sesión para guardar este tour",
   "no_saved_tours": "No tienes tours guardados",
-  "personal_information": "Personal Information",
-  "tour_information": "Tour Information",
-  "continue_btn": "Continue",
+  "personal_information": "Información personal",
+  "tour_information": "Información del tour",
+  "continue_btn": "Continuar",
   "sign_in_to_reserve": "Inicia sesión para reservar este tour",
   "book_tour": "Reservar",
   "phone": "Teléfono",
@@ -64,7 +64,14 @@
       "price": {}
     }
   },
-  "book_tour_now": "Book now",
+  "book_tour_now": "Reserva Ahora",
   "partnerts": "Acompañantes",
-  "partnerts_qty": "Quantity of partners"
+  "partnerts_qty": "Cantidad de acompañantes",
+  "input_empty": "Este campo no puede estar vacío",
+  "input_error": "Este campo no es válido",
+  "date": "Fecha de reserva",
+  "select_date": "Selecciona una fecha",
+  "no_date_selected": "No ha seleccionado una fecha",
+  "time_to_pay": "Hora de pagar",
+  "tour_name": "Nombre del tour"
 }

@@ -12,7 +12,7 @@ import 'package:valle_adventure_app/features/root/presentation/screens/screens.d
 import 'package:valle_adventure_app/features/saved/presentation/screens/screens.dart';
 import 'package:valle_adventure_app/features/profile/presentation/screens/screens.dart';
 import 'package:valle_adventure_app/features/settings/presentation/screens/screens.dart';
-import 'package:valle_adventure_app/features/settings/providers/onboarding/presentation/screens/screens.dart';
+import 'package:valle_adventure_app/features/onboarding/presentation/screens/screens.dart';
 import 'package:valle_adventure_app/features/search/screens/search_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -72,7 +72,8 @@ final routerProvider = Provider<GoRouter>(
         ),
       ),
       GoRoute(
-        path: '${AppRoutes.reservationForm.path}/:tour_id/:tour_name/:user_name/:user_last_name',
+        path:
+            '${AppRoutes.reservationForm.path}/:tour_id/:tour_name/:tour_price/:user_id/:user_name/:user_last_name/:user_phone/:user_id_card',
         name: AppRoutes.reservationForm.name,
         parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) => buildPageWithDefaultTransition<void>(
@@ -81,10 +82,15 @@ final routerProvider = Provider<GoRouter>(
           child: ReservationTourScreen(
             tourId: state.pathParameters['tour_id'] ?? '',
             tourName: state.pathParameters['tour_name'] ?? 'Error al cargar nombre del tour',
+            tourPrice: state.pathParameters['tour_price'] ?? 'Error al cargar precio del tour',
             userName: state.pathParameters['user_name'] ?? '',
             userLastName: state.pathParameters['user_last_name'] ?? '',
+            userId: state.pathParameters['user_id'] ?? '',
+            userPhone: state.pathParameters['user_phone'] ?? '',
+            userIdCard: state.pathParameters['user_id_card'] ?? '',
           ),
         ),
+        routes: const [],
       ),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,

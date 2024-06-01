@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/features/auth/presentation/providers/auth_repository_provider.dart';
@@ -129,10 +130,11 @@ class _PlaceDetailsView extends ConsumerWidget {
             SizedBox(height: AppConstants.defaultPadding),
             CtaButtonFilled(
               text: locale.book_tour,
-              onPressed: () async {
+              onPressed: () {
                 if (!authProvider.isAuthenticated()) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(SnackBar(content: Text(locale.sign_in_to_reserve)));
+                  return;
                 }
                 ref.read(placeDetailsReservationProvider(tour));
               },

@@ -66,5 +66,12 @@
   },
   "book_tour_now": "Book now",
   "partnerts": "Partners",
-  "partnerts_qty": "Quantity of partners"
+  "partnerts_qty": "Quantity of partners",
+  "input_empty": "This field is required",
+  "input_error": "This field is invalid",
+  "date": "Reservation date",
+  "select_date": "Select date",
+  "no_date_selected": "No date selected",
+  "time_to_pay": "Time to pay",
+  "tour_name": "Tour name"
 }

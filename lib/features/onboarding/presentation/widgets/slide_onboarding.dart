@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
-import 'package:valle_adventure_app/features/settings/providers/onboarding/presentation/providers/providers.dart';
+import 'package:valle_adventure_app/features/onboarding/presentation/providers/providers.dart';
 
 class SlideOnboarding extends ConsumerWidget {
   const SlideOnboarding({super.key});

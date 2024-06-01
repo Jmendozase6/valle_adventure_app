@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/features/auth/presentation/providers/providers.dart';
-import 'package:valle_adventure_app/features/settings/providers/onboarding/presentation/providers/providers.dart';
+import 'package:valle_adventure_app/features/onboarding/presentation/providers/providers.dart';
 
 class AppRoot extends ConsumerWidget {
   const AppRoot({super.key});

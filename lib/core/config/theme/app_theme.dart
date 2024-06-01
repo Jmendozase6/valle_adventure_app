@@ -8,7 +8,6 @@ class AppTheme {
         // Font
         fontFamily: GoogleFonts.montserrat().fontFamily,
         textTheme: GoogleFonts.montserratTextTheme(),
-
         // Colors
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.mainColor,

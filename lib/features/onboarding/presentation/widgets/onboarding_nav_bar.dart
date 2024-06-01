@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
-import 'package:valle_adventure_app/features/settings/providers/onboarding/presentation/providers/onboarding_provider.dart';
-import 'package:valle_adventure_app/features/settings/providers/onboarding/presentation/widgets/widgets.dart';
+import 'package:valle_adventure_app/features/onboarding/presentation/providers/onboarding_provider.dart';
+import 'package:valle_adventure_app/features/onboarding/presentation/widgets/widgets.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class OnboardingNavBar extends ConsumerWidget {
