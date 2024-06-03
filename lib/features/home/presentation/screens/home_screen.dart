@@ -196,7 +196,7 @@ class CardTourPopular extends ConsumerWidget {
                 ? CachedNetworkImageProvider(image)
                 : const AssetImage(AppAssets.placeholderError) as ImageProvider<Object>,
             fit: BoxFit.cover,
-            onError: (_, __) => debugPrint("Sad Bro :'v"),
+            onError: (_, __) {},
           ),
         ),
         child: Container(
