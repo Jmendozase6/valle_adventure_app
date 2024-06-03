@@ -10,19 +10,14 @@ final placeDetailsReservationProvider = Provider.autoDispose.family<void, Tour>(
   final userData = user.fold((error) => '', (data) => data) as UserModel;
   final router = ref.watch(routerProvider);
 
-  final updatedUserData = userData.copyWith(
-    phone: userData.phone.isEmpty ? '0' : userData.phone,
-    idCard: userData.idCard.isEmpty ? '0' : userData.idCard,
-  );
-
-  router.pushNamed(AppRoutes.reservationForm.name, pathParameters: {
-    'tour_id': tour.id,
-    'tour_name': tour.name,
-    'tour_price': '${tour.price}',
-    'user_id': userData.id,
-    'user_name': userData.name,
-    'user_last_name': userData.lastName,
-    'user_phone': updatedUserData.phone,
-    'user_id_card': updatedUserData.idCard,
+  router.pushNamed(AppRoutes.reservationForm.name, queryParameters: {
+    if (tour.id.isNotEmpty) 'tour_id': tour.id,
+    if (tour.name.isNotEmpty) 'tour_name': tour.name,
+    if (tour.price != 0) 'tour_price': '${tour.price}',
+    if (userData.id.isNotEmpty) 'user_id': userData.id,
+    if (userData.name.isNotEmpty) 'user_name': userData.name,
+    if (userData.lastName.isNotEmpty) 'user_last_name': userData.lastName,
+    if (userData.phone.isNotEmpty) 'user_phone': userData.phone,
+    if (userData.idCard.isNotEmpty) 'user_id_card': userData.idCard,
   });
 });

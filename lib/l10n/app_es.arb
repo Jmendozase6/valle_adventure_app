@@ -73,5 +73,7 @@
   "select_date": "Selecciona una fecha",
   "no_date_selected": "No ha seleccionado una fecha",
   "time_to_pay": "Hora de pagar",
-  "tour_name": "Nombre del tour"
+  "tour_name": "Nombre del tour",
+  "recover_password_success": "Hemos enviado un código de recuperación a tu correo",
+  "recover_password_error": "Ha ocurrido un error, por favor intenta de nuevo"
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:valle_adventure_app/features/home/domain/models/book_tour.dart';
-import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
+import 'package:valle_adventure_app/features/home/domain/models/booking.dart';
 
-final bookProvider = NotifierProvider<BookTourNotifier, BookTour>(() {
+final bookProvider = NotifierProvider<BookTourNotifier, Booking>(() {
   return BookTourNotifier();
 });
 
-class BookTourNotifier extends Notifier<BookTour> {
+class BookTourNotifier extends Notifier<Booking> {
+  final userDataFormKey = GlobalKey<FormState>();
   final userNameController = TextEditingController();
   final userLastNameController = TextEditingController();
   final tourNameController = TextEditingController();
@@ -23,8 +23,8 @@ class BookTourNotifier extends Notifier<BookTour> {
   ];
 
   @override
-  BookTour build() {
-    return BookTour.empty();
+  Booking build() {
+    return Booking.empty();
   }
 
   void addPartner({required String fullName}) {
@@ -46,12 +46,12 @@ class BookTourNotifier extends Notifier<BookTour> {
     idCardController.clear();
   }
 
-  void bookTour({
+  Booking bookTour({
     required String userId,
     required String tourId,
     required String tourPrice,
     required int qtyPartners,
-  }) async {
+  }) {
     List<String> newPartners = [];
     if (qtyPartners > 0) {
       partners.where((element) => element.text.isNotEmpty).forEach((element) {
@@ -59,18 +59,20 @@ class BookTourNotifier extends Notifier<BookTour> {
       });
     }
 
-    final bookTour = BookTour(
+    final bookTour = Booking(
+      id: '',
+      qtyPlaces: qtyPartners,
+      reservationDate: dateController.text,
+      createdAt: DateTime.now().toString(),
       userId: userId,
       name: userNameController.text,
       lastName: userLastNameController.text,
       phone: phoneController.text,
       idCard: idCardController.text,
       tourId: tourId,
-      tourName: tourNameController.text,
-      tourPrice: tourPrice,
-      date: dateController.text,
       partners: newPartners,
     );
     state = bookTour;
+    return state;
   }
 }

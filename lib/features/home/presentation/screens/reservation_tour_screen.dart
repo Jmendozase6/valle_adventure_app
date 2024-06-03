@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
+import 'package:valle_adventure_app/core/config/router/app_router.dart';
+import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/features/home/presentation/providers/partners_provider.dart';
 import 'package:valle_adventure_app/features/home/presentation/providers/reservation_form_provider.dart';
 import 'package:valle_adventure_app/features/home/presentation/widgets/widgets.dart';
 import 'package:valle_adventure_app/features/shared/cta_button_filled.dart';
 import 'package:valle_adventure_app/features/shared/custom_app_bar.dart';
 import 'package:valle_adventure_app/features/shared/custom_input.dart';
-import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
 import 'package:valle_adventure_app/utils/date/custom_date.dart';
 
 class ReservationTourScreen extends StatelessWidget {
@@ -67,6 +67,7 @@ class _ReservationTourView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = AppLocalizations.of(context)!;
     final currentBook = ref.watch(bookProvider.notifier);
+    final router = ref.watch(routerProvider);
 
     return SafeArea(
       child: Padding(
@@ -81,34 +82,12 @@ class _ReservationTourView extends ConsumerWidget {
                 style: AppStyles.heading04(),
               ),
               SizedBox(height: AppConstants.defaultPadding),
-              CustomInput(
-                labelText: locale.name,
-                padding: 0,
-                initialValue: userName,
-                controller: currentBook.userNameController,
+              UserDataForm(
+                userName: userName,
+                userLastName: userLastName,
+                userPhone: userPhone,
+                userIdCard: userIdCard,
               ),
-              SizedBox(height: AppConstants.defaultPadding),
-              CustomInput(
-                labelText: locale.last_names,
-                initialValue: userLastName,
-                controller: currentBook.userLastNameController,
-                padding: 0,
-              ),
-              SizedBox(height: AppConstants.defaultPadding),
-              CustomInput(
-                labelText: locale.phone,
-                initialValue: userPhone,
-                controller: currentBook.phoneController,
-                padding: 0,
-              ),
-              SizedBox(height: AppConstants.defaultPadding),
-              CustomInput(
-                labelText: locale.id_card,
-                padding: 0,
-                initialValue: userIdCard,
-                controller: currentBook.idCardController,
-              ),
-              SizedBox(height: AppConstants.defaultPadding),
               Text(
                 locale.tour_information,
                 style: AppStyles.heading04(),
@@ -139,14 +118,23 @@ class _ReservationTourView extends ConsumerWidget {
               CtaButtonFilled(
                 text: locale.continue_btn,
                 onPressed: () {
-                  ref.read(formPartnersKeyProvider).currentState?.validate();
-                  final book = ref.read(bookProvider.notifier).bookTour(
-                        userId: userId,
-                        tourId: tourId,
-                        tourPrice: tourPrice,
-                        qtyPartners: ref.watch(qtyPartnersProvider),
-                      );
-                  // ADD TO DATABASE USING BOOK REPOSITORY
+                  final isValidPartners =
+                      ref.read(formPartnersKeyProvider).currentState?.validate() ?? false;
+                  final isValidUserData =
+                      currentBook.userDataFormKey.currentState?.validate() ?? false;
+                  final isValidDate = isValidDateTime(currentBook.dateController.text);
+                  if (isValidPartners && isValidUserData && isValidDate) {
+                    ref.read(bookProvider.notifier).bookTour(
+                          userId: userId,
+                          tourId: tourId,
+                          tourPrice: tourPrice,
+                          qtyPartners: ref.watch(qtyPartnersProvider),
+                        );
+                    router.pushNamed(AppRoutes.payment.name, pathParameters: {
+                      'tour_name': tourName,
+                      'tour_price': tourPrice,
+                    });
+                  }
                 },
               ),
               SizedBox(height: AppConstants.defaultPadding),
@@ -154,49 +142,6 @@ class _ReservationTourView extends ConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class PartnersSection extends ConsumerWidget {
-  const PartnersSection({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final locale = AppLocalizations.of(context)!;
-    final qtyPartners = ref.watch(qtyPartnersProvider);
-    final formKey = ref.watch(formPartnersKeyProvider);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          locale.partnerts,
-          style: AppStyles.heading04(),
-        ),
-        SizedBox(height: AppConstants.defaultPadding),
-        Form(
-          key: formKey,
-          child: SizedBox(
-            height: qtyPartners * 70.h,
-            child: ListView.builder(
-              itemCount: qtyPartners,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: EdgeInsets.only(bottom: AppConstants.defaultPadding * 0.5),
-                  child: CustomInput(
-                    labelText: locale.name,
-                    padding: 0,
-                    controller: ref.watch(bookProvider.notifier).partners[index],
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

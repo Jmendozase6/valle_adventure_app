@@ -1,6 +1,11 @@
+import 'dart:async';
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/features/auth/data/datasources/auth_data_source.dart';
 import 'package:valle_adventure_app/features/auth/data/models/user_model.dart';
 import 'package:valle_adventure_app/utils/types/type_defs.dart';
@@ -44,9 +49,8 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
 
   @override
   EitherStringBool signInWithGoogle() async {
-    //TODO: Add your webClientId and androidClientId
-    const webClientId = 'my-web.apps.googleusercontent.com';
-    const androidClientId = 'my-android.apps.googleusercontent.com';
+    final webClientId = dotenv.get('AUTH_WEB_CLIENT_ID');
+    final androidClientId = dotenv.get('AUTH_ANDROID_CLIENT_ID');
 
     final GoogleSignIn googleSignIn = GoogleSignIn(
       serverClientId: webClientId,
@@ -54,7 +58,10 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
     );
 
     final googleUser = await googleSignIn.signIn();
-    final googleAuth = await googleUser!.authentication;
+    if (googleUser == null) {
+      return left('No Google User found.');
+    }
+    final googleAuth = await googleUser.authentication;
     final accessToken = googleAuth.accessToken;
     final idToken = googleAuth.idToken;
 
@@ -99,14 +106,48 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
   }
 
   @override
-  Future<EitherStringBool> resetPassword({required String email}) {
-    // TODO: implement resetPassword
-    throw UnimplementedError();
+  EitherStringBool resetPassword({required String email}) async {
+    try {
+      // Check if the email is registered
+      final existsEmail = await checkEmailExists(email: email);
+      if (existsEmail.isLeft() || existsEmail == right(false)) {
+        return left('El correo no está registrado');
+      }
+      await _supabase.auth.resetPasswordForEmail(email);
+      return right(true);
+    } on AuthException catch (error) {
+      return left(error.message);
+    } catch (e) {
+      return left('Ocurrió un Error');
+    }
   }
 
   @override
   EitherStringString getCurrentUserId() {
     final userId = _supabase.auth.currentUser!.id;
     return userId.isNotEmpty ? right(userId) : left('no-id');
+  }
+
+  @override
+  StreamSubscription<AuthState> onAuthStateChange({required GoRouter router}) {
+    return _supabase.auth.onAuthStateChange.listen((data) {
+      final AuthChangeEvent event = data.event;
+      if (event == AuthChangeEvent.signedIn) {
+        router.goNamed(AppRoutes.home.name);
+      }
+      // else if (event == AuthChangeEvent.signedOut) {
+      //   router.goNamed(AppRoutes.signIn.name);
+      // }
+    });
+  }
+
+  @override
+  EitherBool checkEmailExists({required String email}) async {
+    try {
+      final response = await _supabase.from('public_users').select().eq('email', email);
+      return right(response.isNotEmpty);
+    } catch (e) {
+      return left(false);
+    }
   }
 }

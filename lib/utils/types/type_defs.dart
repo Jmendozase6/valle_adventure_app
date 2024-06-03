@@ -10,3 +10,6 @@ typedef EitherListTourBool = Future<Either<bool, List<Tour>>>;
 typedef EitherBoolTour = Future<Either<bool, Tour>>;
 typedef EitherBoolBool = Future<Either<bool, bool>>;
 typedef EitherTours = Future<Either<List<Tour>, List<Tour>>>;
+
+/// Generics
+typedef EitherBool = Future<Either<bool, bool>>;

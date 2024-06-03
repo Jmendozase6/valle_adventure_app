@@ -73,5 +73,7 @@
   "select_date": "Select date",
   "no_date_selected": "No date selected",
   "time_to_pay": "Time to pay",
-  "tour_name": "Tour name"
+  "tour_name": "Tour name",
+  "recover_password_success": "We have sent you an email with the instructions to recover your password",
+  "recover_password_error": "There was an error sending the email, please try again"
 }

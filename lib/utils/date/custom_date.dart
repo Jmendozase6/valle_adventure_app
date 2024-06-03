@@ -25,3 +25,9 @@ Future<String?> customShowBoardDatePicker({
   final dateFormat = DateFormat('dd/MM/yyyy');
   return result == null ? locale.no_date_selected : dateFormat.format(result);
 }
+
+bool isValidDateTime(String date) {
+  if (date.isEmpty) return false;
+  final newDate = DateFormat('dd/MM/yyyy').parse(date);
+  return newDate.isBefore(DateTime.now());
+}

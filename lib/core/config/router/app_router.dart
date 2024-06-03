@@ -48,6 +48,42 @@ final routerProvider = Provider<GoRouter>(
           state: __,
           child: const SignInScreen(),
         ),
+        routes: [
+          GoRoute(
+            path: AppRoutes.recoverPassword.path,
+            name: AppRoutes.recoverPassword.name,
+            parentNavigatorKey: _rootNavigatorKey,
+            pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+              context: _,
+              state: __,
+              child: const RecoverPasswordScreen(),
+            ),
+            routes: [
+              GoRoute(
+                path: AppRoutes.recoverCode.path,
+                name: AppRoutes.recoverCode.name,
+                parentNavigatorKey: _rootNavigatorKey,
+                pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+                  context: _,
+                  state: __,
+                  child: const RecoverCodeScreen(),
+                ),
+                routes: [
+                  GoRoute(
+                    path: AppRoutes.newPassword.path,
+                    name: AppRoutes.newPassword.name,
+                    parentNavigatorKey: _rootNavigatorKey,
+                    pageBuilder: (_, __) => buildPageWithDefaultTransition<void>(
+                      context: _,
+                      state: __,
+                      child: const NewPasswordScreen(),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
       GoRoute(
         path: AppRoutes.signUp.path,
@@ -72,25 +108,38 @@ final routerProvider = Provider<GoRouter>(
         ),
       ),
       GoRoute(
-        path:
-            '${AppRoutes.reservationForm.path}/:tour_id/:tour_name/:tour_price/:user_id/:user_name/:user_last_name/:user_phone/:user_id_card',
+        path: AppRoutes.reservationForm.path,
         name: AppRoutes.reservationForm.name,
         parentNavigatorKey: _rootNavigatorKey,
         pageBuilder: (context, state) => buildPageWithDefaultTransition<void>(
           context: context,
           state: state,
           child: ReservationTourScreen(
-            tourId: state.pathParameters['tour_id'] ?? '',
-            tourName: state.pathParameters['tour_name'] ?? 'Error al cargar nombre del tour',
-            tourPrice: state.pathParameters['tour_price'] ?? 'Error al cargar precio del tour',
-            userName: state.pathParameters['user_name'] ?? '',
-            userLastName: state.pathParameters['user_last_name'] ?? '',
-            userId: state.pathParameters['user_id'] ?? '',
-            userPhone: state.pathParameters['user_phone'] ?? '',
-            userIdCard: state.pathParameters['user_id_card'] ?? '',
+            tourId: state.uri.queryParameters['tour_id'] ?? '',
+            tourName: state.uri.queryParameters['tour_name'] ?? 'Error al cargar nombre del tour',
+            tourPrice: state.uri.queryParameters['tour_price'] ?? 'Error al cargar precio del tour',
+            userName: state.uri.queryParameters['user_name'] ?? '',
+            userLastName: state.uri.queryParameters['user_last_name'] ?? '',
+            userId: state.uri.queryParameters['user_id'] ?? '',
+            userPhone: state.uri.queryParameters['user_phone'] ?? '',
+            userIdCard: state.uri.queryParameters['user_id_card'] ?? '',
           ),
         ),
-        routes: const [],
+        routes: [
+          GoRoute(
+            path: '${AppRoutes.payment.path}/:tour_name/:tour_price',
+            name: AppRoutes.payment.name,
+            parentNavigatorKey: _rootNavigatorKey,
+            pageBuilder: (context, state) => buildPageWithDefaultTransition<void>(
+              context: context,
+              state: state,
+              child: PaymentTourScreen(
+                tourName: state.pathParameters['tour_name'] ?? 'Error al cargar nombre del tour',
+                tourPrice: state.pathParameters['tour_price'] ?? '0',
+              ),
+            ),
+          ),
+        ],
       ),
       ShellRoute(
         navigatorKey: _shellNavigatorKey,

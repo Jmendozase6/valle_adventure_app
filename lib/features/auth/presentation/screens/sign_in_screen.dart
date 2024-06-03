@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
@@ -62,9 +63,7 @@ class _SignInView extends ConsumerWidget {
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
-              onPressed: () {
-                showRecoverPassword(context);
-              },
+              onPressed: () => ref.read(routerProvider).pushNamed(AppRoutes.recoverPassword.name),
               child: Text(
                 locale.forgot_password,
                 style: AppStyles.heading04(
@@ -93,7 +92,6 @@ class _SignInView extends ConsumerWidget {
                     ref.read(bottomNavProvider.notifier).state = 0;
                   },
                 );
-                ref.read(bottomNavProvider.notifier).state = 0;
               },
             ),
           ),
@@ -102,40 +100,18 @@ class _SignInView extends ConsumerWidget {
           SizedBox(height: AppConstants.defaultPadding),
           ButtonSocialMedia(
             text: locale.sign_in_with_google,
-          ),
-          TextButton(
+            icon: FontAwesomeIcons.google,
             onPressed: () {
-              ref.read(routerProvider).goNamed(AppRoutes.home.name);
+              authProvider.signInWithGoogle();
+              ref.read(bottomNavProvider.notifier).state = 0;
             },
-            child: Text(locale.continue_without_sign_in),
           ),
-        ],
-      ),
-    );
-  }
-
-  Future<dynamic> showRecoverPassword(BuildContext context) {
-    final locale = AppLocalizations.of(context)!;
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(locale.recover_password),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(locale.recover_password_desc),
-            SizedBox(height: AppConstants.defaultPadding),
-            CustomInput(
-              labelText: locale.email,
-              padding: 0,
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {},
-            child: Text(locale.send),
+          SizedBox(height: AppConstants.defaultPadding * .5),
+          ButtonSocialMedia(
+            text: locale.continue_without_sign_in,
+            onPressed: () => ref.read(routerProvider).goNamed(AppRoutes.home.name),
           ),
+          SizedBox(height: AppConstants.defaultPadding),
         ],
       ),
     );

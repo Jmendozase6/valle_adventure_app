@@ -9,3 +9,19 @@ final authRepositoryProvider = Provider.autoDispose((ref) {
   final datasource = SupabaseAuthDataSourceImpl();
   return AuthRepositoryImpl(datasource: datasource);
 });
+
+// /// Recover password provider
+// ///
+// /// Returns a [RecoverPasswordProvider]
+// final resetPasswordProvider = Provider.autoDispose<Future<bool>>((ref) async {
+//   final auth = ref.watch(authRepositoryProvider);
+//   final response = await auth.resetPassword(email: auth.emailResetController.text);
+//   return response.fold(
+//     (leftValue) {
+//       return false;
+//     },
+//     (rightValue) {
+//       return true;
+//     },
+//   );
+// });

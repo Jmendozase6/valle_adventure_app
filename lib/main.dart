@@ -8,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // State management
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:valle_adventure_app/features/auth/presentation/providers/auth_repository_provider.dart';
 import 'package:valle_adventure_app/features/settings/providers/providers.dart';
 
 // Responsive
@@ -48,6 +49,8 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
     final locale = ref.watch(localeProvider);
+    ref.read(authRepositoryProvider).authStateChanges(router: router);
+
     return ScreenUtilInit(
       // designSize: const Size(428, 926),
       builder: (_, __) => MaterialApp.router(

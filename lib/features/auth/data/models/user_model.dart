@@ -8,7 +8,7 @@ class UserModel with _$UserModel {
   factory UserModel({
     required String id,
     required String name,
-    @JsonKey(name: 'last_name') required String lastName,
+    @Default('') @JsonKey(name: 'last_name') String lastName,
     required String email,
     @Default('') @JsonKey(name: 'id_card') String idCard,
     @Default('') String phone,

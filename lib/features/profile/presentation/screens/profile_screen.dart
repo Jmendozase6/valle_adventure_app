@@ -63,10 +63,12 @@ class _UserLoggedView extends ConsumerWidget {
         ),
         SizedBox(height: AppConstants.defaultPadding),
         const _CustomDivider(),
+        SizedBox(height: AppConstants.defaultPadding),
         Text(
           locale.personal_information,
           style: AppStyles.heading04(),
         ),
+        SizedBox(height: AppConstants.defaultPadding),
         UserDataRow(
           title: locale.name,
           value: user.name,

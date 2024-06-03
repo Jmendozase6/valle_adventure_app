@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:valle_adventure_app/utils/types/type_defs.dart';
 
@@ -33,7 +36,7 @@ abstract class AuthDataSource {
   /// Reset password
   ///
   /// Returns a [EitherStringBool] with the result of the operation
-  Future<EitherStringBool> resetPassword({required String email});
+  EitherStringBool resetPassword({required String email});
 
   /// Check if the user is authenticated
   ///
@@ -49,4 +52,15 @@ abstract class AuthDataSource {
   ///
   /// Returns a [String] with the current user id
   EitherStringString getCurrentUserId();
+
+  /// Listen to the authentication state
+  ///
+  /// Returns a [Stream] with the authentication state
+  /// The stream will emit a new value every time the authentication state changes
+  StreamSubscription<AuthState> onAuthStateChange({required GoRouter router});
+
+  /// Check if email exists in the database
+  ///
+  /// Returns a [EitherBool] with the result of the operation
+  EitherBool checkEmailExists({required String email});
 }

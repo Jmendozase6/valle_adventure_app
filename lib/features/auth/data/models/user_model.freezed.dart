@@ -182,7 +182,7 @@ class _$UserModelImpl implements _UserModel {
   _$UserModelImpl(
       {required this.id,
       required this.name,
-      @JsonKey(name: 'last_name') required this.lastName,
+      @JsonKey(name: 'last_name') this.lastName = '',
       required this.email,
       @JsonKey(name: 'id_card') this.idCard = '',
       this.phone = '',
@@ -254,7 +254,7 @@ abstract class _UserModel implements UserModel {
   factory _UserModel(
       {required final String id,
       required final String name,
-      @JsonKey(name: 'last_name') required final String lastName,
+      @JsonKey(name: 'last_name') final String lastName,
       required final String email,
       @JsonKey(name: 'id_card') final String idCard,
       final String phone,

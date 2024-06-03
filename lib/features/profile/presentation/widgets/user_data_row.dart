@@ -25,7 +25,18 @@ class UserDataRow extends StatelessWidget {
             title,
             style: AppStyles.heading04(fontWeight: FontWeight.normal),
           ),
-          Chip(label: Text(value)),
+          SizedBox(width: AppConstants.defaultPaddingHorizontal),
+          Expanded(
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Chip(
+                label: Text(
+                  value,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
