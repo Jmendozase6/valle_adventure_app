@@ -117,7 +117,7 @@ class _ReservationTourView extends ConsumerWidget {
                 text: locale.continue_btn,
                 onPressed: () {
                   final isValidPartners =
-                      ref.read(formPartnersKeyProvider).currentState?.validate() ?? false;
+                      ref.read(formPartnersKeyProvider).currentState?.validate() ?? true;
                   final isValidUserData =
                       currentBook.userDataFormKey.currentState?.validate() ?? false;
                   final isValidDate = isValidDateTime(currentBook.dateController.text);
