@@ -117,7 +117,7 @@ final routerProvider = Provider<GoRouter>(
           child: ReservationTourScreen(
             tourId: state.uri.queryParameters['tour_id'] ?? '',
             tourName: state.uri.queryParameters['tour_name'] ?? 'Error al cargar nombre del tour',
-            tourPrice: state.uri.queryParameters['tour_price'] ?? 'Error al cargar precio del tour',
+            tourPrice: state.uri.queryParameters['tour_price'] ?? '0',
             userName: state.uri.queryParameters['user_name'] ?? '',
             userLastName: state.uri.queryParameters['user_last_name'] ?? '',
             userId: state.uri.queryParameters['user_id'] ?? '',
@@ -135,7 +135,7 @@ final routerProvider = Provider<GoRouter>(
               state: state,
               child: PaymentTourScreen(
                 tourName: state.pathParameters['tour_name'] ?? 'Error al cargar nombre del tour',
-                tourPrice: state.pathParameters['tour_price'] ?? '0',
+                tourPrice: double.parse(state.pathParameters['tour_price'] ?? '0'),
               ),
             ),
           ),

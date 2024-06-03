@@ -49,7 +49,6 @@ class BookTourNotifier extends Notifier<Booking> {
   Booking bookTour({
     required String userId,
     required String tourId,
-    required String tourPrice,
     required int qtyPartners,
   }) {
     List<String> newPartners = [];
@@ -72,6 +71,7 @@ class BookTourNotifier extends Notifier<Booking> {
       tourId: tourId,
       partners: newPartners,
     );
+    // TODO: CUANDO SE ENVÍA, SUMAR EL USUARIO + LOS ACOMPAÑANTES
     state = bookTour;
     return state;
   }

@@ -72,7 +72,6 @@ class _SavedListView extends StatelessWidget {
         return CardTour(
           id: tour.id,
           price: tour.price,
-          // TODO: Change this to the real value
           isLiked: true,
           imageUrl: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
           title: tour.name,

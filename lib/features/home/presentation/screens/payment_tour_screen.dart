@@ -5,6 +5,7 @@ import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/home/presentation/providers/reservation_form_provider.dart';
+import 'package:valle_adventure_app/features/home/presentation/widgets/widgets.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class PaymentTourScreen extends StatelessWidget {
@@ -14,12 +15,12 @@ class PaymentTourScreen extends StatelessWidget {
     required this.tourPrice,
   });
 
-  final String tourName, tourPrice;
+  final String tourName;
+  final double tourPrice;
 
   @override
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context)!;
-
     return Scaffold(
       appBar: CustomAppBar(
         title: locale.time_to_pay,
@@ -33,55 +34,64 @@ class PaymentTourScreen extends StatelessWidget {
 }
 
 class _PaymentTourView extends ConsumerWidget {
-  const _PaymentTourView({required this.tourName, required this.tourPrice});
+  const _PaymentTourView({
+    required this.tourName,
+    required this.tourPrice,
+  });
 
-  final String tourName, tourPrice;
+  final String tourName;
+  final double tourPrice;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final locale = AppLocalizations.of(context)!;
     final booking = ref.watch(bookProvider);
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text('Resumen de tu reservación'),
-          const Divider(),
-          RowDataInfo(title: 'Tour', value: tourName),
-          RowDataInfo(title: 'Cantidad de Personas', value: '${booking.partners.length}'),
-          RowDataInfo(title: 'Fecha de reserva', value: booking.reservationDate),
-          RowDataInfo(title: 'Costo por persona', value: 'S/ $tourPrice'),
-          const Divider(),
-          const Spacer(),
-          RowDataInfo(title: 'TOTAL', value: 'S/ ${tourPrice * booking.partners.length}'),
-        ],
-      ),
+    final total = tourPrice * (booking.partners.length + 1);
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(height: AppConstants.defaultPadding),
+        Text(
+          locale.reservation_summary,
+          style: AppStyles.heading03(
+            color: AppColors.darkColor,
+          ),
+        ),
+        const _CustomDivider(),
+        RowDataInfo(title: 'Tour', value: tourName),
+        RowDataInfo(title: 'Cantidad de Personas', value: '${booking.partners.length + 1}'),
+        RowDataInfo(title: 'Fecha de reserva', value: booking.reservationDate),
+        RowDataInfo(title: 'Costo por persona', value: 'S/ $tourPrice'),
+        const _CustomDivider(),
+        const Spacer(),
+        RowDataInfo(title: 'TOTAL', value: 'S/ $total', fontWeightTitle: FontWeight.bold),
+        const _CustomDivider(),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: AppConstants.defaultPaddingHorizontal,
+          ),
+          child: CtaButtonFilled(
+            text: locale.pay_now,
+            onPressed: () {},
+          ),
+        ),
+        SizedBox(height: AppConstants.defaultPadding),
+      ],
     );
   }
 }
 
-class RowDataInfo extends StatelessWidget {
-  const RowDataInfo({
-    super.key,
-    required this.title,
-    required this.value,
-  });
-
-  final String title, value;
+class _CustomDivider extends StatelessWidget {
+  const _CustomDivider();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppConstants.defaultPadding),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Nombre del tour',
-            style: AppStyles.heading03(color: AppColors.darkColor20),
-          ),
-          const Text('Precio del tour'),
-        ],
+      padding: EdgeInsets.symmetric(
+        horizontal: AppConstants.defaultPaddingHorizontal,
+        vertical: AppConstants.defaultPadding * 0.5,
       ),
+      child: const Divider(),
     );
   }
 }

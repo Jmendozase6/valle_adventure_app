@@ -105,7 +105,6 @@ class _PopularSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tourProvider = ref.watch(tourRepositoryProvider);
-
     return SizedBox(
       height: 0.2.sh,
       child: CustomFutureBuilder(

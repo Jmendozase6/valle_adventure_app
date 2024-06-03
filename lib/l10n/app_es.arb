@@ -75,5 +75,8 @@
   "time_to_pay": "Hora de pagar",
   "tour_name": "Nombre del tour",
   "recover_password_success": "Hemos enviado un código de recuperación a tu correo",
-  "recover_password_error": "Ha ocurrido un error, por favor intenta de nuevo"
+  "recover_password_error": "Ha ocurrido un error, por favor intenta de nuevo",
+  "select_valid_date": "Por favor selecciona una fecha válida",
+  "reservation_summary": "Resumen de la reserva",
+  "pay_now": "Pagar ahora"
 }

@@ -26,7 +26,7 @@ class ReservationTourScreen extends StatelessWidget {
     required this.userIdCard,
   });
 
-  final String tourId, tourName, tourPrice, userId, userName, userLastName, userPhone, userIdCard;
+  final String tourId, tourName, userId, tourPrice, userName, userLastName, userPhone, userIdCard;
   @override
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context)!;
@@ -60,9 +60,7 @@ class _ReservationTourView extends ConsumerWidget {
     required this.userPhone,
     required this.userIdCard,
   });
-
-  final String tourId, tourName, tourPrice, userId, userName, userLastName, userPhone, userIdCard;
-
+  final String tourId, tourName, userId, tourPrice, userName, userLastName, userPhone, userIdCard;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = AppLocalizations.of(context)!;
@@ -127,13 +125,15 @@ class _ReservationTourView extends ConsumerWidget {
                     ref.read(bookProvider.notifier).bookTour(
                           userId: userId,
                           tourId: tourId,
-                          tourPrice: tourPrice,
                           qtyPartners: ref.watch(qtyPartnersProvider),
                         );
                     router.pushNamed(AppRoutes.payment.name, pathParameters: {
                       'tour_name': tourName,
                       'tour_price': tourPrice,
                     });
+                  } else {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text(locale.select_valid_date)));
                   }
                 },
               ),

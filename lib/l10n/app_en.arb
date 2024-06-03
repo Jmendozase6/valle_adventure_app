@@ -75,5 +75,8 @@
   "time_to_pay": "Time to pay",
   "tour_name": "Tour name",
   "recover_password_success": "We have sent you an email with the instructions to recover your password",
-  "recover_password_error": "There was an error sending the email, please try again"
+  "recover_password_error": "There was an error sending the email, please try again",
+  "select_valid_date": "Select a valid date",
+  "reservation_summary": "Reservation Summary",
+  "pay_now": "Pay now"
 }
