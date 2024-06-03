@@ -12,6 +12,8 @@ import 'package:valle_adventure_app/utils/types/type_defs.dart';
 
 class SupabaseAuthDataSourceImpl implements AuthDataSource {
   final _supabase = Supabase.instance.client;
+  GoogleSignIn googleSignIn = GoogleSignIn();
+
   @override
   EitherStringBool signUp({
     required String email,
@@ -49,13 +51,7 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
 
   @override
   EitherStringBool signInWithGoogle() async {
-    final webClientId = dotenv.get('AUTH_WEB_CLIENT_ID');
-    final androidClientId = dotenv.get('AUTH_ANDROID_CLIENT_ID');
-
-    final GoogleSignIn googleSignIn = GoogleSignIn(
-      serverClientId: webClientId,
-      clientId: androidClientId,
-    );
+    initGoogleSignIn();
 
     final googleUser = await googleSignIn.signIn();
     if (googleUser == null) {
@@ -83,7 +79,10 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
 
   @override
   Future<void> signOut() async {
+    initGoogleSignIn();
     await _supabase.auth.signOut();
+    await googleSignIn.disconnect();
+    await googleSignIn.signOut();
   }
 
   @override
@@ -149,5 +148,15 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
     } catch (e) {
       return left(false);
     }
+  }
+
+  void initGoogleSignIn() {
+    if (googleSignIn.clientId != null) return;
+    final webClientId = dotenv.get('AUTH_WEB_CLIENT_ID');
+    final androidClientId = dotenv.get('AUTH_ANDROID_CLIENT_ID');
+    googleSignIn = GoogleSignIn(
+      serverClientId: webClientId,
+      clientId: androidClientId,
+    );
   }
 }
