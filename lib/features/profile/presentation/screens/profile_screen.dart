@@ -73,10 +73,11 @@ class _UserLoggedView extends ConsumerWidget {
           title: locale.name,
           value: user.name,
         ),
-        UserDataRow(
-          title: locale.last_names,
-          value: user.lastName,
-        ),
+        if (user.lastName.isNotEmpty)
+          UserDataRow(
+            title: locale.last_names,
+            value: user.lastName,
+          ),
         UserDataRow(
           title: locale.email,
           value: user.email,

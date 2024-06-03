@@ -1,9 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pay/pay.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
+import 'package:valle_adventure_app/features/home/data/repositories/default_google_pay.dart';
 import 'package:valle_adventure_app/features/home/presentation/providers/reservation_form_provider.dart';
 import 'package:valle_adventure_app/features/home/presentation/widgets/widgets.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
@@ -66,17 +71,62 @@ class _PaymentTourView extends ConsumerWidget {
         const Spacer(),
         RowDataInfo(title: 'TOTAL', value: 'S/ $total', fontWeightTitle: FontWeight.bold),
         const _CustomDivider(),
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppConstants.defaultPaddingHorizontal,
-          ),
-          child: CtaButtonFilled(
-            text: locale.pay_now,
-            onPressed: () {},
-          ),
-        ),
+        // Padding(
+        //   padding: EdgeInsets.symmetric(
+        //     horizontal: AppConstants.defaultPaddingHorizontal,
+        //   ),
+        //   child: CtaButtonFilled(
+        //     text: locale.pay_now,
+        //     onPressed: () {},
+        //   ),
+        // ),
+        PaymentButton(tourName: tourName, total: total),
         SizedBox(height: AppConstants.defaultPadding),
       ],
+    );
+  }
+}
+
+class PaymentButton extends StatelessWidget {
+  const PaymentButton({
+    super.key,
+    required this.tourName,
+    required this.total,
+  });
+
+  final String tourName;
+  final double total;
+
+  @override
+  Widget build(BuildContext context) {
+    return GooglePayButton(
+      paymentConfiguration: PaymentConfiguration.fromJsonString(defaultGooglePay),
+      type: GooglePayButtonType.buy,
+      width: double.infinity,
+      onPaymentResult: (result) => onGooglePayResult(context, result),
+      loadingIndicator: const Center(
+        child: CircularProgressIndicator(),
+      ),
+      margin: EdgeInsets.symmetric(
+        horizontal: AppConstants.defaultPaddingHorizontal,
+      ),
+      paymentItems: [
+        PaymentItem(
+          label: tourName,
+          amount: total.toString(),
+          status: PaymentItemStatus.final_price,
+        ),
+      ],
+    );
+  }
+
+  void onGooglePayResult(context, paymentResult) {
+    // Send the resulting Google Pay token to your server / PSP
+    log(paymentResult);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Google Pay Payment Result: $paymentResult'),
+      ),
     );
   }
 }
