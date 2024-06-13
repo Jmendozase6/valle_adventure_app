@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pay/pay.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
@@ -103,7 +102,13 @@ class PaymentButton extends StatelessWidget {
       paymentConfiguration: PaymentConfiguration.fromJsonString(defaultGooglePay),
       type: GooglePayButtonType.buy,
       width: double.infinity,
-      onPaymentResult: (result) => onGooglePayResult(context, result),
+      onPaymentResult: onGooglePayResult,
+      onError: (error) {
+        log('ERROR $error');
+      },
+      onPressed: () {
+        log('PRESSED');
+      },
       loadingIndicator: const Center(
         child: CircularProgressIndicator(),
       ),
@@ -120,14 +125,9 @@ class PaymentButton extends StatelessWidget {
     );
   }
 
-  void onGooglePayResult(context, paymentResult) {
+  void onGooglePayResult(paymentResult) {
     // Send the resulting Google Pay token to your server / PSP
-    log(paymentResult);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Google Pay Payment Result: $paymentResult'),
-      ),
-    );
+    log('AYUDA $paymentResult');
   }
 }
 
