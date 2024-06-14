@@ -11,7 +11,7 @@ import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
-import 'package:valle_adventure_app/features/tour/data/models/tour.dart';
+import 'package:valle_adventure_app/features/tour/domain/entities/tour.dart';
 import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -72,7 +72,7 @@ class RecommendedSection extends ConsumerWidget {
     final tourProvider = ref.watch(tourRepositoryProvider);
 
     return CustomFutureBuilder(
-      future: () => tourProvider.getToursOrderBy(orderType: 'name', limit: 3),
+      future: () => tourProvider.getTours(orderType: 'name', limit: 3),
       dataBuilder: (tourData) {
         final tours = tourData.fold(
           (error) => [Tour.empty()],
@@ -88,7 +88,7 @@ class RecommendedSection extends ConsumerWidget {
               id: tour.id,
               price: tour.price,
               isLiked: tour.isLiked ?? false,
-              imageUrl: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
+              imageUrl: tour.images.isEmpty ? AppAssets.placeholderError : tour.images.first,
               title: tour.name,
               location: tour.department,
             );
@@ -108,7 +108,7 @@ class _PopularSection extends ConsumerWidget {
     return SizedBox(
       height: 0.2.sh,
       child: CustomFutureBuilder(
-        future: () => tourProvider.getToursOrderBy(orderType: 'rating', limit: 3),
+        future: () => tourProvider.getTours(orderType: 'rating', limit: 3),
         dataBuilder: (user) {
           final tours = user.fold(
             (error) => [Tour.empty()],
@@ -121,7 +121,7 @@ class _PopularSection extends ConsumerWidget {
               final tour = tours[index];
               return CardTourPopular(
                 id: tour.id,
-                image: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
+                image: tour.images.isEmpty ? AppAssets.placeholderError : tour.images.first,
                 title: tour.name,
                 location: tour.department,
               );

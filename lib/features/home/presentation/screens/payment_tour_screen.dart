@@ -3,9 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pay/pay.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
+import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/home/data/repositories/default_google_pay.dart';
 import 'package:valle_adventure_app/features/home/presentation/providers/reservation_form_provider.dart';
@@ -102,7 +104,7 @@ class PaymentButton extends StatelessWidget {
       paymentConfiguration: PaymentConfiguration.fromJsonString(defaultGooglePay),
       type: GooglePayButtonType.buy,
       width: double.infinity,
-      onPaymentResult: onGooglePayResult,
+      onPaymentResult: (result) => onGooglePayResult(result, context),
       onError: (error) {
         log('ERROR $error');
       },
@@ -125,9 +127,23 @@ class PaymentButton extends StatelessWidget {
     );
   }
 
-  void onGooglePayResult(paymentResult) {
+  void onGooglePayResult(paymentResult, BuildContext context) {
     // Send the resulting Google Pay token to your server / PSP
     log('AYUDA $paymentResult');
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        // TODO: TRANSLATE THIS TEXT
+        title: const Text('Pago exitoso'),
+        content: const Text('Gracias por completar tu reservación'),
+        actions: [
+          TextButton(
+            onPressed: () => context.goNamed(AppRoutes.home.name),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 }
 

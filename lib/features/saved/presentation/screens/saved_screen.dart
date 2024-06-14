@@ -6,7 +6,7 @@ import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/auth/presentation/providers/auth_repository_provider.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
-import 'package:valle_adventure_app/features/tour/data/models/tour.dart';
+import 'package:valle_adventure_app/features/tour/domain/entities/tour.dart';
 import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
 
 class SavedScreen extends StatelessWidget {
@@ -73,7 +73,7 @@ class _SavedListView extends StatelessWidget {
           id: tour.id,
           price: tour.price,
           isLiked: true,
-          imageUrl: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
+          imageUrl: tour.images.isEmpty ? AppAssets.placeholderError : tour.images.first,
           title: tour.name,
           location: tour.department,
         );

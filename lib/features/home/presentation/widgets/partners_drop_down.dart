@@ -1,39 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:valle_adventure_app/features/home/presentation/providers/partners_provider.dart';
-import 'package:valle_adventure_app/features/home/presentation/providers/reservation_form_provider.dart';
 
-class PartnersDropDown extends ConsumerWidget {
-  const PartnersDropDown({super.key});
+class CustomDropDown<T> extends ConsumerWidget {
+  const CustomDropDown({
+    super.key,
+    required this.items,
+    required this.hint,
+    required this.onChanged,
+    this.value,
+  });
+
+  final List<T> items;
+  final String hint;
+  final ValueChanged<T?> onChanged;
+  final T? value;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final locale = AppLocalizations.of(context)!;
     return SizedBox(
       width: double.infinity,
       child: ButtonTheme(
         alignedDropdown: true,
         shape: const RoundedRectangleBorder(),
-        child: DropdownButton<int>(
-          value: ref.watch(qtyPartnersProvider) == 0 ? null : ref.watch(qtyPartnersProvider),
+        child: DropdownButton<T>(
+          value: value,
           isExpanded: true,
-          hint: Text(locale.partnerts_qty),
-          items: List.generate(
-            5,
-            (index) => index,
-          )
+          hint: Text(hint),
+          items: items
               .map(
-                (index) => DropdownMenuItem(
-                  value: index,
-                  child: Text('$index'),
+                (item) => DropdownMenuItem(
+                  value: item,
+                  child: Text('$item'),
                 ),
               )
               .toList(),
-          onChanged: (value) {
-            if (value != null) ref.read(qtyPartnersProvider.notifier).state = value;
-            ref.read(bookProvider.notifier).clearPartners();
-          },
+          onChanged: onChanged,
         ),
       ),
     );

@@ -24,9 +24,18 @@ class ReservationTourScreen extends StatelessWidget {
     required this.userId,
     required this.userPhone,
     required this.userIdCard,
+    required this.availableDates,
   });
 
-  final String tourId, tourName, userId, tourPrice, userName, userLastName, userPhone, userIdCard;
+  final String tourId,
+      tourName,
+      userId,
+      tourPrice,
+      userName,
+      userLastName,
+      userPhone,
+      userIdCard,
+      availableDates;
   @override
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context)!;
@@ -38,8 +47,9 @@ class ReservationTourScreen extends StatelessWidget {
       body: _ReservationTourView(
         tourId: tourId,
         tourName: tourName,
-        userName: userName,
         tourPrice: tourPrice,
+        availableDates: availableDates,
+        userName: userName,
         userLastName: userLastName,
         userId: userId,
         userPhone: userPhone,
@@ -55,12 +65,21 @@ class _ReservationTourView extends ConsumerWidget {
     required this.tourName,
     required this.userName,
     required this.tourPrice,
+    required this.availableDates,
     required this.userLastName,
     required this.userId,
     required this.userPhone,
     required this.userIdCard,
   });
-  final String tourId, tourName, userId, tourPrice, userName, userLastName, userPhone, userIdCard;
+  final String tourId,
+      tourName,
+      userId,
+      tourPrice,
+      userName,
+      userLastName,
+      userPhone,
+      userIdCard,
+      availableDates;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = AppLocalizations.of(context)!;
@@ -99,33 +118,42 @@ class _ReservationTourView extends ConsumerWidget {
                 controller: currentBook.tourNameController,
               ),
               SizedBox(height: AppConstants.defaultPadding),
-              CustomDateInput(
-                controller: currentBook.dateController,
-                onTap: () async {
-                  final result = await customShowBoardDatePicker(
-                    context: context,
-                  );
-                  currentBook.dateController.text = result!;
+              if (availableDates.isNotEmpty)
+                CustomDropDown(
+                  items: availableDates.split(','),
+                  hint: locale.select_date,
+                  onChanged: (value) {
+                    if (value != null) ref.read(dateBookProvider.notifier).state = value;
+                    ref.read(bookProvider.notifier).clearPartners();
+                  },
+                  value: ref.watch(dateBookProvider).isEmpty ? null : ref.watch(dateBookProvider),
+                ),
+              SizedBox(height: AppConstants.defaultPadding),
+              CustomDropDown(
+                items: const [0, 1, 2, 3, 4],
+                hint: locale.partnerts_qty,
+                value: ref.watch(qtyPartnersProvider) == 0 ? null : ref.watch(qtyPartnersProvider),
+                onChanged: (value) {
+                  if (value != null) ref.read(qtyPartnersProvider.notifier).state = value;
+                  ref.read(bookProvider.notifier).clearPartners();
                 },
               ),
-              SizedBox(height: AppConstants.defaultPadding),
-              const PartnersDropDown(),
               SizedBox(height: AppConstants.defaultPadding),
               if (ref.watch(qtyPartnersProvider) != 0) const PartnersSection(),
               SizedBox(height: AppConstants.defaultPadding),
               CtaButtonFilled(
                 text: locale.continue_btn,
                 onPressed: () {
-                  final isValidPartners =
+                  final isValidPartnersForm =
                       ref.read(formPartnersKeyProvider).currentState?.validate() ?? true;
                   final isValidUserData =
                       currentBook.userDataFormKey.currentState?.validate() ?? false;
-                  final isValidDate = isValidDateTime(currentBook.dateController.text);
-                  if (isValidPartners && isValidUserData && isValidDate) {
+                  if (isValidPartnersForm && isValidUserData) {
                     ref.read(bookProvider.notifier).bookTour(
                           userId: userId,
                           tourId: tourId,
                           qtyPartners: ref.watch(qtyPartnersProvider),
+                          reservationDate: ref.watch(dateBookProvider).substring(0, 10),
                         );
                     router.pushNamed(AppRoutes.payment.name, pathParameters: {
                       'tour_name': tourName,

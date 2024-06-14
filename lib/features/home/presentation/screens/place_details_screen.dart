@@ -7,7 +7,7 @@ import 'package:valle_adventure_app/features/auth/presentation/providers/auth_re
 import 'package:valle_adventure_app/features/home/presentation/providers/place_details_reservation_provider.dart';
 import 'package:valle_adventure_app/features/home/presentation/providers/selected_detail_tour_provider.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
-import 'package:valle_adventure_app/features/tour/data/models/tour.dart';
+import 'package:valle_adventure_app/features/tour/domain/entities/tour.dart';
 import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
 import 'package:valle_adventure_app/features/tour/presentation/widgets/widgets.dart';
 
@@ -41,7 +41,6 @@ class PlaceDetailsScreen extends ConsumerWidget {
 class _PlaceDetailsView extends ConsumerWidget {
   const _PlaceDetailsView({required this.tour});
 
-  // Temporary properties
   final Tour tour;
 
   @override
@@ -60,7 +59,7 @@ class _PlaceDetailsView extends ConsumerWidget {
         child: Column(
           children: [
             CardTourImageDetails(
-              images: tour.images!,
+              images: tour.images,
               title: tour.name,
               location: tour.department,
               reviewsAmount: tour.rating.toInt(),
@@ -94,7 +93,7 @@ class _PlaceDetailsView extends ConsumerWidget {
                           ),
                           ListTile(
                             title: Text(locale.important),
-                            subtitle: Text(tour.important),
+                            subtitle: Text(tour.important!),
                           ),
                           ListTile(
                             title: Text(locale.what_to_bring),

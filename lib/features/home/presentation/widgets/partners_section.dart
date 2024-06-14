@@ -27,8 +27,7 @@ class PartnersSection extends ConsumerWidget {
         SizedBox(height: AppConstants.defaultPadding),
         Form(
           key: formKey,
-          child: SizedBox(
-            height: qtyPartners * 70.h,
+          child: SingleChildScrollView(
             child: ListView.builder(
               itemCount: qtyPartners,
               shrinkWrap: true,

@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/core/config/constants/app_assets.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
-import 'package:valle_adventure_app/features/tour/data/models/tour.dart';
+import 'package:valle_adventure_app/features/tour/domain/entities/tour.dart';
 import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
 
 class PopularScreen extends StatelessWidget {
@@ -35,7 +35,7 @@ class _PopularView extends ConsumerWidget {
         top: AppConstants.defaultPadding,
       ),
       child: CustomFutureBuilder(
-        future: () => tourProvider.getToursOrderBy(orderType: 'rating', limit: 10),
+        future: () => tourProvider.getTours(orderType: 'rating', limit: 15),
         dataBuilder: (user) {
           final tours = user.fold(
             (error) => [Tour.empty()],
@@ -48,8 +48,8 @@ class _PopularView extends ConsumerWidget {
               return CardTour(
                 id: tour.id,
                 price: tour.price,
-                isLiked: tour.isLiked ?? false,
-                imageUrl: tour.images!.isEmpty ? AppAssets.placeholderError : tour.images!.first,
+                isLiked: tour.isLiked,
+                imageUrl: tour.images.isEmpty ? AppAssets.placeholderError : tour.images.first,
                 title: tour.name,
                 location: tour.department,
               );

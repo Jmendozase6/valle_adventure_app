@@ -13,7 +13,6 @@ class BookTourNotifier extends Notifier<Booking> {
   final tourNameController = TextEditingController();
   final phoneController = TextEditingController();
   final idCardController = TextEditingController();
-  final dateController = TextEditingController(text: '01/01/2024');
   final partners = <TextEditingController>[
     TextEditingController(),
     TextEditingController(),
@@ -41,7 +40,6 @@ class BookTourNotifier extends Notifier<Booking> {
     userNameController.clear();
     userLastNameController.clear();
     tourNameController.clear();
-    dateController.clear();
     phoneController.clear();
     idCardController.clear();
   }
@@ -50,6 +48,7 @@ class BookTourNotifier extends Notifier<Booking> {
     required String userId,
     required String tourId,
     required int qtyPartners,
+    required String reservationDate,
   }) {
     List<String> newPartners = [];
     if (qtyPartners > 0) {
@@ -61,7 +60,7 @@ class BookTourNotifier extends Notifier<Booking> {
     final bookTour = Booking(
       id: '',
       qtyPlaces: qtyPartners,
-      reservationDate: dateController.text,
+      reservationDate: reservationDate,
       createdAt: DateTime.now().toString(),
       userId: userId,
       name: userNameController.text,

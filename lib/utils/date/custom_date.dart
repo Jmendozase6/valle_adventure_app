@@ -25,11 +25,3 @@ Future<String?> customShowBoardDatePicker({
   final dateFormat = DateFormat('dd/MM/yyyy');
   return result == null ? locale.no_date_selected : dateFormat.format(result);
 }
-
-/// date = 'dd/MM/yyyy' = '01/01/2024'
-bool isValidDateTime(String date) {
-  if (date.isEmpty) return false;
-  final format = DateFormat('dd/MM/yyyy');
-  final formDate = format.parse(date);
-  return formDate.isAfter(DateTime.now());
-}

@@ -1,21 +1,15 @@
-import 'package:valle_adventure_app/features/tour/data/models/tour.dart';
 import 'package:valle_adventure_app/utils/types/type_defs.dart';
 
 abstract class TourDataSource {
   /// Get the list of tours
   ///
   /// Returns a [List<Tour>] with the list of tours
-  EitherListTourBool getTours({required int limit});
+  EitherListTourBool getTours({required String orderType, required int limit});
 
   /// Get the list of tours by category
   ///
   /// Returns a [List<Tour>] with the list of tours
   EitherListTourBool getToursByCategory({required String category});
-
-  /// Get the list of tours by filter
-  ///
-  /// Returns a [List<Tour>] with the list of tours
-  EitherListTourBool getToursOrderBy({required String orderType, required int limit});
 
   /// Get the list of tours by name
   ///
