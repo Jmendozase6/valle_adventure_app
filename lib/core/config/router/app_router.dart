@@ -118,6 +118,7 @@ final routerProvider = Provider<GoRouter>(
             tourId: state.uri.queryParameters['tour_id'] ?? '',
             tourName: state.uri.queryParameters['tour_name'] ?? 'Error al cargar nombre del tour',
             tourPrice: state.uri.queryParameters['tour_price'] ?? '0',
+            availableDates: state.uri.queryParameters['tour_available_dates'] ?? '',
             userName: state.uri.queryParameters['user_name'] ?? '',
             userLastName: state.uri.queryParameters['user_last_name'] ?? '',
             userId: state.uri.queryParameters['user_id'] ?? '',
