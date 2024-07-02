@@ -1,6 +1,6 @@
 import 'package:valle_adventure_app/features/auth/data/models/user_model.dart';
 
-class UserEntitie {
+class UserEntity {
   final String id;
   final String name;
   final String lastName;
@@ -9,7 +9,7 @@ class UserEntitie {
   final String phone;
   final String avatarUrl;
 
-  UserEntitie({
+  UserEntity({
     required this.id,
     required this.name,
     required this.lastName,
@@ -19,7 +19,7 @@ class UserEntitie {
     required this.avatarUrl,
   });
 
-  factory UserEntitie.fromModel(UserModel model) => UserEntitie(
+  factory UserEntity.fromModel(UserModel model) => UserEntity(
         id: model.id,
         name: model.name,
         lastName: model.lastName,

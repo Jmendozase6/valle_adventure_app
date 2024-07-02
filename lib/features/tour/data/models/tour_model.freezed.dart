@@ -14,20 +14,20 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-TourModel _$TourModelFromJson(Map<String, dynamic> json) {
-  return _TourModel.fromJson(json);
+PayloadResponseModel _$PayloadResponseModelFromJson(Map<String, dynamic> json) {
+  return _PayloadResponseModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TourModel {
+mixin _$PayloadResponseModel {
   @JsonKey(name: "docs")
-  List<TourDoc> get docs => throw _privateConstructorUsedError;
+  List<TourModel> get docs => throw _privateConstructorUsedError;
   @JsonKey(name: "hasNextPage")
   bool get hasNextPage => throw _privateConstructorUsedError;
   @JsonKey(name: "hasPrevPage")
   bool get hasPrevPage => throw _privateConstructorUsedError;
   @JsonKey(name: "limit")
-  int get limit => throw _privateConstructorUsedError;
+  dynamic get limit => throw _privateConstructorUsedError;
   @JsonKey(name: "nextPage")
   int get nextPage => throw _privateConstructorUsedError;
   @JsonKey(name: "page")
@@ -43,20 +43,21 @@ mixin _$TourModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TourModelCopyWith<TourModel> get copyWith =>
+  $PayloadResponseModelCopyWith<PayloadResponseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TourModelCopyWith<$Res> {
-  factory $TourModelCopyWith(TourModel value, $Res Function(TourModel) then) =
-      _$TourModelCopyWithImpl<$Res, TourModel>;
+abstract class $PayloadResponseModelCopyWith<$Res> {
+  factory $PayloadResponseModelCopyWith(PayloadResponseModel value,
+          $Res Function(PayloadResponseModel) then) =
+      _$PayloadResponseModelCopyWithImpl<$Res, PayloadResponseModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: "docs") List<TourDoc> docs,
+      {@JsonKey(name: "docs") List<TourModel> docs,
       @JsonKey(name: "hasNextPage") bool hasNextPage,
       @JsonKey(name: "hasPrevPage") bool hasPrevPage,
-      @JsonKey(name: "limit") int limit,
+      @JsonKey(name: "limit") dynamic limit,
       @JsonKey(name: "nextPage") int nextPage,
       @JsonKey(name: "page") int page,
       @JsonKey(name: "pagingCounter") int pagingCounter,
@@ -66,9 +67,10 @@ abstract class $TourModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TourModelCopyWithImpl<$Res, $Val extends TourModel>
-    implements $TourModelCopyWith<$Res> {
-  _$TourModelCopyWithImpl(this._value, this._then);
+class _$PayloadResponseModelCopyWithImpl<$Res,
+        $Val extends PayloadResponseModel>
+    implements $PayloadResponseModelCopyWith<$Res> {
+  _$PayloadResponseModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -81,7 +83,7 @@ class _$TourModelCopyWithImpl<$Res, $Val extends TourModel>
     Object? docs = null,
     Object? hasNextPage = null,
     Object? hasPrevPage = null,
-    Object? limit = null,
+    Object? limit = freezed,
     Object? nextPage = null,
     Object? page = null,
     Object? pagingCounter = null,
@@ -93,7 +95,7 @@ class _$TourModelCopyWithImpl<$Res, $Val extends TourModel>
       docs: null == docs
           ? _value.docs
           : docs // ignore: cast_nullable_to_non_nullable
-              as List<TourDoc>,
+              as List<TourModel>,
       hasNextPage: null == hasNextPage
           ? _value.hasNextPage
           : hasNextPage // ignore: cast_nullable_to_non_nullable
@@ -102,10 +104,10 @@ class _$TourModelCopyWithImpl<$Res, $Val extends TourModel>
           ? _value.hasPrevPage
           : hasPrevPage // ignore: cast_nullable_to_non_nullable
               as bool,
-      limit: null == limit
+      limit: freezed == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as dynamic,
       nextPage: null == nextPage
           ? _value.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
@@ -135,18 +137,18 @@ class _$TourModelCopyWithImpl<$Res, $Val extends TourModel>
 }
 
 /// @nodoc
-abstract class _$$TourModelImplCopyWith<$Res>
-    implements $TourModelCopyWith<$Res> {
-  factory _$$TourModelImplCopyWith(
-          _$TourModelImpl value, $Res Function(_$TourModelImpl) then) =
-      __$$TourModelImplCopyWithImpl<$Res>;
+abstract class _$$PayloadResponseModelImplCopyWith<$Res>
+    implements $PayloadResponseModelCopyWith<$Res> {
+  factory _$$PayloadResponseModelImplCopyWith(_$PayloadResponseModelImpl value,
+          $Res Function(_$PayloadResponseModelImpl) then) =
+      __$$PayloadResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "docs") List<TourDoc> docs,
+      {@JsonKey(name: "docs") List<TourModel> docs,
       @JsonKey(name: "hasNextPage") bool hasNextPage,
       @JsonKey(name: "hasPrevPage") bool hasPrevPage,
-      @JsonKey(name: "limit") int limit,
+      @JsonKey(name: "limit") dynamic limit,
       @JsonKey(name: "nextPage") int nextPage,
       @JsonKey(name: "page") int page,
       @JsonKey(name: "pagingCounter") int pagingCounter,
@@ -156,11 +158,11 @@ abstract class _$$TourModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TourModelImplCopyWithImpl<$Res>
-    extends _$TourModelCopyWithImpl<$Res, _$TourModelImpl>
-    implements _$$TourModelImplCopyWith<$Res> {
-  __$$TourModelImplCopyWithImpl(
-      _$TourModelImpl _value, $Res Function(_$TourModelImpl) _then)
+class __$$PayloadResponseModelImplCopyWithImpl<$Res>
+    extends _$PayloadResponseModelCopyWithImpl<$Res, _$PayloadResponseModelImpl>
+    implements _$$PayloadResponseModelImplCopyWith<$Res> {
+  __$$PayloadResponseModelImplCopyWithImpl(_$PayloadResponseModelImpl _value,
+      $Res Function(_$PayloadResponseModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -169,7 +171,7 @@ class __$$TourModelImplCopyWithImpl<$Res>
     Object? docs = null,
     Object? hasNextPage = null,
     Object? hasPrevPage = null,
-    Object? limit = null,
+    Object? limit = freezed,
     Object? nextPage = null,
     Object? page = null,
     Object? pagingCounter = null,
@@ -177,11 +179,11 @@ class __$$TourModelImplCopyWithImpl<$Res>
     Object? totalDocs = null,
     Object? totalPages = null,
   }) {
-    return _then(_$TourModelImpl(
+    return _then(_$PayloadResponseModelImpl(
       docs: null == docs
           ? _value._docs
           : docs // ignore: cast_nullable_to_non_nullable
-              as List<TourDoc>,
+              as List<TourModel>,
       hasNextPage: null == hasNextPage
           ? _value.hasNextPage
           : hasNextPage // ignore: cast_nullable_to_non_nullable
@@ -190,10 +192,10 @@ class __$$TourModelImplCopyWithImpl<$Res>
           ? _value.hasPrevPage
           : hasPrevPage // ignore: cast_nullable_to_non_nullable
               as bool,
-      limit: null == limit
+      limit: freezed == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as dynamic,
       nextPage: null == nextPage
           ? _value.nextPage
           : nextPage // ignore: cast_nullable_to_non_nullable
@@ -224,9 +226,9 @@ class __$$TourModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TourModelImpl implements _TourModel {
-  const _$TourModelImpl(
-      {@JsonKey(name: "docs") final List<TourDoc> docs = const [],
+class _$PayloadResponseModelImpl implements _PayloadResponseModel {
+  const _$PayloadResponseModelImpl(
+      {@JsonKey(name: "docs") final List<TourModel> docs = const [],
       @JsonKey(name: "hasNextPage") required this.hasNextPage,
       @JsonKey(name: "hasPrevPage") required this.hasPrevPage,
       @JsonKey(name: "limit") required this.limit,
@@ -238,13 +240,13 @@ class _$TourModelImpl implements _TourModel {
       @JsonKey(name: "totalPages") required this.totalPages})
       : _docs = docs;
 
-  factory _$TourModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TourModelImplFromJson(json);
+  factory _$PayloadResponseModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PayloadResponseModelImplFromJson(json);
 
-  final List<TourDoc> _docs;
+  final List<TourModel> _docs;
   @override
   @JsonKey(name: "docs")
-  List<TourDoc> get docs {
+  List<TourModel> get docs {
     if (_docs is EqualUnmodifiableListView) return _docs;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_docs);
@@ -258,7 +260,7 @@ class _$TourModelImpl implements _TourModel {
   final bool hasPrevPage;
   @override
   @JsonKey(name: "limit")
-  final int limit;
+  final dynamic limit;
   @override
   @JsonKey(name: "nextPage")
   final int nextPage;
@@ -280,20 +282,20 @@ class _$TourModelImpl implements _TourModel {
 
   @override
   String toString() {
-    return 'TourModel(docs: $docs, hasNextPage: $hasNextPage, hasPrevPage: $hasPrevPage, limit: $limit, nextPage: $nextPage, page: $page, pagingCounter: $pagingCounter, prevPage: $prevPage, totalDocs: $totalDocs, totalPages: $totalPages)';
+    return 'PayloadResponseModel(docs: $docs, hasNextPage: $hasNextPage, hasPrevPage: $hasPrevPage, limit: $limit, nextPage: $nextPage, page: $page, pagingCounter: $pagingCounter, prevPage: $prevPage, totalDocs: $totalDocs, totalPages: $totalPages)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TourModelImpl &&
+            other is _$PayloadResponseModelImpl &&
             const DeepCollectionEquality().equals(other._docs, _docs) &&
             (identical(other.hasNextPage, hasNextPage) ||
                 other.hasNextPage == hasNextPage) &&
             (identical(other.hasPrevPage, hasPrevPage) ||
                 other.hasPrevPage == hasPrevPage) &&
-            (identical(other.limit, limit) || other.limit == limit) &&
+            const DeepCollectionEquality().equals(other.limit, limit) &&
             (identical(other.nextPage, nextPage) ||
                 other.nextPage == nextPage) &&
             (identical(other.page, page) || other.page == page) &&
@@ -314,7 +316,7 @@ class _$TourModelImpl implements _TourModel {
       const DeepCollectionEquality().hash(_docs),
       hasNextPage,
       hasPrevPage,
-      limit,
+      const DeepCollectionEquality().hash(limit),
       nextPage,
       page,
       pagingCounter,
@@ -325,37 +327,39 @@ class _$TourModelImpl implements _TourModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TourModelImplCopyWith<_$TourModelImpl> get copyWith =>
-      __$$TourModelImplCopyWithImpl<_$TourModelImpl>(this, _$identity);
+  _$$PayloadResponseModelImplCopyWith<_$PayloadResponseModelImpl>
+      get copyWith =>
+          __$$PayloadResponseModelImplCopyWithImpl<_$PayloadResponseModelImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TourModelImplToJson(
+    return _$$PayloadResponseModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _TourModel implements TourModel {
-  const factory _TourModel(
-          {@JsonKey(name: "docs") final List<TourDoc> docs,
+abstract class _PayloadResponseModel implements PayloadResponseModel {
+  const factory _PayloadResponseModel(
+          {@JsonKey(name: "docs") final List<TourModel> docs,
           @JsonKey(name: "hasNextPage") required final bool hasNextPage,
           @JsonKey(name: "hasPrevPage") required final bool hasPrevPage,
-          @JsonKey(name: "limit") required final int limit,
+          @JsonKey(name: "limit") required final dynamic limit,
           @JsonKey(name: "nextPage") final int nextPage,
           @JsonKey(name: "page") required final int page,
           @JsonKey(name: "pagingCounter") required final int pagingCounter,
           @JsonKey(name: "prevPage") final int prevPage,
           @JsonKey(name: "totalDocs") required final int totalDocs,
           @JsonKey(name: "totalPages") required final int totalPages}) =
-      _$TourModelImpl;
+      _$PayloadResponseModelImpl;
 
-  factory _TourModel.fromJson(Map<String, dynamic> json) =
-      _$TourModelImpl.fromJson;
+  factory _PayloadResponseModel.fromJson(Map<String, dynamic> json) =
+      _$PayloadResponseModelImpl.fromJson;
 
   @override
   @JsonKey(name: "docs")
-  List<TourDoc> get docs;
+  List<TourModel> get docs;
   @override
   @JsonKey(name: "hasNextPage")
   bool get hasNextPage;
@@ -364,7 +368,7 @@ abstract class _TourModel implements TourModel {
   bool get hasPrevPage;
   @override
   @JsonKey(name: "limit")
-  int get limit;
+  dynamic get limit;
   @override
   @JsonKey(name: "nextPage")
   int get nextPage;
@@ -385,16 +389,16 @@ abstract class _TourModel implements TourModel {
   int get totalPages;
   @override
   @JsonKey(ignore: true)
-  _$$TourModelImplCopyWith<_$TourModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PayloadResponseModelImplCopyWith<_$PayloadResponseModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
-TourDoc _$TourDocFromJson(Map<String, dynamic> json) {
-  return _TourDoc.fromJson(json);
+TourModel _$TourModelFromJson(Map<String, dynamic> json) {
+  return _TourModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TourDoc {
+mixin _$TourModel {
   @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: "name")
@@ -410,7 +414,7 @@ mixin _$TourDoc {
   @JsonKey(name: "important")
   String get important => throw _privateConstructorUsedError;
   @JsonKey(name: "id_department")
-  IdDepartment get department => throw _privateConstructorUsedError;
+  DepartmentModel get department => throw _privateConstructorUsedError;
   @JsonKey(name: "is_available")
   bool get isAvailable => throw _privateConstructorUsedError;
   @JsonKey(name: "rating")
@@ -421,16 +425,19 @@ mixin _$TourDoc {
   String get notIncludedItems => throw _privateConstructorUsedError;
   @JsonKey(name: "available_dates")
   List<AvailableDate> get availableDates => throw _privateConstructorUsedError;
+  @JsonKey(name: "isLiked")
+  bool get isLiked => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TourDocCopyWith<TourDoc> get copyWith => throw _privateConstructorUsedError;
+  $TourModelCopyWith<TourModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TourDocCopyWith<$Res> {
-  factory $TourDocCopyWith(TourDoc value, $Res Function(TourDoc) then) =
-      _$TourDocCopyWithImpl<$Res, TourDoc>;
+abstract class $TourModelCopyWith<$Res> {
+  factory $TourModelCopyWith(TourModel value, $Res Function(TourModel) then) =
+      _$TourModelCopyWithImpl<$Res, TourModel>;
   @useResult
   $Res call(
       {@JsonKey(name: "id") String id,
@@ -440,20 +447,21 @@ abstract class $TourDocCopyWith<$Res> {
       @JsonKey(name: "price") int price,
       @JsonKey(name: "packing") String packing,
       @JsonKey(name: "important") String important,
-      @JsonKey(name: "id_department") IdDepartment department,
+      @JsonKey(name: "id_department") DepartmentModel department,
       @JsonKey(name: "is_available") bool isAvailable,
       @JsonKey(name: "rating") String rating,
       @JsonKey(name: "included_items") String includedItems,
       @JsonKey(name: "not_included_items") String notIncludedItems,
-      @JsonKey(name: "available_dates") List<AvailableDate> availableDates});
+      @JsonKey(name: "available_dates") List<AvailableDate> availableDates,
+      @JsonKey(name: "isLiked") bool isLiked});
 
-  $IdDepartmentCopyWith<$Res> get department;
+  $DepartmentModelCopyWith<$Res> get department;
 }
 
 /// @nodoc
-class _$TourDocCopyWithImpl<$Res, $Val extends TourDoc>
-    implements $TourDocCopyWith<$Res> {
-  _$TourDocCopyWithImpl(this._value, this._then);
+class _$TourModelCopyWithImpl<$Res, $Val extends TourModel>
+    implements $TourModelCopyWith<$Res> {
+  _$TourModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -476,6 +484,7 @@ class _$TourDocCopyWithImpl<$Res, $Val extends TourDoc>
     Object? includedItems = null,
     Object? notIncludedItems = null,
     Object? availableDates = null,
+    Object? isLiked = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -509,7 +518,7 @@ class _$TourDocCopyWithImpl<$Res, $Val extends TourDoc>
       department: null == department
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
-              as IdDepartment,
+              as DepartmentModel,
       isAvailable: null == isAvailable
           ? _value.isAvailable
           : isAvailable // ignore: cast_nullable_to_non_nullable
@@ -530,23 +539,28 @@ class _$TourDocCopyWithImpl<$Res, $Val extends TourDoc>
           ? _value.availableDates
           : availableDates // ignore: cast_nullable_to_non_nullable
               as List<AvailableDate>,
+      isLiked: null == isLiked
+          ? _value.isLiked
+          : isLiked // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $IdDepartmentCopyWith<$Res> get department {
-    return $IdDepartmentCopyWith<$Res>(_value.department, (value) {
+  $DepartmentModelCopyWith<$Res> get department {
+    return $DepartmentModelCopyWith<$Res>(_value.department, (value) {
       return _then(_value.copyWith(department: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$TourDocImplCopyWith<$Res> implements $TourDocCopyWith<$Res> {
-  factory _$$TourDocImplCopyWith(
-          _$TourDocImpl value, $Res Function(_$TourDocImpl) then) =
-      __$$TourDocImplCopyWithImpl<$Res>;
+abstract class _$$TourModelImplCopyWith<$Res>
+    implements $TourModelCopyWith<$Res> {
+  factory _$$TourModelImplCopyWith(
+          _$TourModelImpl value, $Res Function(_$TourModelImpl) then) =
+      __$$TourModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -557,23 +571,24 @@ abstract class _$$TourDocImplCopyWith<$Res> implements $TourDocCopyWith<$Res> {
       @JsonKey(name: "price") int price,
       @JsonKey(name: "packing") String packing,
       @JsonKey(name: "important") String important,
-      @JsonKey(name: "id_department") IdDepartment department,
+      @JsonKey(name: "id_department") DepartmentModel department,
       @JsonKey(name: "is_available") bool isAvailable,
       @JsonKey(name: "rating") String rating,
       @JsonKey(name: "included_items") String includedItems,
       @JsonKey(name: "not_included_items") String notIncludedItems,
-      @JsonKey(name: "available_dates") List<AvailableDate> availableDates});
+      @JsonKey(name: "available_dates") List<AvailableDate> availableDates,
+      @JsonKey(name: "isLiked") bool isLiked});
 
   @override
-  $IdDepartmentCopyWith<$Res> get department;
+  $DepartmentModelCopyWith<$Res> get department;
 }
 
 /// @nodoc
-class __$$TourDocImplCopyWithImpl<$Res>
-    extends _$TourDocCopyWithImpl<$Res, _$TourDocImpl>
-    implements _$$TourDocImplCopyWith<$Res> {
-  __$$TourDocImplCopyWithImpl(
-      _$TourDocImpl _value, $Res Function(_$TourDocImpl) _then)
+class __$$TourModelImplCopyWithImpl<$Res>
+    extends _$TourModelCopyWithImpl<$Res, _$TourModelImpl>
+    implements _$$TourModelImplCopyWith<$Res> {
+  __$$TourModelImplCopyWithImpl(
+      _$TourModelImpl _value, $Res Function(_$TourModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -592,8 +607,9 @@ class __$$TourDocImplCopyWithImpl<$Res>
     Object? includedItems = null,
     Object? notIncludedItems = null,
     Object? availableDates = null,
+    Object? isLiked = null,
   }) {
-    return _then(_$TourDocImpl(
+    return _then(_$TourModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -625,7 +641,7 @@ class __$$TourDocImplCopyWithImpl<$Res>
       department: null == department
           ? _value.department
           : department // ignore: cast_nullable_to_non_nullable
-              as IdDepartment,
+              as DepartmentModel,
       isAvailable: null == isAvailable
           ? _value.isAvailable
           : isAvailable // ignore: cast_nullable_to_non_nullable
@@ -646,14 +662,18 @@ class __$$TourDocImplCopyWithImpl<$Res>
           ? _value._availableDates
           : availableDates // ignore: cast_nullable_to_non_nullable
               as List<AvailableDate>,
+      isLiked: null == isLiked
+          ? _value.isLiked
+          : isLiked // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TourDocImpl implements _TourDoc {
-  const _$TourDocImpl(
+class _$TourModelImpl implements _TourModel {
+  const _$TourModelImpl(
       {@JsonKey(name: "id") required this.id,
       @JsonKey(name: "name") required this.name,
       @JsonKey(name: "overview") required this.overview,
@@ -663,16 +683,17 @@ class _$TourDocImpl implements _TourDoc {
       @JsonKey(name: "important") this.important = '',
       @JsonKey(name: "id_department") required this.department,
       @JsonKey(name: "is_available") required this.isAvailable,
-      @JsonKey(name: "rating") this.rating = '',
+      @JsonKey(name: "rating") this.rating = '0',
       @JsonKey(name: "included_items") this.includedItems = '',
       @JsonKey(name: "not_included_items") this.notIncludedItems = '',
       @JsonKey(name: "available_dates")
-      required final List<AvailableDate> availableDates})
+      required final List<AvailableDate> availableDates,
+      @JsonKey(name: "isLiked") this.isLiked = false})
       : _images = images,
         _availableDates = availableDates;
 
-  factory _$TourDocImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TourDocImplFromJson(json);
+  factory _$TourModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TourModelImplFromJson(json);
 
   @override
   @JsonKey(name: "id")
@@ -703,7 +724,7 @@ class _$TourDocImpl implements _TourDoc {
   final String important;
   @override
   @JsonKey(name: "id_department")
-  final IdDepartment department;
+  final DepartmentModel department;
   @override
   @JsonKey(name: "is_available")
   final bool isAvailable;
@@ -726,15 +747,19 @@ class _$TourDocImpl implements _TourDoc {
   }
 
   @override
+  @JsonKey(name: "isLiked")
+  final bool isLiked;
+
+  @override
   String toString() {
-    return 'TourDoc(id: $id, name: $name, overview: $overview, images: $images, price: $price, packing: $packing, important: $important, department: $department, isAvailable: $isAvailable, rating: $rating, includedItems: $includedItems, notIncludedItems: $notIncludedItems, availableDates: $availableDates)';
+    return 'TourModel(id: $id, name: $name, overview: $overview, images: $images, price: $price, packing: $packing, important: $important, department: $department, isAvailable: $isAvailable, rating: $rating, includedItems: $includedItems, notIncludedItems: $notIncludedItems, availableDates: $availableDates, isLiked: $isLiked)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TourDocImpl &&
+            other is _$TourModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.overview, overview) ||
@@ -754,7 +779,8 @@ class _$TourDocImpl implements _TourDoc {
             (identical(other.notIncludedItems, notIncludedItems) ||
                 other.notIncludedItems == notIncludedItems) &&
             const DeepCollectionEquality()
-                .equals(other._availableDates, _availableDates));
+                .equals(other._availableDates, _availableDates) &&
+            (identical(other.isLiked, isLiked) || other.isLiked == isLiked));
   }
 
   @JsonKey(ignore: true)
@@ -773,24 +799,25 @@ class _$TourDocImpl implements _TourDoc {
       rating,
       includedItems,
       notIncludedItems,
-      const DeepCollectionEquality().hash(_availableDates));
+      const DeepCollectionEquality().hash(_availableDates),
+      isLiked);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TourDocImplCopyWith<_$TourDocImpl> get copyWith =>
-      __$$TourDocImplCopyWithImpl<_$TourDocImpl>(this, _$identity);
+  _$$TourModelImplCopyWith<_$TourModelImpl> get copyWith =>
+      __$$TourModelImplCopyWithImpl<_$TourModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TourDocImplToJson(
+    return _$$TourModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _TourDoc implements TourDoc {
-  const factory _TourDoc(
+abstract class _TourModel implements TourModel {
+  const factory _TourModel(
       {@JsonKey(name: "id") required final String id,
       @JsonKey(name: "name") required final String name,
       @JsonKey(name: "overview") required final String overview,
@@ -798,15 +825,17 @@ abstract class _TourDoc implements TourDoc {
       @JsonKey(name: "price") required final int price,
       @JsonKey(name: "packing") final String packing,
       @JsonKey(name: "important") final String important,
-      @JsonKey(name: "id_department") required final IdDepartment department,
+      @JsonKey(name: "id_department") required final DepartmentModel department,
       @JsonKey(name: "is_available") required final bool isAvailable,
       @JsonKey(name: "rating") final String rating,
       @JsonKey(name: "included_items") final String includedItems,
       @JsonKey(name: "not_included_items") final String notIncludedItems,
       @JsonKey(name: "available_dates")
-      required final List<AvailableDate> availableDates}) = _$TourDocImpl;
+      required final List<AvailableDate> availableDates,
+      @JsonKey(name: "isLiked") final bool isLiked}) = _$TourModelImpl;
 
-  factory _TourDoc.fromJson(Map<String, dynamic> json) = _$TourDocImpl.fromJson;
+  factory _TourModel.fromJson(Map<String, dynamic> json) =
+      _$TourModelImpl.fromJson;
 
   @override
   @JsonKey(name: "id")
@@ -831,7 +860,7 @@ abstract class _TourDoc implements TourDoc {
   String get important;
   @override
   @JsonKey(name: "id_department")
-  IdDepartment get department;
+  DepartmentModel get department;
   @override
   @JsonKey(name: "is_available")
   bool get isAvailable;
@@ -848,8 +877,11 @@ abstract class _TourDoc implements TourDoc {
   @JsonKey(name: "available_dates")
   List<AvailableDate> get availableDates;
   @override
+  @JsonKey(name: "isLiked")
+  bool get isLiked;
+  @override
   @JsonKey(ignore: true)
-  _$$TourDocImplCopyWith<_$TourDocImpl> get copyWith =>
+  _$$TourModelImplCopyWith<_$TourModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -991,146 +1023,6 @@ abstract class _AvailableDate implements AvailableDate {
   @override
   @JsonKey(ignore: true)
   _$$AvailableDateImplCopyWith<_$AvailableDateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-IdDepartment _$IdDepartmentFromJson(Map<String, dynamic> json) {
-  return _IdDepartment.fromJson(json);
-}
-
-/// @nodoc
-mixin _$IdDepartment {
-  @JsonKey(name: "name")
-  String get name => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $IdDepartmentCopyWith<IdDepartment> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $IdDepartmentCopyWith<$Res> {
-  factory $IdDepartmentCopyWith(
-          IdDepartment value, $Res Function(IdDepartment) then) =
-      _$IdDepartmentCopyWithImpl<$Res, IdDepartment>;
-  @useResult
-  $Res call({@JsonKey(name: "name") String name});
-}
-
-/// @nodoc
-class _$IdDepartmentCopyWithImpl<$Res, $Val extends IdDepartment>
-    implements $IdDepartmentCopyWith<$Res> {
-  _$IdDepartmentCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$IdDepartmentImplCopyWith<$Res>
-    implements $IdDepartmentCopyWith<$Res> {
-  factory _$$IdDepartmentImplCopyWith(
-          _$IdDepartmentImpl value, $Res Function(_$IdDepartmentImpl) then) =
-      __$$IdDepartmentImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({@JsonKey(name: "name") String name});
-}
-
-/// @nodoc
-class __$$IdDepartmentImplCopyWithImpl<$Res>
-    extends _$IdDepartmentCopyWithImpl<$Res, _$IdDepartmentImpl>
-    implements _$$IdDepartmentImplCopyWith<$Res> {
-  __$$IdDepartmentImplCopyWithImpl(
-      _$IdDepartmentImpl _value, $Res Function(_$IdDepartmentImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-  }) {
-    return _then(_$IdDepartmentImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$IdDepartmentImpl implements _IdDepartment {
-  const _$IdDepartmentImpl({@JsonKey(name: "name") required this.name});
-
-  factory _$IdDepartmentImpl.fromJson(Map<String, dynamic> json) =>
-      _$$IdDepartmentImplFromJson(json);
-
-  @override
-  @JsonKey(name: "name")
-  final String name;
-
-  @override
-  String toString() {
-    return 'IdDepartment(name: $name)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$IdDepartmentImpl &&
-            (identical(other.name, name) || other.name == name));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, name);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$IdDepartmentImplCopyWith<_$IdDepartmentImpl> get copyWith =>
-      __$$IdDepartmentImplCopyWithImpl<_$IdDepartmentImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$IdDepartmentImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _IdDepartment implements IdDepartment {
-  const factory _IdDepartment(
-      {@JsonKey(name: "name") required final String name}) = _$IdDepartmentImpl;
-
-  factory _IdDepartment.fromJson(Map<String, dynamic> json) =
-      _$IdDepartmentImpl.fromJson;
-
-  @override
-  @JsonKey(name: "name")
-  String get name;
-  @override
-  @JsonKey(ignore: true)
-  _$$IdDepartmentImplCopyWith<_$IdDepartmentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

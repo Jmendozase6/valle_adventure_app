@@ -6,15 +6,16 @@ part of 'tour_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TourModelImpl _$$TourModelImplFromJson(Map<String, dynamic> json) =>
-    _$TourModelImpl(
+_$PayloadResponseModelImpl _$$PayloadResponseModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PayloadResponseModelImpl(
       docs: (json['docs'] as List<dynamic>?)
-              ?.map((e) => TourDoc.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => TourModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       hasNextPage: json['hasNextPage'] as bool,
       hasPrevPage: json['hasPrevPage'] as bool,
-      limit: (json['limit'] as num).toInt(),
+      limit: json['limit'],
       nextPage: (json['nextPage'] as num?)?.toInt() ?? -1,
       page: (json['page'] as num).toInt(),
       pagingCounter: (json['pagingCounter'] as num).toInt(),
@@ -23,7 +24,8 @@ _$TourModelImpl _$$TourModelImplFromJson(Map<String, dynamic> json) =>
       totalPages: (json['totalPages'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$TourModelImplToJson(_$TourModelImpl instance) =>
+Map<String, dynamic> _$$PayloadResponseModelImplToJson(
+        _$PayloadResponseModelImpl instance) =>
     <String, dynamic>{
       'docs': instance.docs,
       'hasNextPage': instance.hasNextPage,
@@ -37,8 +39,8 @@ Map<String, dynamic> _$$TourModelImplToJson(_$TourModelImpl instance) =>
       'totalPages': instance.totalPages,
     };
 
-_$TourDocImpl _$$TourDocImplFromJson(Map<String, dynamic> json) =>
-    _$TourDocImpl(
+_$TourModelImpl _$$TourModelImplFromJson(Map<String, dynamic> json) =>
+    _$TourModelImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       overview: json['overview'] as String,
@@ -48,18 +50,19 @@ _$TourDocImpl _$$TourDocImplFromJson(Map<String, dynamic> json) =>
       price: (json['price'] as num).toInt(),
       packing: json['packing'] as String? ?? '',
       important: json['important'] as String? ?? '',
-      department:
-          IdDepartment.fromJson(json['id_department'] as Map<String, dynamic>),
+      department: DepartmentModel.fromJson(
+          json['id_department'] as Map<String, dynamic>),
       isAvailable: json['is_available'] as bool,
-      rating: json['rating'] as String? ?? '',
+      rating: json['rating'] as String? ?? '0',
       includedItems: json['included_items'] as String? ?? '',
       notIncludedItems: json['not_included_items'] as String? ?? '',
       availableDates: (json['available_dates'] as List<dynamic>)
           .map((e) => AvailableDate.fromJson(e as Map<String, dynamic>))
           .toList(),
+      isLiked: json['isLiked'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$TourDocImplToJson(_$TourDocImpl instance) =>
+Map<String, dynamic> _$$TourModelImplToJson(_$TourModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -74,6 +77,7 @@ Map<String, dynamic> _$$TourDocImplToJson(_$TourDocImpl instance) =>
       'included_items': instance.includedItems,
       'not_included_items': instance.notIncludedItems,
       'available_dates': instance.availableDates,
+      'isLiked': instance.isLiked,
     };
 
 _$AvailableDateImpl _$$AvailableDateImplFromJson(Map<String, dynamic> json) =>
@@ -84,16 +88,6 @@ _$AvailableDateImpl _$$AvailableDateImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$AvailableDateImplToJson(_$AvailableDateImpl instance) =>
     <String, dynamic>{
       'date': instance.date.toIso8601String(),
-    };
-
-_$IdDepartmentImpl _$$IdDepartmentImplFromJson(Map<String, dynamic> json) =>
-    _$IdDepartmentImpl(
-      name: json['name'] as String,
-    );
-
-Map<String, dynamic> _$$IdDepartmentImplToJson(_$IdDepartmentImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
     };
 
 _$ImageImpl _$$ImageImplFromJson(Map<String, dynamic> json) => _$ImageImpl(

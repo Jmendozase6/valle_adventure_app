@@ -10,6 +10,7 @@ import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/router/app_router.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
+import 'package:valle_adventure_app/features/auth/presentation/providers/auth_repository_provider.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 import 'package:valle_adventure_app/features/tour/domain/entities/tour.dart';
 import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
@@ -70,9 +71,10 @@ class RecommendedSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tourProvider = ref.watch(tourRepositoryProvider);
+    final userId = ref.watch(authRepositoryProvider).getCurrentUserId().getOrElse((l) => '');
 
     return CustomFutureBuilder(
-      future: () => tourProvider.getTours(orderType: 'name', limit: 3),
+      future: () => tourProvider.getTours(orderType: 'name', limit: 3, userId: userId),
       dataBuilder: (tourData) {
         final tours = tourData.fold(
           (error) => [Tour.empty()],
@@ -87,7 +89,7 @@ class RecommendedSection extends ConsumerWidget {
             return CardTour(
               id: tour.id,
               price: tour.price,
-              isLiked: tour.isLiked ?? false,
+              isLiked: tour.isLiked,
               imageUrl: tour.images.isEmpty ? AppAssets.placeholderError : tour.images.first,
               title: tour.name,
               location: tour.department,
@@ -105,10 +107,11 @@ class _PopularSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tourProvider = ref.watch(tourRepositoryProvider);
+    final userId = ref.watch(authRepositoryProvider).getCurrentUserId().getOrElse((l) => '');
     return SizedBox(
       height: 0.2.sh,
       child: CustomFutureBuilder(
-        future: () => tourProvider.getTours(orderType: 'rating', limit: 3),
+        future: () => tourProvider.getTours(orderType: 'rating', limit: 3, userId: userId),
         dataBuilder: (user) {
           final tours = user.fold(
             (error) => [Tour.empty()],

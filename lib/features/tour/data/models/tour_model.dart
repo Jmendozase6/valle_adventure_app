@@ -2,37 +2,40 @@
 //
 //     final tourModel = tourModelFromJson(jsonString);
 
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:valle_adventure_app/features/tour/data/models/department_model.dart';
 
 part 'tour_model.freezed.dart';
 part 'tour_model.g.dart';
 
-TourModel tourModelFromJson(String str) => TourModel.fromJson(json.decode(str));
+PayloadResponseModel payloadResponseModelFromJson(String str) =>
+    PayloadResponseModel.fromJson(json.decode(str));
 
-String tourModelToJson(TourModel data) => json.encode(data.toJson());
+String tourModelToJson(PayloadResponseModel data) => json.encode(data.toJson());
 
 @freezed
-class TourModel with _$TourModel {
-  const factory TourModel({
-    @Default([]) @JsonKey(name: "docs") List<TourDoc> docs,
+class PayloadResponseModel with _$PayloadResponseModel {
+  const factory PayloadResponseModel({
+    @Default([]) @JsonKey(name: "docs") List<TourModel> docs,
     @JsonKey(name: "hasNextPage") required bool hasNextPage,
     @JsonKey(name: "hasPrevPage") required bool hasPrevPage,
-    @JsonKey(name: "limit") required int limit,
+    @JsonKey(name: "limit") required dynamic limit,
     @Default(-1) @JsonKey(name: "nextPage") int nextPage,
     @JsonKey(name: "page") required int page,
     @JsonKey(name: "pagingCounter") required int pagingCounter,
     @Default(-1) @JsonKey(name: "prevPage") int prevPage,
     @JsonKey(name: "totalDocs") required int totalDocs,
     @JsonKey(name: "totalPages") required int totalPages,
-  }) = _TourModel;
+  }) = _PayloadResponseModel;
 
-  factory TourModel.fromJson(Map<String, dynamic> json) => _$TourModelFromJson(json);
+  factory PayloadResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$PayloadResponseModelFromJson(json);
 }
 
 @freezed
-class TourDoc with _$TourDoc {
-  const factory TourDoc({
+class TourModel with _$TourModel {
+  const factory TourModel({
     @JsonKey(name: "id") required String id,
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "overview") required String overview,
@@ -40,15 +43,16 @@ class TourDoc with _$TourDoc {
     @JsonKey(name: "price") required int price,
     @Default('') @JsonKey(name: "packing") String packing,
     @Default('') @JsonKey(name: "important") String important,
-    @JsonKey(name: "id_department") required IdDepartment department,
+    @JsonKey(name: "id_department") required DepartmentModel department,
     @JsonKey(name: "is_available") required bool isAvailable,
-    @Default('') @JsonKey(name: "rating") String rating,
+    @Default('0') @JsonKey(name: "rating") String rating,
     @Default('') @JsonKey(name: "included_items") String includedItems,
     @Default('') @JsonKey(name: "not_included_items") String notIncludedItems,
     @JsonKey(name: "available_dates") required List<AvailableDate> availableDates,
-  }) = _TourDoc;
+    @Default(false) @JsonKey(name: "isLiked") bool isLiked,
+  }) = _TourModel;
 
-  factory TourDoc.fromJson(Map<String, dynamic> json) => _$TourDocFromJson(json);
+  factory TourModel.fromJson(Map<String, dynamic> json) => _$TourModelFromJson(json);
 }
 
 @freezed
@@ -58,15 +62,6 @@ class AvailableDate with _$AvailableDate {
   }) = _AvailableDate;
 
   factory AvailableDate.fromJson(Map<String, dynamic> json) => _$AvailableDateFromJson(json);
-}
-
-@freezed
-class IdDepartment with _$IdDepartment {
-  const factory IdDepartment({
-    @JsonKey(name: "name") required String name,
-  }) = _IdDepartment;
-
-  factory IdDepartment.fromJson(Map<String, dynamic> json) => _$IdDepartmentFromJson(json);
 }
 
 @freezed

@@ -92,11 +92,8 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
   EitherStringUserModel getCurrentUser() async {
     if (isAuthenticated() == false) return left('No user found');
     try {
-      final user = await _supabase
-          .from('public_users')
-          .select()
-          .eq('id', _supabase.auth.currentUser!.id)
-          .single();
+      final user =
+          await _supabase.from('users').select().eq('id', _supabase.auth.currentUser!.id).single();
       final userModel = UserModel.fromJson(user);
       return right(userModel);
     } catch (e) {
@@ -143,7 +140,7 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
   @override
   EitherBool checkEmailExists({required String email}) async {
     try {
-      final response = await _supabase.from('public_users').select().eq('email', email);
+      final response = await _supabase.from('users').select().eq('email', email);
       return right(response.isNotEmpty);
     } catch (e) {
       return left(false);

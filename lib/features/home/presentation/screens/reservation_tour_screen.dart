@@ -11,7 +11,6 @@ import 'package:valle_adventure_app/features/home/presentation/widgets/widgets.d
 import 'package:valle_adventure_app/features/shared/cta_button_filled.dart';
 import 'package:valle_adventure_app/features/shared/custom_app_bar.dart';
 import 'package:valle_adventure_app/features/shared/custom_input.dart';
-import 'package:valle_adventure_app/utils/date/custom_date.dart';
 
 class ReservationTourScreen extends StatelessWidget {
   const ReservationTourScreen({

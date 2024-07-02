@@ -39,7 +39,9 @@ class _SavedView extends ConsumerWidget {
       ),
       child: authRepository.isAuthenticated()
           ? CustomFutureBuilder(
-              future: () => tourProvider.getSavedTours(),
+              future: () => tourProvider.getToursByUser(
+                userId: authRepository.getCurrentUserId().getOrElse((l) => ''),
+              ),
               dataBuilder: (toursData) {
                 final tours = toursData.fold(
                   (error) => [],

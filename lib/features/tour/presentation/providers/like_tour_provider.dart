@@ -12,7 +12,13 @@ final likeTourProvider = Provider.autoDispose.family<void, List<String>>(
     if (data[1] == 'true') {
       await tourProvider.likeTour(userId: userId, tourId: data[0]);
     } else {
-      await tourProvider.unlikeTour(userId: userId, tourId: data[0]);
+      final likedTourId = await tourProvider.getLikedTourId(userId: userId, tourId: data[0]);
+      await tourProvider.unlikeTour(
+        likedTourId: likedTourId.fold(
+          (l) => '',
+          (r) => r,
+        ),
+      );
     }
   },
 );

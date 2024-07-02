@@ -13,7 +13,7 @@ import 'package:valle_adventure_app/features/saved/presentation/screens/screens.
 import 'package:valle_adventure_app/features/profile/presentation/screens/screens.dart';
 import 'package:valle_adventure_app/features/settings/presentation/screens/screens.dart';
 import 'package:valle_adventure_app/features/onboarding/presentation/screens/screens.dart';
-import 'package:valle_adventure_app/features/search/screens/search_screen.dart';
+import 'package:valle_adventure_app/features/search/presentation/screens/search_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();

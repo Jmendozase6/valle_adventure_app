@@ -28,6 +28,28 @@ class _SearchView extends StatelessWidget {
       children: [
         SizedBox(height: AppConstants.defaultPadding),
         CustomInput(labelText: locale.search),
+        SizedBox(height: AppConstants.defaultPadding),
+        const DepartmentChooser(
+          departments: [],
+        )
+      ],
+    );
+  }
+}
+
+class DepartmentChooser extends StatelessWidget {
+  const DepartmentChooser({
+    super.key,
+    required this.departments,
+  });
+
+  final List<String> departments;
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      children: [
+        Chip(label: Text('Cusco')),
       ],
     );
   }

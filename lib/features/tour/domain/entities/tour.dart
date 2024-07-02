@@ -33,7 +33,7 @@ class Tour {
     required this.isLiked,
   });
 
-  factory Tour.fromModel(TourDoc model) => Tour(
+  factory Tour.fromModel(TourModel model) => Tour(
         id: model.id,
         name: model.name,
         overview: model.overview,
@@ -47,7 +47,7 @@ class Tour {
         includedItems: model.includedItems,
         notIncludedItems: model.notIncludedItems,
         availableDates: model.availableDates.map((e) => e.date.toString()).toList(),
-        isLiked: false,
+        isLiked: model.isLiked,
       );
 
   // Empty constructor

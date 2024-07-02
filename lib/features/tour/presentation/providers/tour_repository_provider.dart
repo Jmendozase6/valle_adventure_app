@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:valle_adventure_app/features/tour/data/datasources/payload_tour_data_source.dart';
+import 'package:valle_adventure_app/features/tour/data/datasources/tours/payload_tour_data_source.dart';
 // import 'package:valle_adventure_app/features/tour/data/datasources/supabase_tour_data_source_impl.dart';
 import 'package:valle_adventure_app/features/tour/data/repositories/tour_repository_impl.dart';
 
