@@ -31,6 +31,7 @@ class OnboardingNavBar extends ConsumerWidget {
               text: AppLocalizations.of(context)!.discover_places,
               onPressed: () {
                 if (currentPage < 3) {
+                  ref.read(setOnboardingProvider);
                   pageController.nextPage(
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,

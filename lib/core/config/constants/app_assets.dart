@@ -5,8 +5,8 @@ class AppAssets {
 
   static const String onboarding01 = 'assets/images/onboarding/onboarding_01.jpg';
   static const String onboarding02 = 'assets/images/onboarding/onboarding_02.jpg';
-  static const String onboarding03 = 'assets/images/onboarding/onboarding_03.jpg';
-  static const String onboarding04 = 'assets/images/onboarding/onboarding_04.jpg';
+  static const String onboarding03 = 'assets/images/onboarding/onboarding_03.png';
+  static const String onboarding04 = 'assets/images/onboarding/onboarding_04.png';
 
   static const String signInHeaderBg = 'assets/images/auth/header_bg.png';
   static const String noLoggedUser = 'assets/images/auth/no_logged_user.png';
