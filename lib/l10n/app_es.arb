@@ -78,5 +78,7 @@
   "recover_password_error": "Ha ocurrido un error, por favor intenta de nuevo",
   "select_valid_date": "Por favor selecciona una fecha válida",
   "reservation_summary": "Resumen de la reserva",
-  "pay_now": "Pagar ahora"
+  "pay_now": "Pagar ahora",
+  "success_payment": "¡Pago exitoso!",
+  "payment_grateful": "Gracias por reservar con nosotros"
 }

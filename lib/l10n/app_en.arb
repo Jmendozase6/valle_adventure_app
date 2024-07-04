@@ -78,5 +78,7 @@
   "recover_password_error": "There was an error sending the email, please try again",
   "select_valid_date": "Select a valid date",
   "reservation_summary": "Reservation Summary",
-  "pay_now": "Pay now"
+  "pay_now": "Pay now",
+  "success_payment": "¡Pago exitoso!",
+  "payment_grateful": "Gracias por reservar con nosotros"
 }
