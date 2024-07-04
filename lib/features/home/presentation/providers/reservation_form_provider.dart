@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uuid/uuid.dart';
 import 'package:valle_adventure_app/features/home/domain/models/booking.dart';
 
 final bookProvider = NotifierProvider<BookTourNotifier, Booking>(() {
@@ -20,6 +21,7 @@ class BookTourNotifier extends Notifier<Booking> {
     TextEditingController(),
     TextEditingController(),
   ];
+  Booking tourBook = Booking.empty();
 
   @override
   Booking build() {
@@ -49,6 +51,7 @@ class BookTourNotifier extends Notifier<Booking> {
     required String tourId,
     required int qtyPartners,
     required String reservationDate,
+    required double total,
   }) {
     List<String> newPartners = [];
     if (qtyPartners > 0) {
@@ -58,10 +61,8 @@ class BookTourNotifier extends Notifier<Booking> {
     }
 
     final bookTour = Booking(
-      id: '',
-      qtyPlaces: qtyPartners,
+      id: const Uuid().v4(),
       reservationDate: reservationDate,
-      createdAt: DateTime.now().toString(),
       userId: userId,
       name: userNameController.text,
       lastName: userLastNameController.text,
@@ -69,9 +70,10 @@ class BookTourNotifier extends Notifier<Booking> {
       idCard: idCardController.text,
       tourId: tourId,
       partners: newPartners,
+      total: (total * (qtyPartners + 1)),
     );
-    // TODO: CUANDO SE ENVÍA, SUMAR EL USUARIO + LOS ACOMPAÑANTES
     state = bookTour;
+    tourBook = bookTour;
     return state;
   }
 }

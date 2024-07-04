@@ -63,9 +63,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> signOut() async {
-    await datasource.signOut();
-  }
+  Future<void> signOut() async => await datasource.signOut();
 
   @override
   EitherStringBool signInWithGoogle() async {

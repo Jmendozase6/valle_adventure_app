@@ -11,8 +11,8 @@ import 'package:valle_adventure_app/features/tour/domain/entities/tour.dart';
 import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
 import 'package:valle_adventure_app/features/tour/presentation/widgets/widgets.dart';
 
-class PlaceDetailsScreen extends ConsumerWidget {
-  const PlaceDetailsScreen({super.key, required this.id});
+class TourDetailsScreen extends ConsumerWidget {
+  const TourDetailsScreen({super.key, required this.id});
 
   final String id;
 
@@ -27,19 +27,16 @@ class PlaceDetailsScreen extends ConsumerWidget {
       body: CustomFutureBuilder(
         future: () => tourProvider.getTourById(id: id),
         dataBuilder: (tour) {
-          final tourSelected = tour.fold(
-            (error) => Tour.empty(),
-            (data) => data,
-          );
-          return _PlaceDetailsView(tour: tourSelected);
+          final tourSelected = tour.getOrElse((tour) => Tour.empty());
+          return _TourDetailsView(tour: tourSelected);
         },
       ),
     );
   }
 }
 
-class _PlaceDetailsView extends ConsumerWidget {
-  const _PlaceDetailsView({required this.tour});
+class _TourDetailsView extends ConsumerWidget {
+  const _TourDetailsView({required this.tour});
 
   final Tour tour;
 

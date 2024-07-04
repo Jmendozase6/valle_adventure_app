@@ -12,8 +12,8 @@ import 'package:valle_adventure_app/features/shared/cta_button_filled.dart';
 import 'package:valle_adventure_app/features/shared/custom_app_bar.dart';
 import 'package:valle_adventure_app/features/shared/custom_input.dart';
 
-class ReservationTourScreen extends StatelessWidget {
-  const ReservationTourScreen({
+class BookingTourScreen extends StatelessWidget {
+  const BookingTourScreen({
     super.key,
     required this.tourId,
     required this.tourName,
@@ -43,7 +43,7 @@ class ReservationTourScreen extends StatelessWidget {
       appBar: CustomAppBar(
         title: locale.book_tour_now,
       ),
-      body: _ReservationTourView(
+      body: _BookingTourView(
         tourId: tourId,
         tourName: tourName,
         tourPrice: tourPrice,
@@ -58,8 +58,8 @@ class ReservationTourScreen extends StatelessWidget {
   }
 }
 
-class _ReservationTourView extends ConsumerWidget {
-  const _ReservationTourView({
+class _BookingTourView extends ConsumerWidget {
+  const _BookingTourView({
     required this.tourId,
     required this.tourName,
     required this.userName,
@@ -147,12 +147,14 @@ class _ReservationTourView extends ConsumerWidget {
                       ref.read(formPartnersKeyProvider).currentState?.validate() ?? true;
                   final isValidUserData =
                       currentBook.userDataFormKey.currentState?.validate() ?? false;
-                  if (isValidPartnersForm && isValidUserData) {
+                  final isValidDate = ref.watch(dateBookProvider).isNotEmpty;
+                  if (isValidPartnersForm && isValidUserData && isValidDate) {
                     ref.read(bookProvider.notifier).bookTour(
                           userId: userId,
                           tourId: tourId,
                           qtyPartners: ref.watch(qtyPartnersProvider),
                           reservationDate: ref.watch(dateBookProvider).substring(0, 10),
+                          total: double.parse(tourPrice),
                         );
                     router.pushNamed(AppRoutes.payment.name, pathParameters: {
                       'tour_name': tourName,

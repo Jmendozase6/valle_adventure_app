@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:valle_adventure_app/core/config/constants/app_enviroment.dart';
 import 'package:valle_adventure_app/features/tour/data/datasources/tours/tour_data_source.dart';
 import 'package:valle_adventure_app/features/tour/data/models/liked_tour_model.dart';
 import 'package:valle_adventure_app/features/tour/data/models/tour_model.dart';
@@ -12,15 +12,14 @@ class PayloadTourDataSourceImpl implements TourDataSource {
   // final _supabase = Supabase.instance.client;
   final _payloadCMS = Dio(
     BaseOptions(
-      baseUrl: dotenv.get('PAYLOAD_BASE_URL'),
+      baseUrl: AppEnviroment.PAYLOAD_BASE_URL,
       headers: {
         'Content-Type': 'application/json',
         'Authorization':
-            '${dotenv.get('PAYLOAD_USERS_COLLECTION')} API-Key ${dotenv.get('PAYLOAD_USERS_API_KEY')}'
+            '${AppEnviroment.PAYLOAD_USERS_COLLECTION} API-Key ${AppEnviroment.PAYLOAD_USERS_API_KEY}'
       },
     ),
   );
-
   @override
   EitherBoolTour getTourById({required String id}) async {
     try {
@@ -99,11 +98,12 @@ class PayloadTourDataSourceImpl implements TourDataSource {
       });
       if (response.statusCode == 201 || response.statusCode == 200) {
         return right(true);
+      } else {
+        return left(false);
       }
     } catch (e) {
       return left(false);
     }
-    return left(false);
   }
 
   @override

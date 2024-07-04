@@ -10,7 +10,7 @@ final placeDetailsReservationProvider = Provider.autoDispose.family<void, Tour>(
   final userData = user.fold((error) => '', (data) => data) as UserModel;
   final router = ref.watch(routerProvider);
 
-  router.pushNamed(AppRoutes.reservationForm.name, queryParameters: {
+  router.pushNamed(AppRoutes.bookingForm.name, queryParameters: {
     if (tour.id.isNotEmpty) 'tour_id': tour.id,
     if (tour.name.isNotEmpty) 'tour_name': tour.name,
     if (tour.price != 0) 'tour_price': '${tour.price}',

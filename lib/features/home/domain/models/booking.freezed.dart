@@ -22,12 +22,6 @@ Booking _$BookingFromJson(Map<String, dynamic> json) {
 mixin _$Booking {
   @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "user_id")
-  String get userId => throw _privateConstructorUsedError;
-  @JsonKey(name: "created_at")
-  String get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: "tour_id")
-  String get tourId => throw _privateConstructorUsedError;
   @JsonKey(name: "name")
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "last_name")
@@ -36,12 +30,16 @@ mixin _$Booking {
   String get phone => throw _privateConstructorUsedError;
   @JsonKey(name: "id_card")
   String get idCard => throw _privateConstructorUsedError;
-  @JsonKey(name: "qty_places")
-  int get qtyPlaces => throw _privateConstructorUsedError;
   @JsonKey(name: "reservation_date")
   String get reservationDate => throw _privateConstructorUsedError;
   @JsonKey(name: "partners")
   List<String> get partners => throw _privateConstructorUsedError;
+  @JsonKey(name: "user_id")
+  String get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: "tour_id")
+  String get tourId => throw _privateConstructorUsedError;
+  @JsonKey(name: "total")
+  double get total => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,16 +53,15 @@ abstract class $BookingCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") String id,
-      @JsonKey(name: "user_id") String userId,
-      @JsonKey(name: "created_at") String createdAt,
-      @JsonKey(name: "tour_id") String tourId,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "last_name") String lastName,
       @JsonKey(name: "phone") String phone,
       @JsonKey(name: "id_card") String idCard,
-      @JsonKey(name: "qty_places") int qtyPlaces,
       @JsonKey(name: "reservation_date") String reservationDate,
-      @JsonKey(name: "partners") List<String> partners});
+      @JsonKey(name: "partners") List<String> partners,
+      @JsonKey(name: "user_id") String userId,
+      @JsonKey(name: "tour_id") String tourId,
+      @JsonKey(name: "total") double total});
 }
 
 /// @nodoc
@@ -81,33 +78,20 @@ class _$BookingCopyWithImpl<$Res, $Val extends Booking>
   @override
   $Res call({
     Object? id = null,
-    Object? userId = null,
-    Object? createdAt = null,
-    Object? tourId = null,
     Object? name = null,
     Object? lastName = null,
     Object? phone = null,
     Object? idCard = null,
-    Object? qtyPlaces = null,
     Object? reservationDate = null,
     Object? partners = null,
+    Object? userId = null,
+    Object? tourId = null,
+    Object? total = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      tourId: null == tourId
-          ? _value.tourId
-          : tourId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -125,10 +109,6 @@ class _$BookingCopyWithImpl<$Res, $Val extends Booking>
           ? _value.idCard
           : idCard // ignore: cast_nullable_to_non_nullable
               as String,
-      qtyPlaces: null == qtyPlaces
-          ? _value.qtyPlaces
-          : qtyPlaces // ignore: cast_nullable_to_non_nullable
-              as int,
       reservationDate: null == reservationDate
           ? _value.reservationDate
           : reservationDate // ignore: cast_nullable_to_non_nullable
@@ -137,6 +117,18 @@ class _$BookingCopyWithImpl<$Res, $Val extends Booking>
           ? _value.partners
           : partners // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      tourId: null == tourId
+          ? _value.tourId
+          : tourId // ignore: cast_nullable_to_non_nullable
+              as String,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -150,16 +142,15 @@ abstract class _$$BookingImplCopyWith<$Res> implements $BookingCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") String id,
-      @JsonKey(name: "user_id") String userId,
-      @JsonKey(name: "created_at") String createdAt,
-      @JsonKey(name: "tour_id") String tourId,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "last_name") String lastName,
       @JsonKey(name: "phone") String phone,
       @JsonKey(name: "id_card") String idCard,
-      @JsonKey(name: "qty_places") int qtyPlaces,
       @JsonKey(name: "reservation_date") String reservationDate,
-      @JsonKey(name: "partners") List<String> partners});
+      @JsonKey(name: "partners") List<String> partners,
+      @JsonKey(name: "user_id") String userId,
+      @JsonKey(name: "tour_id") String tourId,
+      @JsonKey(name: "total") double total});
 }
 
 /// @nodoc
@@ -174,33 +165,20 @@ class __$$BookingImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? userId = null,
-    Object? createdAt = null,
-    Object? tourId = null,
     Object? name = null,
     Object? lastName = null,
     Object? phone = null,
     Object? idCard = null,
-    Object? qtyPlaces = null,
     Object? reservationDate = null,
     Object? partners = null,
+    Object? userId = null,
+    Object? tourId = null,
+    Object? total = null,
   }) {
     return _then(_$BookingImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      tourId: null == tourId
-          ? _value.tourId
-          : tourId // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
@@ -218,10 +196,6 @@ class __$$BookingImplCopyWithImpl<$Res>
           ? _value.idCard
           : idCard // ignore: cast_nullable_to_non_nullable
               as String,
-      qtyPlaces: null == qtyPlaces
-          ? _value.qtyPlaces
-          : qtyPlaces // ignore: cast_nullable_to_non_nullable
-              as int,
       reservationDate: null == reservationDate
           ? _value.reservationDate
           : reservationDate // ignore: cast_nullable_to_non_nullable
@@ -230,6 +204,18 @@ class __$$BookingImplCopyWithImpl<$Res>
           ? _value._partners
           : partners // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      tourId: null == tourId
+          ? _value.tourId
+          : tourId // ignore: cast_nullable_to_non_nullable
+              as String,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -239,16 +225,15 @@ class __$$BookingImplCopyWithImpl<$Res>
 class _$BookingImpl implements _Booking {
   const _$BookingImpl(
       {@JsonKey(name: "id") required this.id,
-      @JsonKey(name: "user_id") required this.userId,
-      @JsonKey(name: "created_at") required this.createdAt,
-      @JsonKey(name: "tour_id") required this.tourId,
       @JsonKey(name: "name") required this.name,
       @JsonKey(name: "last_name") required this.lastName,
       @JsonKey(name: "phone") required this.phone,
       @JsonKey(name: "id_card") required this.idCard,
-      @JsonKey(name: "qty_places") required this.qtyPlaces,
       @JsonKey(name: "reservation_date") required this.reservationDate,
-      @JsonKey(name: "partners") required final List<String> partners})
+      @JsonKey(name: "partners") required final List<String> partners,
+      @JsonKey(name: "user_id") required this.userId,
+      @JsonKey(name: "tour_id") required this.tourId,
+      @JsonKey(name: "total") required this.total})
       : _partners = partners;
 
   factory _$BookingImpl.fromJson(Map<String, dynamic> json) =>
@@ -257,15 +242,6 @@ class _$BookingImpl implements _Booking {
   @override
   @JsonKey(name: "id")
   final String id;
-  @override
-  @JsonKey(name: "user_id")
-  final String userId;
-  @override
-  @JsonKey(name: "created_at")
-  final String createdAt;
-  @override
-  @JsonKey(name: "tour_id")
-  final String tourId;
   @override
   @JsonKey(name: "name")
   final String name;
@@ -279,9 +255,6 @@ class _$BookingImpl implements _Booking {
   @JsonKey(name: "id_card")
   final String idCard;
   @override
-  @JsonKey(name: "qty_places")
-  final int qtyPlaces;
-  @override
   @JsonKey(name: "reservation_date")
   final String reservationDate;
   final List<String> _partners;
@@ -294,8 +267,18 @@ class _$BookingImpl implements _Booking {
   }
 
   @override
+  @JsonKey(name: "user_id")
+  final String userId;
+  @override
+  @JsonKey(name: "tour_id")
+  final String tourId;
+  @override
+  @JsonKey(name: "total")
+  final double total;
+
+  @override
   String toString() {
-    return 'Booking(id: $id, userId: $userId, createdAt: $createdAt, tourId: $tourId, name: $name, lastName: $lastName, phone: $phone, idCard: $idCard, qtyPlaces: $qtyPlaces, reservationDate: $reservationDate, partners: $partners)';
+    return 'Booking(id: $id, name: $name, lastName: $lastName, phone: $phone, idCard: $idCard, reservationDate: $reservationDate, partners: $partners, userId: $userId, tourId: $tourId, total: $total)';
   }
 
   @override
@@ -304,20 +287,17 @@ class _$BookingImpl implements _Booking {
         (other.runtimeType == runtimeType &&
             other is _$BookingImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.tourId, tourId) || other.tourId == tourId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.idCard, idCard) || other.idCard == idCard) &&
-            (identical(other.qtyPlaces, qtyPlaces) ||
-                other.qtyPlaces == qtyPlaces) &&
             (identical(other.reservationDate, reservationDate) ||
                 other.reservationDate == reservationDate) &&
-            const DeepCollectionEquality().equals(other._partners, _partners));
+            const DeepCollectionEquality().equals(other._partners, _partners) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.tourId, tourId) || other.tourId == tourId) &&
+            (identical(other.total, total) || other.total == total));
   }
 
   @JsonKey(ignore: true)
@@ -325,16 +305,15 @@ class _$BookingImpl implements _Booking {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      userId,
-      createdAt,
-      tourId,
       name,
       lastName,
       phone,
       idCard,
-      qtyPlaces,
       reservationDate,
-      const DeepCollectionEquality().hash(_partners));
+      const DeepCollectionEquality().hash(_partners),
+      userId,
+      tourId,
+      total);
 
   @JsonKey(ignore: true)
   @override
@@ -353,32 +332,21 @@ class _$BookingImpl implements _Booking {
 abstract class _Booking implements Booking {
   const factory _Booking(
       {@JsonKey(name: "id") required final String id,
-      @JsonKey(name: "user_id") required final String userId,
-      @JsonKey(name: "created_at") required final String createdAt,
-      @JsonKey(name: "tour_id") required final String tourId,
       @JsonKey(name: "name") required final String name,
       @JsonKey(name: "last_name") required final String lastName,
       @JsonKey(name: "phone") required final String phone,
       @JsonKey(name: "id_card") required final String idCard,
-      @JsonKey(name: "qty_places") required final int qtyPlaces,
       @JsonKey(name: "reservation_date") required final String reservationDate,
-      @JsonKey(name: "partners")
-      required final List<String> partners}) = _$BookingImpl;
+      @JsonKey(name: "partners") required final List<String> partners,
+      @JsonKey(name: "user_id") required final String userId,
+      @JsonKey(name: "tour_id") required final String tourId,
+      @JsonKey(name: "total") required final double total}) = _$BookingImpl;
 
   factory _Booking.fromJson(Map<String, dynamic> json) = _$BookingImpl.fromJson;
 
   @override
   @JsonKey(name: "id")
   String get id;
-  @override
-  @JsonKey(name: "user_id")
-  String get userId;
-  @override
-  @JsonKey(name: "created_at")
-  String get createdAt;
-  @override
-  @JsonKey(name: "tour_id")
-  String get tourId;
   @override
   @JsonKey(name: "name")
   String get name;
@@ -392,14 +360,20 @@ abstract class _Booking implements Booking {
   @JsonKey(name: "id_card")
   String get idCard;
   @override
-  @JsonKey(name: "qty_places")
-  int get qtyPlaces;
-  @override
   @JsonKey(name: "reservation_date")
   String get reservationDate;
   @override
   @JsonKey(name: "partners")
   List<String> get partners;
+  @override
+  @JsonKey(name: "user_id")
+  String get userId;
+  @override
+  @JsonKey(name: "tour_id")
+  String get tourId;
+  @override
+  @JsonKey(name: "total")
+  double get total;
   @override
   @JsonKey(ignore: true)
   _$$BookingImplCopyWith<_$BookingImpl> get copyWith =>

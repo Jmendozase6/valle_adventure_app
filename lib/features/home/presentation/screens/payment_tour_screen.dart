@@ -12,6 +12,8 @@ import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/home/data/repositories/default_google_pay.dart';
 import 'package:valle_adventure_app/features/home/presentation/providers/reservation_form_provider.dart';
 import 'package:valle_adventure_app/features/home/presentation/widgets/widgets.dart';
+import 'package:valle_adventure_app/features/payment/data/models/payment_model.dart';
+import 'package:valle_adventure_app/features/payment/presentation/providers/payment_repository_provider.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class PaymentTourScreen extends StatelessWidget {
@@ -88,7 +90,7 @@ class _PaymentTourView extends ConsumerWidget {
   }
 }
 
-class PaymentButton extends StatelessWidget {
+class PaymentButton extends ConsumerWidget {
   const PaymentButton({
     super.key,
     required this.tourName,
@@ -99,12 +101,14 @@ class PaymentButton extends StatelessWidget {
   final double total;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GooglePayButton(
       paymentConfiguration: PaymentConfiguration.fromJsonString(defaultGooglePay),
       type: GooglePayButtonType.buy,
+      theme: GooglePayButtonTheme.light,
+      cornerRadius: AppConstants.defaultRadius.toInt(),
       width: double.infinity,
-      onPaymentResult: (result) => onGooglePayResult(result, context),
+      onPaymentResult: (paymentResult) => onGooglePayResult(paymentResult, context, ref),
       onError: (error) {
         log('ERROR $error');
       },
@@ -127,22 +131,34 @@ class PaymentButton extends StatelessWidget {
     );
   }
 
-  void onGooglePayResult(paymentResult, BuildContext context) {
+  void onGooglePayResult(paymentResult, BuildContext context, WidgetRef ref) async {
     // Send the resulting Google Pay token to your server / PSP
-    log('AYUDA $paymentResult');
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        // TODO: TRANSLATE THIS TEXT
-        title: const Text('Pago exitoso'),
-        content: const Text('Gracias por completar tu reservación'),
-        actions: [
-          TextButton(
-            onPressed: () => context.goNamed(AppRoutes.home.name),
-            child: const Text('OK'),
+    // log('AYUDA $paymentResult');
+    final locale = AppLocalizations.of(context)!;
+    final bookingTour = ref.watch(bookProvider.notifier);
+    final paymentModel = PaymentModel.fromJson(paymentResult);
+
+    final reserveTourResponse = await ref.watch(reserveTour).call(booking: bookingTour.tourBook);
+    // final paymentResponse = ref.watch(paymentRepositoryProvider).call();
+
+    reserveTourResponse.fold(
+      (l) => log('ERROR $l'),
+      (r) {
+        log('SUCCESS $r');
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(locale.success_payment),
+            content: Text(locale.payment_grateful),
+            actions: [
+              TextButton(
+                onPressed: () => context.goNamed(AppRoutes.home.name),
+                child: const Text('OK'),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

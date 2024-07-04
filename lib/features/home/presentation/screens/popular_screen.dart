@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/core/config/constants/app_assets.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
+import 'package:valle_adventure_app/features/auth/presentation/providers/auth_repository_provider.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 import 'package:valle_adventure_app/features/tour/domain/entities/tour.dart';
 import 'package:valle_adventure_app/features/tour/presentation/providers/tour_repository_provider.dart';
@@ -27,6 +28,7 @@ class _PopularView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tourProvider = ref.watch(tourRepositoryProvider);
+    final userId = ref.watch(authRepositoryProvider).getCurrentUserId().getOrElse((l) => '');
 
     return Padding(
       padding: EdgeInsets.only(
@@ -35,7 +37,7 @@ class _PopularView extends ConsumerWidget {
         top: AppConstants.defaultPadding,
       ),
       child: CustomFutureBuilder(
-        future: () => tourProvider.getTours(orderType: 'rating', limit: 15),
+        future: () => tourProvider.getTours(orderType: 'rating', limit: 15, userId: userId),
         dataBuilder: (user) {
           final tours = user.fold(
             (error) => [Tour.empty()],

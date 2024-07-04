@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -9,6 +9,7 @@ import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/features/auth/data/datasources/auth_data_source.dart';
 import 'package:valle_adventure_app/features/auth/data/models/user_model.dart';
 import 'package:valle_adventure_app/utils/types/type_defs.dart';
+import 'package:valle_adventure_app/core/config/constants/app_enviroment.dart';
 
 class SupabaseAuthDataSourceImpl implements AuthDataSource {
   final _supabase = Supabase.instance.client;
@@ -79,10 +80,14 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
 
   @override
   Future<void> signOut() async {
-    initGoogleSignIn();
-    await _supabase.auth.signOut();
-    await googleSignIn.disconnect();
-    await googleSignIn.signOut();
+    try {
+      initGoogleSignIn();
+      await _supabase.auth.signOut();
+      await googleSignIn.disconnect();
+      await googleSignIn.signOut();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   @override
@@ -149,8 +154,8 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
 
   void initGoogleSignIn() {
     if (googleSignIn.clientId != null) return;
-    final webClientId = dotenv.get('AUTH_WEB_CLIENT_ID');
-    final androidClientId = dotenv.get('AUTH_ANDROID_CLIENT_ID');
+    final webClientId = AppEnviroment.AUTH_WEB_CLIENT_ID;
+    final androidClientId = AppEnviroment.AUTH_ANDROID_CLIENT_ID;
     googleSignIn = GoogleSignIn(
       serverClientId: webClientId,
       clientId: androidClientId,
