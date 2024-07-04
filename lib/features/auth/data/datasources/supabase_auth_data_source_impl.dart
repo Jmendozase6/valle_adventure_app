@@ -125,8 +125,8 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
 
   @override
   EitherStringString getCurrentUserId() {
-    final userId = _supabase.auth.currentUser!.id;
-    return userId.isNotEmpty ? right(userId) : left('no-id');
+    final userId = _supabase.auth.currentUser?.id;
+    return userId == null ? left('no-id') : right(userId);
   }
 
   @override

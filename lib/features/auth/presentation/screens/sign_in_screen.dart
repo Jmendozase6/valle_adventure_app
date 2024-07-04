@@ -109,7 +109,10 @@ class _SignInView extends ConsumerWidget {
           SizedBox(height: AppConstants.defaultPadding * .5),
           ButtonSocialMedia(
             text: locale.continue_without_sign_in,
-            onPressed: () => ref.read(routerProvider).goNamed(AppRoutes.home.name),
+            onPressed: () {
+              ref.read(bottomNavProvider.notifier).state = 0;
+              ref.read(routerProvider).goNamed(AppRoutes.home.name);
+            },
           ),
           SizedBox(height: AppConstants.defaultPadding),
         ],
