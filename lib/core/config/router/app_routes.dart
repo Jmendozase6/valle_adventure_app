@@ -15,7 +15,7 @@ enum AppRoutes {
   privacy,
   terms,
   about,
-  reservationForm,
+  bookingForm,
   payment,
   recoverPassword,
   recoverCode,
@@ -57,8 +57,8 @@ extension AppRoutesExtension on AppRoutes {
         return 'terms';
       case AppRoutes.about:
         return 'about';
-      case AppRoutes.reservationForm:
-        return 'reservationForm';
+      case AppRoutes.bookingForm:
+        return 'bookingForm';
       case AppRoutes.payment:
         return 'payment';
       case AppRoutes.recoverPassword:
@@ -104,8 +104,8 @@ extension AppRoutesExtension on AppRoutes {
         return 'terms';
       case AppRoutes.about:
         return 'about';
-      case AppRoutes.reservationForm:
-        return '/reservationForm';
+      case AppRoutes.bookingForm:
+        return '/bookingForm';
       case AppRoutes.payment:
         return 'payment';
       case AppRoutes.recoverPassword:
