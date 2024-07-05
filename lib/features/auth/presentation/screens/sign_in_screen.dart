@@ -9,6 +9,7 @@ import 'package:valle_adventure_app/core/config/router/app_routes.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/auth/presentation/providers/providers.dart';
 import 'package:valle_adventure_app/features/home/presentation/providers/bottom_nav_provider.dart';
+import 'package:valle_adventure_app/features/payment/presentation/providers/payment_repository_provider.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class SignInScreen extends StatelessWidget {

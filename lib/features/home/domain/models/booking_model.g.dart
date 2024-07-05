@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'booking.dart';
+part of 'booking_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BookingImpl _$$BookingImplFromJson(Map<String, dynamic> json) =>
-    _$BookingImpl(
+_$BookingModelImpl _$$BookingModelImplFromJson(Map<String, dynamic> json) =>
+    _$BookingModelImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       lastName: json['last_name'] as String,
@@ -21,7 +21,7 @@ _$BookingImpl _$$BookingImplFromJson(Map<String, dynamic> json) =>
       total: (json['total'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$BookingImplToJson(_$BookingImpl instance) =>
+Map<String, dynamic> _$$BookingModelImplToJson(_$BookingModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

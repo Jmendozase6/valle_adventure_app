@@ -15,8 +15,12 @@ class ProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SafeArea(
-      child: Scaffold(body: _ProfileView()),
+    return Scaffold(
+      appBar: const CustomAppBar(
+        // TODO: Translate the title
+        title: 'Profile',
+      ),
+      body: _ProfileView(),
     );
   }
 }
@@ -54,7 +58,7 @@ class _UserLoggedView extends ConsumerWidget {
     final locale = AppLocalizations.of(context)!;
     return Column(
       children: [
-        SizedBox(height: AppConstants.defaultPadding * 2),
+        SizedBox(height: AppConstants.defaultPadding),
         CircleAvatar(
           radius: AppConstants.defaultRadius * 4,
           backgroundImage: user.imageUrl.isEmpty

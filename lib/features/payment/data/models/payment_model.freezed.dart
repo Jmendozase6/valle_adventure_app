@@ -20,10 +20,6 @@ PaymentModel _$PaymentModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PaymentModel {
-  @JsonKey(name: "apiVersion")
-  int get apiVersion => throw _privateConstructorUsedError;
-  @JsonKey(name: "apiVersionMinor")
-  int get apiVersionMinor => throw _privateConstructorUsedError;
   @JsonKey(name: "paymentMethodData")
   PaymentMethodData get paymentMethodData => throw _privateConstructorUsedError;
 
@@ -40,9 +36,8 @@ abstract class $PaymentModelCopyWith<$Res> {
       _$PaymentModelCopyWithImpl<$Res, PaymentModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: "apiVersion") int apiVersion,
-      @JsonKey(name: "apiVersionMinor") int apiVersionMinor,
-      @JsonKey(name: "paymentMethodData") PaymentMethodData paymentMethodData});
+      {@JsonKey(name: "paymentMethodData")
+      PaymentMethodData paymentMethodData});
 
   $PaymentMethodDataCopyWith<$Res> get paymentMethodData;
 }
@@ -60,19 +55,9 @@ class _$PaymentModelCopyWithImpl<$Res, $Val extends PaymentModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? apiVersion = null,
-    Object? apiVersionMinor = null,
     Object? paymentMethodData = null,
   }) {
     return _then(_value.copyWith(
-      apiVersion: null == apiVersion
-          ? _value.apiVersion
-          : apiVersion // ignore: cast_nullable_to_non_nullable
-              as int,
-      apiVersionMinor: null == apiVersionMinor
-          ? _value.apiVersionMinor
-          : apiVersionMinor // ignore: cast_nullable_to_non_nullable
-              as int,
       paymentMethodData: null == paymentMethodData
           ? _value.paymentMethodData
           : paymentMethodData // ignore: cast_nullable_to_non_nullable
@@ -98,9 +83,8 @@ abstract class _$$PaymentModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "apiVersion") int apiVersion,
-      @JsonKey(name: "apiVersionMinor") int apiVersionMinor,
-      @JsonKey(name: "paymentMethodData") PaymentMethodData paymentMethodData});
+      {@JsonKey(name: "paymentMethodData")
+      PaymentMethodData paymentMethodData});
 
   @override
   $PaymentMethodDataCopyWith<$Res> get paymentMethodData;
@@ -117,19 +101,9 @@ class __$$PaymentModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? apiVersion = null,
-    Object? apiVersionMinor = null,
     Object? paymentMethodData = null,
   }) {
     return _then(_$PaymentModelImpl(
-      apiVersion: null == apiVersion
-          ? _value.apiVersion
-          : apiVersion // ignore: cast_nullable_to_non_nullable
-              as int,
-      apiVersionMinor: null == apiVersionMinor
-          ? _value.apiVersionMinor
-          : apiVersionMinor // ignore: cast_nullable_to_non_nullable
-              as int,
       paymentMethodData: null == paymentMethodData
           ? _value.paymentMethodData
           : paymentMethodData // ignore: cast_nullable_to_non_nullable
@@ -142,26 +116,18 @@ class __$$PaymentModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PaymentModelImpl implements _PaymentModel {
   const _$PaymentModelImpl(
-      {@JsonKey(name: "apiVersion") required this.apiVersion,
-      @JsonKey(name: "apiVersionMinor") required this.apiVersionMinor,
-      @JsonKey(name: "paymentMethodData") required this.paymentMethodData});
+      {@JsonKey(name: "paymentMethodData") required this.paymentMethodData});
 
   factory _$PaymentModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PaymentModelImplFromJson(json);
 
-  @override
-  @JsonKey(name: "apiVersion")
-  final int apiVersion;
-  @override
-  @JsonKey(name: "apiVersionMinor")
-  final int apiVersionMinor;
   @override
   @JsonKey(name: "paymentMethodData")
   final PaymentMethodData paymentMethodData;
 
   @override
   String toString() {
-    return 'PaymentModel(apiVersion: $apiVersion, apiVersionMinor: $apiVersionMinor, paymentMethodData: $paymentMethodData)';
+    return 'PaymentModel(paymentMethodData: $paymentMethodData)';
   }
 
   @override
@@ -169,18 +135,13 @@ class _$PaymentModelImpl implements _PaymentModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PaymentModelImpl &&
-            (identical(other.apiVersion, apiVersion) ||
-                other.apiVersion == apiVersion) &&
-            (identical(other.apiVersionMinor, apiVersionMinor) ||
-                other.apiVersionMinor == apiVersionMinor) &&
             (identical(other.paymentMethodData, paymentMethodData) ||
                 other.paymentMethodData == paymentMethodData));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, apiVersion, apiVersionMinor, paymentMethodData);
+  int get hashCode => Object.hash(runtimeType, paymentMethodData);
 
   @JsonKey(ignore: true)
   @override
@@ -198,20 +159,12 @@ class _$PaymentModelImpl implements _PaymentModel {
 
 abstract class _PaymentModel implements PaymentModel {
   const factory _PaymentModel(
-      {@JsonKey(name: "apiVersion") required final int apiVersion,
-      @JsonKey(name: "apiVersionMinor") required final int apiVersionMinor,
-      @JsonKey(name: "paymentMethodData")
+      {@JsonKey(name: "paymentMethodData")
       required final PaymentMethodData paymentMethodData}) = _$PaymentModelImpl;
 
   factory _PaymentModel.fromJson(Map<String, dynamic> json) =
       _$PaymentModelImpl.fromJson;
 
-  @override
-  @JsonKey(name: "apiVersion")
-  int get apiVersion;
-  @override
-  @JsonKey(name: "apiVersionMinor")
-  int get apiVersionMinor;
   @override
   @JsonKey(name: "paymentMethodData")
   PaymentMethodData get paymentMethodData;
@@ -674,12 +627,6 @@ BillingAddress _$BillingAddressFromJson(Map<String, dynamic> json) {
 mixin _$BillingAddress {
   @JsonKey(name: "address1")
   String get address1 => throw _privateConstructorUsedError;
-  @JsonKey(name: "address2")
-  String get address2 => throw _privateConstructorUsedError;
-  @JsonKey(name: "address3")
-  String get address3 => throw _privateConstructorUsedError;
-  @JsonKey(name: "administrativeArea")
-  String get administrativeArea => throw _privateConstructorUsedError;
   @JsonKey(name: "countryCode")
   String get countryCode => throw _privateConstructorUsedError;
   @JsonKey(name: "locality")
@@ -690,8 +637,6 @@ mixin _$BillingAddress {
   String get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: "postalCode")
   String get postalCode => throw _privateConstructorUsedError;
-  @JsonKey(name: "sortingCode")
-  String get sortingCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -707,15 +652,11 @@ abstract class $BillingAddressCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "address1") String address1,
-      @JsonKey(name: "address2") String address2,
-      @JsonKey(name: "address3") String address3,
-      @JsonKey(name: "administrativeArea") String administrativeArea,
       @JsonKey(name: "countryCode") String countryCode,
       @JsonKey(name: "locality") String locality,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "phoneNumber") String phoneNumber,
-      @JsonKey(name: "postalCode") String postalCode,
-      @JsonKey(name: "sortingCode") String sortingCode});
+      @JsonKey(name: "postalCode") String postalCode});
 }
 
 /// @nodoc
@@ -732,32 +673,16 @@ class _$BillingAddressCopyWithImpl<$Res, $Val extends BillingAddress>
   @override
   $Res call({
     Object? address1 = null,
-    Object? address2 = null,
-    Object? address3 = null,
-    Object? administrativeArea = null,
     Object? countryCode = null,
     Object? locality = null,
     Object? name = null,
     Object? phoneNumber = null,
     Object? postalCode = null,
-    Object? sortingCode = null,
   }) {
     return _then(_value.copyWith(
       address1: null == address1
           ? _value.address1
           : address1 // ignore: cast_nullable_to_non_nullable
-              as String,
-      address2: null == address2
-          ? _value.address2
-          : address2 // ignore: cast_nullable_to_non_nullable
-              as String,
-      address3: null == address3
-          ? _value.address3
-          : address3 // ignore: cast_nullable_to_non_nullable
-              as String,
-      administrativeArea: null == administrativeArea
-          ? _value.administrativeArea
-          : administrativeArea // ignore: cast_nullable_to_non_nullable
               as String,
       countryCode: null == countryCode
           ? _value.countryCode
@@ -778,10 +703,6 @@ class _$BillingAddressCopyWithImpl<$Res, $Val extends BillingAddress>
       postalCode: null == postalCode
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      sortingCode: null == sortingCode
-          ? _value.sortingCode
-          : sortingCode // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -797,15 +718,11 @@ abstract class _$$BillingAddressImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "address1") String address1,
-      @JsonKey(name: "address2") String address2,
-      @JsonKey(name: "address3") String address3,
-      @JsonKey(name: "administrativeArea") String administrativeArea,
       @JsonKey(name: "countryCode") String countryCode,
       @JsonKey(name: "locality") String locality,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "phoneNumber") String phoneNumber,
-      @JsonKey(name: "postalCode") String postalCode,
-      @JsonKey(name: "sortingCode") String sortingCode});
+      @JsonKey(name: "postalCode") String postalCode});
 }
 
 /// @nodoc
@@ -820,32 +737,16 @@ class __$$BillingAddressImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? address1 = null,
-    Object? address2 = null,
-    Object? address3 = null,
-    Object? administrativeArea = null,
     Object? countryCode = null,
     Object? locality = null,
     Object? name = null,
     Object? phoneNumber = null,
     Object? postalCode = null,
-    Object? sortingCode = null,
   }) {
     return _then(_$BillingAddressImpl(
       address1: null == address1
           ? _value.address1
           : address1 // ignore: cast_nullable_to_non_nullable
-              as String,
-      address2: null == address2
-          ? _value.address2
-          : address2 // ignore: cast_nullable_to_non_nullable
-              as String,
-      address3: null == address3
-          ? _value.address3
-          : address3 // ignore: cast_nullable_to_non_nullable
-              as String,
-      administrativeArea: null == administrativeArea
-          ? _value.administrativeArea
-          : administrativeArea // ignore: cast_nullable_to_non_nullable
               as String,
       countryCode: null == countryCode
           ? _value.countryCode
@@ -867,10 +768,6 @@ class __$$BillingAddressImplCopyWithImpl<$Res>
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
               as String,
-      sortingCode: null == sortingCode
-          ? _value.sortingCode
-          : sortingCode // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -880,15 +777,11 @@ class __$$BillingAddressImplCopyWithImpl<$Res>
 class _$BillingAddressImpl implements _BillingAddress {
   const _$BillingAddressImpl(
       {@JsonKey(name: "address1") required this.address1,
-      @JsonKey(name: "address2") required this.address2,
-      @JsonKey(name: "address3") required this.address3,
-      @JsonKey(name: "administrativeArea") required this.administrativeArea,
       @JsonKey(name: "countryCode") required this.countryCode,
       @JsonKey(name: "locality") required this.locality,
       @JsonKey(name: "name") required this.name,
       @JsonKey(name: "phoneNumber") required this.phoneNumber,
-      @JsonKey(name: "postalCode") required this.postalCode,
-      @JsonKey(name: "sortingCode") required this.sortingCode});
+      @JsonKey(name: "postalCode") required this.postalCode});
 
   factory _$BillingAddressImpl.fromJson(Map<String, dynamic> json) =>
       _$$BillingAddressImplFromJson(json);
@@ -896,15 +789,6 @@ class _$BillingAddressImpl implements _BillingAddress {
   @override
   @JsonKey(name: "address1")
   final String address1;
-  @override
-  @JsonKey(name: "address2")
-  final String address2;
-  @override
-  @JsonKey(name: "address3")
-  final String address3;
-  @override
-  @JsonKey(name: "administrativeArea")
-  final String administrativeArea;
   @override
   @JsonKey(name: "countryCode")
   final String countryCode;
@@ -920,13 +804,10 @@ class _$BillingAddressImpl implements _BillingAddress {
   @override
   @JsonKey(name: "postalCode")
   final String postalCode;
-  @override
-  @JsonKey(name: "sortingCode")
-  final String sortingCode;
 
   @override
   String toString() {
-    return 'BillingAddress(address1: $address1, address2: $address2, address3: $address3, administrativeArea: $administrativeArea, countryCode: $countryCode, locality: $locality, name: $name, phoneNumber: $phoneNumber, postalCode: $postalCode, sortingCode: $sortingCode)';
+    return 'BillingAddress(address1: $address1, countryCode: $countryCode, locality: $locality, name: $name, phoneNumber: $phoneNumber, postalCode: $postalCode)';
   }
 
   @override
@@ -936,12 +817,6 @@ class _$BillingAddressImpl implements _BillingAddress {
             other is _$BillingAddressImpl &&
             (identical(other.address1, address1) ||
                 other.address1 == address1) &&
-            (identical(other.address2, address2) ||
-                other.address2 == address2) &&
-            (identical(other.address3, address3) ||
-                other.address3 == address3) &&
-            (identical(other.administrativeArea, administrativeArea) ||
-                other.administrativeArea == administrativeArea) &&
             (identical(other.countryCode, countryCode) ||
                 other.countryCode == countryCode) &&
             (identical(other.locality, locality) ||
@@ -950,25 +825,13 @@ class _$BillingAddressImpl implements _BillingAddress {
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.postalCode, postalCode) ||
-                other.postalCode == postalCode) &&
-            (identical(other.sortingCode, sortingCode) ||
-                other.sortingCode == sortingCode));
+                other.postalCode == postalCode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      address1,
-      address2,
-      address3,
-      administrativeArea,
-      countryCode,
-      locality,
-      name,
-      phoneNumber,
-      postalCode,
-      sortingCode);
+  int get hashCode => Object.hash(runtimeType, address1, countryCode, locality,
+      name, phoneNumber, postalCode);
 
   @JsonKey(ignore: true)
   @override
@@ -988,16 +851,11 @@ class _$BillingAddressImpl implements _BillingAddress {
 abstract class _BillingAddress implements BillingAddress {
   const factory _BillingAddress(
           {@JsonKey(name: "address1") required final String address1,
-          @JsonKey(name: "address2") required final String address2,
-          @JsonKey(name: "address3") required final String address3,
-          @JsonKey(name: "administrativeArea")
-          required final String administrativeArea,
           @JsonKey(name: "countryCode") required final String countryCode,
           @JsonKey(name: "locality") required final String locality,
           @JsonKey(name: "name") required final String name,
           @JsonKey(name: "phoneNumber") required final String phoneNumber,
-          @JsonKey(name: "postalCode") required final String postalCode,
-          @JsonKey(name: "sortingCode") required final String sortingCode}) =
+          @JsonKey(name: "postalCode") required final String postalCode}) =
       _$BillingAddressImpl;
 
   factory _BillingAddress.fromJson(Map<String, dynamic> json) =
@@ -1006,15 +864,6 @@ abstract class _BillingAddress implements BillingAddress {
   @override
   @JsonKey(name: "address1")
   String get address1;
-  @override
-  @JsonKey(name: "address2")
-  String get address2;
-  @override
-  @JsonKey(name: "address3")
-  String get address3;
-  @override
-  @JsonKey(name: "administrativeArea")
-  String get administrativeArea;
   @override
   @JsonKey(name: "countryCode")
   String get countryCode;
@@ -1030,9 +879,6 @@ abstract class _BillingAddress implements BillingAddress {
   @override
   @JsonKey(name: "postalCode")
   String get postalCode;
-  @override
-  @JsonKey(name: "sortingCode")
-  String get sortingCode;
   @override
   @JsonKey(ignore: true)
   _$$BillingAddressImplCopyWith<_$BillingAddressImpl> get copyWith =>

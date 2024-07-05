@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
-import 'package:valle_adventure_app/features/home/domain/models/booking.dart';
+import 'package:valle_adventure_app/features/home/domain/models/booking_model.dart';
 
-final bookProvider = NotifierProvider<BookTourNotifier, Booking>(() {
+final bookProvider = NotifierProvider<BookTourNotifier, BookingModel>(() {
   return BookTourNotifier();
 });
 
-class BookTourNotifier extends Notifier<Booking> {
+class BookTourNotifier extends Notifier<BookingModel> {
   final userDataFormKey = GlobalKey<FormState>();
   final userNameController = TextEditingController();
   final userLastNameController = TextEditingController();
@@ -21,11 +21,11 @@ class BookTourNotifier extends Notifier<Booking> {
     TextEditingController(),
     TextEditingController(),
   ];
-  Booking tourBook = Booking.empty();
+  BookingModel tourBook = BookingModel.empty();
 
   @override
-  Booking build() {
-    return Booking.empty();
+  BookingModel build() {
+    return BookingModel.empty();
   }
 
   void addPartner({required String fullName}) {
@@ -46,7 +46,7 @@ class BookTourNotifier extends Notifier<Booking> {
     idCardController.clear();
   }
 
-  Booking bookTour({
+  BookingModel bookTour({
     required String userId,
     required String tourId,
     required int qtyPartners,
@@ -60,7 +60,7 @@ class BookTourNotifier extends Notifier<Booking> {
       });
     }
 
-    final bookTour = Booking(
+    final bookTour = BookingModel(
       id: const Uuid().v4(),
       reservationDate: reservationDate,
       userId: userId,

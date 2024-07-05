@@ -9,7 +9,6 @@ import 'package:valle_adventure_app/features/tour/domain/entities/tour.dart';
 import 'package:valle_adventure_app/utils/types/type_defs.dart';
 
 class PayloadTourDataSourceImpl implements TourDataSource {
-  // final _supabase = Supabase.instance.client;
   final _payloadCMS = Dio(
     BaseOptions(
       baseUrl: AppEnviroment.PAYLOAD_BASE_URL,

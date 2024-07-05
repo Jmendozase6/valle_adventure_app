@@ -133,13 +133,41 @@ class PaymentButton extends ConsumerWidget {
 
   void onGooglePayResult(paymentResult, BuildContext context, WidgetRef ref) async {
     // Send the resulting Google Pay token to your server / PSP
-    // log('AYUDA $paymentResult');
+    log('AYUDA $paymentResult');
     final locale = AppLocalizations.of(context)!;
     final bookingTour = ref.watch(bookProvider.notifier);
     final paymentModel = PaymentModel.fromJson(paymentResult);
+    final billingAddres = paymentModel.paymentMethodData.info.billingAddress;
 
-    final reserveTourResponse = await ref.watch(reserveTour).call(booking: bookingTour.tourBook);
-    // final paymentResponse = ref.watch(paymentRepositoryProvider).call();
+    final reserveTourResponse =
+        await ref.watch(reserveTourProvider).call(booking: bookingTour.tourBook);
+
+    final billingAddressResponse = await ref.watch(billingAddressProvider).call(
+          billingAddress: BillingAddress(
+            address1: billingAddres.address1,
+            countryCode: billingAddres.countryCode,
+            locality: billingAddres.locality,
+            name: billingAddres.name,
+            phoneNumber: billingAddres.phoneNumber,
+            postalCode: billingAddres.postalCode,
+          ),
+        );
+
+    final billingAddressId = billingAddressResponse.getOrElse((l) => '');
+    final bookingId = reserveTourResponse.getOrElse((l) => '');
+
+    if (billingAddressId.isNotEmpty) {
+      await ref.watch(savePaymentProvider).call(
+            bookingId: bookingId,
+            userId: bookingTour.tourBook.userId,
+            billingAddressId: billingAddressId,
+            total: bookingTour.tourBook.total,
+            status: 'Paid',
+            invoiceType: 'Boleta',
+            provider: 'Google',
+            paymentResult: PaymentModel.fromJson(paymentResult),
+          );
+    }
 
     reserveTourResponse.fold(
       (l) => log('ERROR $l'),
@@ -147,6 +175,7 @@ class PaymentButton extends ConsumerWidget {
         log('SUCCESS $r');
         showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (context) => AlertDialog(
             title: Text(locale.success_payment),
             content: Text(locale.payment_grateful),

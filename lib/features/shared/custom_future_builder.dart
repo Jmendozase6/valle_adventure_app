@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomFutureBuilder<T> extends StatelessWidget {
+class CustomFutureBuilder<T> extends StatefulWidget {
   const CustomFutureBuilder({
     super.key,
     required this.future,
@@ -22,9 +22,30 @@ class CustomFutureBuilder<T> extends StatelessWidget {
   final String? errorMessage;
 
   @override
+  State<CustomFutureBuilder<T>> createState() => _CustomFutureBuilderState<T>();
+}
+
+class _CustomFutureBuilderState<T> extends State<CustomFutureBuilder<T>>
+    with AutomaticKeepAliveClientMixin {
+  late Future<T> _futureData;
+
+  void getData() {
+    setState(() {
+      _futureData = widget.future();
+    });
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return FutureBuilder<T>(
-      future: future(),
+      future: _futureData,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -33,14 +54,17 @@ class CustomFutureBuilder<T> extends StatelessWidget {
         }
         if (snapshot.hasError) {
           return Center(
-            child: Text(errorMessage ?? 'Error'),
+            child: Text(widget.errorMessage ?? 'Error'),
           );
         }
         if (snapshot.hasData) {
-          return dataBuilder(snapshot.data as T);
+          return widget.dataBuilder(snapshot.data as T);
         }
-        return defaultWidget ?? const CircularProgressIndicator();
+        return widget.defaultWidget ?? const CircularProgressIndicator();
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

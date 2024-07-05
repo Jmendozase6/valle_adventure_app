@@ -47,6 +47,13 @@ class CustomBottomNavBar extends ConsumerWidget {
             inactiveColor: AppColors.darkColor20,
           ),
           FlashyTabBarItem(
+            icon: const Icon(FontAwesomeIcons.list),
+            // TODO: TRADUCIR
+            title: const Text('Reservas'),
+            activeColor: AppColors.darkColor,
+            inactiveColor: AppColors.darkColor20,
+          ),
+          FlashyTabBarItem(
             icon: const Icon(FontAwesomeIcons.heart),
             title: Text(locale.saved),
             activeColor: AppColors.darkColor,
@@ -67,6 +74,9 @@ class CustomBottomNavBar extends ConsumerWidget {
               router.goNamed(AppRoutes.profile.name);
               break;
             case 3:
+              router.goNamed(AppRoutes.userBookings.name);
+              break;
+            case 4:
               router.goNamed(AppRoutes.saved.name);
               break;
           }

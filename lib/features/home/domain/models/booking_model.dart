@@ -1,18 +1,18 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
-part 'booking.freezed.dart';
-part 'booking.g.dart';
+part 'booking_model.freezed.dart';
+part 'booking_model.g.dart';
 
-List<Booking> bookingFromJson(String str) =>
-    List<Booking>.from(json.decode(str).map((x) => Booking.fromJson(x)));
+List<BookingModel> bookingModelFromJson(String str) =>
+    List<BookingModel>.from(json.decode(str).map((x) => BookingModel.fromJson(x)));
 
-String bookingToJson(List<Booking> data) =>
+String bookingModelToJson(List<BookingModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 @freezed
-class Booking with _$Booking {
-  const factory Booking({
+class BookingModel with _$BookingModel {
+  const factory BookingModel({
     @JsonKey(name: "id") required String id,
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "last_name") required String lastName,
@@ -23,12 +23,12 @@ class Booking with _$Booking {
     @JsonKey(name: "user_id") required String userId,
     @JsonKey(name: "tour_id") required String tourId,
     @JsonKey(name: "total") required double total,
-  }) = _Booking;
+  }) = _BookingModel;
 
-  factory Booking.fromJson(Map<String, dynamic> json) => _$BookingFromJson(json);
+  factory BookingModel.fromJson(Map<String, dynamic> json) => _$BookingModelFromJson(json);
 
-  factory Booking.empty() {
-    return const Booking(
+  factory BookingModel.empty() {
+    return const BookingModel(
       id: '',
       name: '',
       lastName: '',

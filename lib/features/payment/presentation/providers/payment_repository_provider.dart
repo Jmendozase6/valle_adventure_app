@@ -10,9 +10,14 @@ final paymentRepositoryProvider = Provider.autoDispose((ref) {
   return PaymentRepositoryImpl(dataSource: datasource);
 });
 
-final reserveTour = Provider.autoDispose((ref) {
+final reserveTourProvider = Provider.autoDispose((ref) {
   final repository = ref.watch(paymentRepositoryProvider);
   return repository.reserveTour;
+});
+
+final billingAddressProvider = Provider.autoDispose((ref) {
+  final repository = ref.watch(paymentRepositoryProvider);
+  return repository.saveBillingAddress;
 });
 
 final savePaymentProvider = Provider.autoDispose((ref) {

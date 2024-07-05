@@ -8,16 +8,12 @@ part of 'payment_model.dart';
 
 _$PaymentModelImpl _$$PaymentModelImplFromJson(Map<String, dynamic> json) =>
     _$PaymentModelImpl(
-      apiVersion: (json['apiVersion'] as num).toInt(),
-      apiVersionMinor: (json['apiVersionMinor'] as num).toInt(),
       paymentMethodData: PaymentMethodData.fromJson(
           json['paymentMethodData'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PaymentModelImplToJson(_$PaymentModelImpl instance) =>
     <String, dynamic>{
-      'apiVersion': instance.apiVersion,
-      'apiVersionMinor': instance.apiVersionMinor,
       'paymentMethodData': instance.paymentMethodData,
     };
 
@@ -57,30 +53,22 @@ Map<String, dynamic> _$$InfoImplToJson(_$InfoImpl instance) =>
 _$BillingAddressImpl _$$BillingAddressImplFromJson(Map<String, dynamic> json) =>
     _$BillingAddressImpl(
       address1: json['address1'] as String,
-      address2: json['address2'] as String,
-      address3: json['address3'] as String,
-      administrativeArea: json['administrativeArea'] as String,
       countryCode: json['countryCode'] as String,
       locality: json['locality'] as String,
       name: json['name'] as String,
       phoneNumber: json['phoneNumber'] as String,
       postalCode: json['postalCode'] as String,
-      sortingCode: json['sortingCode'] as String,
     );
 
 Map<String, dynamic> _$$BillingAddressImplToJson(
         _$BillingAddressImpl instance) =>
     <String, dynamic>{
       'address1': instance.address1,
-      'address2': instance.address2,
-      'address3': instance.address3,
-      'administrativeArea': instance.administrativeArea,
       'countryCode': instance.countryCode,
       'locality': instance.locality,
       'name': instance.name,
       'phoneNumber': instance.phoneNumber,
       'postalCode': instance.postalCode,
-      'sortingCode': instance.sortingCode,
     };
 
 _$TokenizationDataImpl _$$TokenizationDataImplFromJson(

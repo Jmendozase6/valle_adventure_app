@@ -15,8 +15,6 @@ String paymentModelToJson(PaymentModel data) => json.encode(data.toJson());
 @freezed
 class PaymentModel with _$PaymentModel {
   const factory PaymentModel({
-    @JsonKey(name: "apiVersion") required int apiVersion,
-    @JsonKey(name: "apiVersionMinor") required int apiVersionMinor,
     @JsonKey(name: "paymentMethodData") required PaymentMethodData paymentMethodData,
   }) = _PaymentModel;
 
@@ -51,15 +49,11 @@ class Info with _$Info {
 class BillingAddress with _$BillingAddress {
   const factory BillingAddress({
     @JsonKey(name: "address1") required String address1,
-    @JsonKey(name: "address2") required String address2,
-    @JsonKey(name: "address3") required String address3,
-    @JsonKey(name: "administrativeArea") required String administrativeArea,
     @JsonKey(name: "countryCode") required String countryCode,
     @JsonKey(name: "locality") required String locality,
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "phoneNumber") required String phoneNumber,
     @JsonKey(name: "postalCode") required String postalCode,
-    @JsonKey(name: "sortingCode") required String sortingCode,
   }) = _BillingAddress;
 
   factory BillingAddress.fromJson(Map<String, dynamic> json) => _$BillingAddressFromJson(json);
