@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
+import 'package:valle_adventure_app/core/config/constants/app_styles.dart';
 import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 
 class AppTheme {
@@ -22,6 +23,12 @@ class AppTheme {
               ),
             ),
           ),
+        ),
+        listTileTheme: ListTileThemeData(
+          leadingAndTrailingTextStyle: AppStyles.heading04(color: AppColors.mainColor),
+        ),
+        cardTheme: const CardTheme(
+          elevation: 0,
         ),
       );
 }

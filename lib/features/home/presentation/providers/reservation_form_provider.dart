@@ -53,22 +53,23 @@ class BookTourNotifier extends Notifier<BookingModel> {
     required String reservationDate,
     required double total,
   }) {
-    List<String> newPartners = [];
+    List<Partner> newPartners = [];
     if (qtyPartners > 0) {
       partners.where((element) => element.text.isNotEmpty).forEach((element) {
-        newPartners.add(element.text);
+        newPartners.add(Partner(name: element.text));
       });
     }
 
     final bookTour = BookingModel(
       id: const Uuid().v4(),
       reservationDate: reservationDate,
-      userId: userId,
+      userId: UserId(id: userId),
       name: userNameController.text,
       lastName: userLastNameController.text,
       phone: phoneController.text,
       idCard: idCardController.text,
-      tourId: tourId,
+      qtyPlaces: qtyPartners + 1,
+      tourId: TourId(id: tourId),
       partners: newPartners,
       total: (total * (qtyPartners + 1)),
     );

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -65,15 +63,15 @@ class _PaymentTourView extends ConsumerWidget {
             color: AppColors.darkColor,
           ),
         ),
-        const _CustomDivider(),
+        const CustomDivider(),
         RowDataInfo(title: 'Tour', value: tourName),
         RowDataInfo(title: 'Cantidad de Personas', value: '${booking.partners.length + 1}'),
         RowDataInfo(title: 'Fecha de reserva', value: booking.reservationDate),
         RowDataInfo(title: 'Costo por persona', value: 'S/ $tourPrice'),
-        const _CustomDivider(),
+        const CustomDivider(),
         const Spacer(),
         RowDataInfo(title: 'TOTAL', value: 'S/ $total', fontWeightTitle: FontWeight.bold),
-        const _CustomDivider(),
+        const CustomDivider(),
         // Padding(
         //   padding: EdgeInsets.symmetric(
         //     horizontal: AppConstants.defaultPaddingHorizontal,
@@ -109,12 +107,6 @@ class PaymentButton extends ConsumerWidget {
       cornerRadius: AppConstants.defaultRadius.toInt(),
       width: double.infinity,
       onPaymentResult: (paymentResult) => onGooglePayResult(paymentResult, context, ref),
-      onError: (error) {
-        log('ERROR $error');
-      },
-      onPressed: () {
-        log('PRESSED');
-      },
       loadingIndicator: const Center(
         child: CircularProgressIndicator(),
       ),
@@ -133,7 +125,6 @@ class PaymentButton extends ConsumerWidget {
 
   void onGooglePayResult(paymentResult, BuildContext context, WidgetRef ref) async {
     // Send the resulting Google Pay token to your server / PSP
-    log('AYUDA $paymentResult');
     final locale = AppLocalizations.of(context)!;
     final bookingTour = ref.watch(bookProvider.notifier);
     final paymentModel = PaymentModel.fromJson(paymentResult);
@@ -159,7 +150,7 @@ class PaymentButton extends ConsumerWidget {
     if (billingAddressId.isNotEmpty) {
       await ref.watch(savePaymentProvider).call(
             bookingId: bookingId,
-            userId: bookingTour.tourBook.userId,
+            userId: bookingTour.tourBook.userId.id,
             billingAddressId: billingAddressId,
             total: bookingTour.tourBook.total,
             status: 'Paid',
@@ -170,9 +161,8 @@ class PaymentButton extends ConsumerWidget {
     }
 
     reserveTourResponse.fold(
-      (l) => log('ERROR $l'),
+      (l) => debugPrint('ERROR $l'),
       (r) {
-        log('SUCCESS $r');
         showDialog(
           context: context,
           barrierDismissible: false,
@@ -188,21 +178,6 @@ class PaymentButton extends ConsumerWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class _CustomDivider extends StatelessWidget {
-  const _CustomDivider();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: AppConstants.defaultPaddingHorizontal,
-        vertical: AppConstants.defaultPadding * 0.5,
-      ),
-      child: const Divider(),
     );
   }
 }

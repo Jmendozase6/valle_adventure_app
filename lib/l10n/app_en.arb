@@ -1,4 +1,5 @@
 {
+  "@@locale": "en",
   "button_skip": "Skip",
   "have_account": "Already have an account? ",
   "not_have_account": "Not have an account? ",
@@ -79,6 +80,10 @@
   "select_valid_date": "Select a valid date",
   "reservation_summary": "Reservation Summary",
   "pay_now": "Pay now",
-  "success_payment": "¡Pago exitoso!",
-  "payment_grateful": "Gracias por reservar con nosotros"
+  "success_payment": "Payment successful",
+  "payment_grateful": "Thank you for your payment",
+  "no_booking_tours": "You don't have any booked tours",
+  "my_bookings": "My bookings",
+  "partners": "Partners",
+  "bookings": "Bookings"
 }

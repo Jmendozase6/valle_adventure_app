@@ -45,7 +45,7 @@ _$TourModelImpl _$$TourModelImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       overview: json['overview'] as String,
       images: (json['images'] as List<dynamic>)
-          .map((e) => Image.fromJson(e as Map<String, dynamic>))
+          .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       price: (json['price'] as num).toInt(),
       packing: json['packing'] as String? ?? '',
@@ -90,11 +90,12 @@ Map<String, dynamic> _$$AvailableDateImplToJson(_$AvailableDateImpl instance) =>
       'date': instance.date.toIso8601String(),
     };
 
-_$ImageImpl _$$ImageImplFromJson(Map<String, dynamic> json) => _$ImageImpl(
+_$ImageModelImpl _$$ImageModelImplFromJson(Map<String, dynamic> json) =>
+    _$ImageModelImpl(
       src: Src.fromJson(json['src'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ImageImplToJson(_$ImageImpl instance) =>
+Map<String, dynamic> _$$ImageModelImplToJson(_$ImageModelImpl instance) =>
     <String, dynamic>{
       'src': instance.src,
     };

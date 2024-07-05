@@ -4,13 +4,13 @@ import 'package:valle_adventure_app/features/tour/domain/repositories/booking_re
 import 'package:valle_adventure_app/utils/types/type_defs.dart';
 
 class BookingRepositoryImpl implements BookingRepository {
-  final BookingDataSource datasource;
+  final BookingDataSource dataSource;
 
-  BookingRepositoryImpl({required this.datasource});
+  BookingRepositoryImpl({required this.dataSource});
 
   @override
   EitherListBookings getUserBookings({required String userId}) async {
-    final response = await datasource.getUserBookings(userId: userId);
+    final response = await dataSource.getUserBookings(userId: userId);
     return response.fold(
       (l) => left(l),
       (r) => right(r),

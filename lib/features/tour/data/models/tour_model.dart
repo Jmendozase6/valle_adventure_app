@@ -39,7 +39,7 @@ class TourModel with _$TourModel {
     @JsonKey(name: "id") required String id,
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "overview") required String overview,
-    @JsonKey(name: "images") required List<Image> images,
+    @JsonKey(name: "images") required List<ImageModel> images,
     @JsonKey(name: "price") required int price,
     @Default('') @JsonKey(name: "packing") String packing,
     @Default('') @JsonKey(name: "important") String important,
@@ -65,12 +65,12 @@ class AvailableDate with _$AvailableDate {
 }
 
 @freezed
-class Image with _$Image {
-  const factory Image({
+class ImageModel with _$ImageModel {
+  const factory ImageModel({
     @JsonKey(name: "src") required Src src,
-  }) = _Image;
+  }) = _ImageModel;
 
-  factory Image.fromJson(Map<String, dynamic> json) => _$ImageFromJson(json);
+  factory ImageModel.fromJson(Map<String, dynamic> json) => _$ImageModelFromJson(json);
 }
 
 @freezed

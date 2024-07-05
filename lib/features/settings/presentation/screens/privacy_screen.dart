@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
 import 'package:valle_adventure_app/features/settings/repositories/domain/entities/privacy_policy.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
@@ -8,12 +9,11 @@ class PrivacyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      //TODO: TRANSLATE
+    return Scaffold(
       appBar: CustomAppBar(
-        title: 'Privacidad',
+        title: AppLocalizations.of(context)!.privacy_policy,
       ),
-      body: _PrivacyView(),
+      body: const _PrivacyView(),
     );
   }
 }

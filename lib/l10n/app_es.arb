@@ -1,4 +1,5 @@
 {
+  "@@locale": "es",
   "button_skip": "Omitir",
   "have_account": "¿Ya tienes una cuenta? ",
   "not_have_account": "¿No tienes una cuenta? ",
@@ -80,5 +81,9 @@
   "reservation_summary": "Resumen de la reserva",
   "pay_now": "Pagar ahora",
   "success_payment": "¡Pago exitoso!",
-  "payment_grateful": "Gracias por reservar con nosotros"
+  "payment_grateful": "Gracias por reservar con nosotros",
+  "no_booking_tours": "No tienes tours reservados",
+  "my_bookings": "Mis reservas",
+  "partners": "Acompañantes",
+  "bookings": "Reservas"
 }

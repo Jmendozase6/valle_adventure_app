@@ -16,9 +16,8 @@ class ProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        // TODO: Translate the title
-        title: 'Profile',
+      appBar: CustomAppBar(
+        title: AppLocalizations.of(context)!.profile,
       ),
       body: _ProfileView(),
     );

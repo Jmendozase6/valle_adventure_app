@@ -3,7 +3,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/core/config/constants/app_assets.dart';
 import 'package:valle_adventure_app/core/config/constants/app_constants.dart';
-import 'package:valle_adventure_app/core/config/theme/app_colors.dart';
 import 'package:valle_adventure_app/features/auth/presentation/providers/auth_repository_provider.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 import 'package:valle_adventure_app/features/tour/domain/entities/tour.dart';
@@ -49,7 +48,7 @@ class _SavedView extends ConsumerWidget {
                 );
                 final finalTours = tours.cast<Tour>();
                 return finalTours.isEmpty
-                    ? const _EmptyListView()
+                    ? EmptyListView(message: AppLocalizations.of(context)!.no_saved_tours)
                     : _SavedListView(tours: finalTours);
               },
             )
@@ -80,30 +79,6 @@ class _SavedListView extends StatelessWidget {
           location: tour.department,
         );
       },
-    );
-  }
-}
-
-class _EmptyListView extends StatelessWidget {
-  const _EmptyListView();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(
-            Icons.favorite_border,
-            size: 40,
-            color: AppColors.mainColor,
-          ),
-          const SizedBox(height: 20),
-          Text(
-            AppLocalizations.of(context)!.no_saved_tours,
-          ),
-        ],
-      ),
     );
   }
 }

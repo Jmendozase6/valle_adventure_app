@@ -48,8 +48,7 @@ class CustomBottomNavBar extends ConsumerWidget {
           ),
           FlashyTabBarItem(
             icon: const Icon(FontAwesomeIcons.list),
-            // TODO: TRADUCIR
-            title: const Text('Reservas'),
+            title: Text(locale.bookings),
             activeColor: AppColors.darkColor,
             inactiveColor: AppColors.darkColor20,
           ),

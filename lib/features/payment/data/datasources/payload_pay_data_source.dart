@@ -66,7 +66,6 @@ class PayloadPayDataSource extends PaymentDataSource {
         paymentToken: paymentResult.paymentMethodData.tokenizationData.token,
         billingAddressId: billingAddressId,
       );
-      print(jsonEncode(payment.toMap()));
       final response = await _payloadCMS.post('/payments', data: jsonEncode(payment.toMap()));
       if (response.statusCode == 201 || response.statusCode == 200) {
         return right(true);
@@ -87,10 +86,8 @@ class PayloadPayDataSource extends PaymentDataSource {
         '/billing-addresses',
         data: jsonEncode(billingAddress.toJson()),
       );
-      print(response.data['doc']['id']);
       return right(response.data['doc']['id']);
     } catch (e) {
-      print(e);
       return left('');
     }
   }

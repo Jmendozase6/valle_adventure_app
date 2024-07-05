@@ -46,6 +46,7 @@ class UserDataForm extends ConsumerWidget {
             initialValue: userPhone,
             controller: currentBook.phoneController,
             padding: 0,
+            keyboardType: TextInputType.phone,
           ),
           SizedBox(height: AppConstants.defaultPadding),
           CustomInput(

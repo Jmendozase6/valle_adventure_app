@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/core/config/router/app_routes.dart';
+import 'package:valle_adventure_app/features/tour/domain/entities/booking.dart';
+import 'package:valle_adventure_app/features/tour/presentation/screens/booking_details_screen.dart';
 import 'package:valle_adventure_app/features/tour/presentation/screens/user_bookings_screens.dart';
 import 'package:valle_adventure_app/utils/transition/custom_transition_screen.dart';
 import 'package:valle_adventure_app/features/home/presentation/widgets/custom_bottom_navbar.dart';
@@ -274,6 +276,18 @@ final routerProvider = Provider<GoRouter>(
               state: __,
               child: const UserBookingsScreens(),
             ),
+            routes: [
+              GoRoute(
+                path: AppRoutes.bookingDetails.path,
+                name: AppRoutes.bookingDetails.name,
+                parentNavigatorKey: _rootNavigatorKey,
+                pageBuilder: (context, state) => buildPageWithDefaultTransition<void>(
+                  context: context,
+                  state: state,
+                  child: BookingDetailsScreen(booking: state.extra as Booking),
+                ),
+              ),
+            ],
           ),
         ],
       )

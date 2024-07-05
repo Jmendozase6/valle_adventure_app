@@ -20,7 +20,8 @@ enum AppRoutes {
   recoverPassword,
   recoverCode,
   newPassword,
-  userBookings
+  userBookings,
+  bookingDetails,
 }
 
 extension AppRoutesExtension on AppRoutes {
@@ -70,6 +71,8 @@ extension AppRoutesExtension on AppRoutes {
         return 'newPassword';
       case AppRoutes.userBookings:
         return 'userBookings';
+      case AppRoutes.bookingDetails:
+        return 'bookingDetails';
     }
   }
 
@@ -119,6 +122,8 @@ extension AppRoutesExtension on AppRoutes {
         return 'newPassword';
       case AppRoutes.userBookings:
         return '/userBookings';
+      case AppRoutes.bookingDetails:
+        return 'bookingDetails';
     }
   }
 }

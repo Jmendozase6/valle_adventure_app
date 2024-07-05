@@ -406,7 +406,7 @@ mixin _$TourModel {
   @JsonKey(name: "overview")
   String get overview => throw _privateConstructorUsedError;
   @JsonKey(name: "images")
-  List<Image> get images => throw _privateConstructorUsedError;
+  List<ImageModel> get images => throw _privateConstructorUsedError;
   @JsonKey(name: "price")
   int get price => throw _privateConstructorUsedError;
   @JsonKey(name: "packing")
@@ -443,7 +443,7 @@ abstract class $TourModelCopyWith<$Res> {
       {@JsonKey(name: "id") String id,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "overview") String overview,
-      @JsonKey(name: "images") List<Image> images,
+      @JsonKey(name: "images") List<ImageModel> images,
       @JsonKey(name: "price") int price,
       @JsonKey(name: "packing") String packing,
       @JsonKey(name: "important") String important,
@@ -502,7 +502,7 @@ class _$TourModelCopyWithImpl<$Res, $Val extends TourModel>
       images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Image>,
+              as List<ImageModel>,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -567,7 +567,7 @@ abstract class _$$TourModelImplCopyWith<$Res>
       {@JsonKey(name: "id") String id,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "overview") String overview,
-      @JsonKey(name: "images") List<Image> images,
+      @JsonKey(name: "images") List<ImageModel> images,
       @JsonKey(name: "price") int price,
       @JsonKey(name: "packing") String packing,
       @JsonKey(name: "important") String important,
@@ -625,7 +625,7 @@ class __$$TourModelImplCopyWithImpl<$Res>
       images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Image>,
+              as List<ImageModel>,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -677,7 +677,7 @@ class _$TourModelImpl implements _TourModel {
       {@JsonKey(name: "id") required this.id,
       @JsonKey(name: "name") required this.name,
       @JsonKey(name: "overview") required this.overview,
-      @JsonKey(name: "images") required final List<Image> images,
+      @JsonKey(name: "images") required final List<ImageModel> images,
       @JsonKey(name: "price") required this.price,
       @JsonKey(name: "packing") this.packing = '',
       @JsonKey(name: "important") this.important = '',
@@ -704,10 +704,10 @@ class _$TourModelImpl implements _TourModel {
   @override
   @JsonKey(name: "overview")
   final String overview;
-  final List<Image> _images;
+  final List<ImageModel> _images;
   @override
   @JsonKey(name: "images")
-  List<Image> get images {
+  List<ImageModel> get images {
     if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_images);
@@ -821,7 +821,7 @@ abstract class _TourModel implements TourModel {
       {@JsonKey(name: "id") required final String id,
       @JsonKey(name: "name") required final String name,
       @JsonKey(name: "overview") required final String overview,
-      @JsonKey(name: "images") required final List<Image> images,
+      @JsonKey(name: "images") required final List<ImageModel> images,
       @JsonKey(name: "price") required final int price,
       @JsonKey(name: "packing") final String packing,
       @JsonKey(name: "important") final String important,
@@ -848,7 +848,7 @@ abstract class _TourModel implements TourModel {
   String get overview;
   @override
   @JsonKey(name: "images")
-  List<Image> get images;
+  List<ImageModel> get images;
   @override
   @JsonKey(name: "price")
   int get price;
@@ -1026,24 +1026,26 @@ abstract class _AvailableDate implements AvailableDate {
       throw _privateConstructorUsedError;
 }
 
-Image _$ImageFromJson(Map<String, dynamic> json) {
-  return _Image.fromJson(json);
+ImageModel _$ImageModelFromJson(Map<String, dynamic> json) {
+  return _ImageModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Image {
+mixin _$ImageModel {
   @JsonKey(name: "src")
   Src get src => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ImageCopyWith<Image> get copyWith => throw _privateConstructorUsedError;
+  $ImageModelCopyWith<ImageModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ImageCopyWith<$Res> {
-  factory $ImageCopyWith(Image value, $Res Function(Image) then) =
-      _$ImageCopyWithImpl<$Res, Image>;
+abstract class $ImageModelCopyWith<$Res> {
+  factory $ImageModelCopyWith(
+          ImageModel value, $Res Function(ImageModel) then) =
+      _$ImageModelCopyWithImpl<$Res, ImageModel>;
   @useResult
   $Res call({@JsonKey(name: "src") Src src});
 
@@ -1051,9 +1053,9 @@ abstract class $ImageCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ImageCopyWithImpl<$Res, $Val extends Image>
-    implements $ImageCopyWith<$Res> {
-  _$ImageCopyWithImpl(this._value, this._then);
+class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
+    implements $ImageModelCopyWith<$Res> {
+  _$ImageModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1083,10 +1085,11 @@ class _$ImageCopyWithImpl<$Res, $Val extends Image>
 }
 
 /// @nodoc
-abstract class _$$ImageImplCopyWith<$Res> implements $ImageCopyWith<$Res> {
-  factory _$$ImageImplCopyWith(
-          _$ImageImpl value, $Res Function(_$ImageImpl) then) =
-      __$$ImageImplCopyWithImpl<$Res>;
+abstract class _$$ImageModelImplCopyWith<$Res>
+    implements $ImageModelCopyWith<$Res> {
+  factory _$$ImageModelImplCopyWith(
+          _$ImageModelImpl value, $Res Function(_$ImageModelImpl) then) =
+      __$$ImageModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: "src") Src src});
@@ -1096,11 +1099,11 @@ abstract class _$$ImageImplCopyWith<$Res> implements $ImageCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ImageImplCopyWithImpl<$Res>
-    extends _$ImageCopyWithImpl<$Res, _$ImageImpl>
-    implements _$$ImageImplCopyWith<$Res> {
-  __$$ImageImplCopyWithImpl(
-      _$ImageImpl _value, $Res Function(_$ImageImpl) _then)
+class __$$ImageModelImplCopyWithImpl<$Res>
+    extends _$ImageModelCopyWithImpl<$Res, _$ImageModelImpl>
+    implements _$$ImageModelImplCopyWith<$Res> {
+  __$$ImageModelImplCopyWithImpl(
+      _$ImageModelImpl _value, $Res Function(_$ImageModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1108,7 +1111,7 @@ class __$$ImageImplCopyWithImpl<$Res>
   $Res call({
     Object? src = null,
   }) {
-    return _then(_$ImageImpl(
+    return _then(_$ImageModelImpl(
       src: null == src
           ? _value.src
           : src // ignore: cast_nullable_to_non_nullable
@@ -1119,11 +1122,11 @@ class __$$ImageImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ImageImpl implements _Image {
-  const _$ImageImpl({@JsonKey(name: "src") required this.src});
+class _$ImageModelImpl implements _ImageModel {
+  const _$ImageModelImpl({@JsonKey(name: "src") required this.src});
 
-  factory _$ImageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ImageImplFromJson(json);
+  factory _$ImageModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageModelImplFromJson(json);
 
   @override
   @JsonKey(name: "src")
@@ -1131,14 +1134,14 @@ class _$ImageImpl implements _Image {
 
   @override
   String toString() {
-    return 'Image(src: $src)';
+    return 'ImageModel(src: $src)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ImageImpl &&
+            other is _$ImageModelImpl &&
             (identical(other.src, src) || other.src == src));
   }
 
@@ -1149,29 +1152,30 @@ class _$ImageImpl implements _Image {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ImageImplCopyWith<_$ImageImpl> get copyWith =>
-      __$$ImageImplCopyWithImpl<_$ImageImpl>(this, _$identity);
+  _$$ImageModelImplCopyWith<_$ImageModelImpl> get copyWith =>
+      __$$ImageModelImplCopyWithImpl<_$ImageModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ImageImplToJson(
+    return _$$ImageModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _Image implements Image {
-  const factory _Image({@JsonKey(name: "src") required final Src src}) =
-      _$ImageImpl;
+abstract class _ImageModel implements ImageModel {
+  const factory _ImageModel({@JsonKey(name: "src") required final Src src}) =
+      _$ImageModelImpl;
 
-  factory _Image.fromJson(Map<String, dynamic> json) = _$ImageImpl.fromJson;
+  factory _ImageModel.fromJson(Map<String, dynamic> json) =
+      _$ImageModelImpl.fromJson;
 
   @override
   @JsonKey(name: "src")
   Src get src;
   @override
   @JsonKey(ignore: true)
-  _$$ImageImplCopyWith<_$ImageImpl> get copyWith =>
+  _$$ImageModelImplCopyWith<_$ImageModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

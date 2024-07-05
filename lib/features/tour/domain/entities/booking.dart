@@ -1,4 +1,5 @@
 import 'package:valle_adventure_app/features/home/domain/models/booking_model.dart';
+import 'package:valle_adventure_app/features/tour/data/models/tour_model.dart';
 
 class Booking {
   final String id;
@@ -8,7 +9,8 @@ class Booking {
   final String idCard;
   final String reservationDate;
   final List<String> partners;
-  final String tourId;
+  final String tourName;
+  final List<ImageModel> images;
   final double total;
 
   Booking({
@@ -19,7 +21,8 @@ class Booking {
     required this.idCard,
     required this.reservationDate,
     required this.partners,
-    required this.tourId,
+    required this.tourName,
+    required this.images,
     required this.total,
   });
 
@@ -31,8 +34,9 @@ class Booking {
       phone: model.phone,
       idCard: model.idCard,
       reservationDate: model.reservationDate,
-      partners: model.partners,
-      tourId: model.tourId,
+      partners: model.partners.map((e) => e.name).toList(),
+      tourName: model.tourId.name,
+      images: model.tourId.images,
       total: model.total,
     );
   }
@@ -46,7 +50,8 @@ class Booking {
       idCard: '',
       reservationDate: '',
       partners: [],
-      tourId: '',
+      images: [],
+      tourName: '',
       total: 0.0,
     );
   }
