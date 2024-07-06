@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,6 +22,8 @@ class CustomInputPassword extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final password = ref.watch(customPasswordProvider);
+    final locale = AppLocalizations.of(context)!;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: padding ?? AppConstants.defaultPaddingHorizontal),
       child: TextFormField(
@@ -49,6 +52,12 @@ class CustomInputPassword extends ConsumerWidget {
           ),
         ),
         obscureText: password,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return locale.input_empty;
+          }
+          return null;
+        },
       ),
     );
   }

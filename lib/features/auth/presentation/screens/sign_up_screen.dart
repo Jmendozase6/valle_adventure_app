@@ -36,6 +36,7 @@ class _SignUpView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = AppLocalizations.of(context)!;
     final authProvider = ref.watch(authRepositoryProvider);
+    final formKey = ref.watch(signUpFormKeyProvider);
 
     return SingleChildScrollView(
       child: Column(
@@ -45,24 +46,31 @@ class _SignUpView extends ConsumerWidget {
             subtitle: locale.sign_up_to_continue,
           ),
           SizedBox(height: AppConstants.defaultPadding),
-          CustomInput(
-            labelText: locale.name,
-            controller: authProvider.signUpNameController,
-          ),
-          SizedBox(height: AppConstants.defaultPadding),
-          CustomInput(
-            labelText: locale.last_names,
-            controller: authProvider.signUpLastNameController,
-          ),
-          SizedBox(height: AppConstants.defaultPadding),
-          CustomInput(
-            labelText: locale.email,
-            controller: authProvider.signUpEmailController,
-          ),
-          SizedBox(height: AppConstants.defaultPadding),
-          CustomInputPassword(
-            labelText: locale.password,
-            controller: authProvider.signUpPasswordController,
+          Form(
+            key: formKey,
+            child: Column(
+              children: [
+                CustomInput(
+                  labelText: locale.name,
+                  controller: authProvider.signUpNameController,
+                ),
+                SizedBox(height: AppConstants.defaultPadding),
+                CustomInput(
+                  labelText: locale.last_names,
+                  controller: authProvider.signUpLastNameController,
+                ),
+                SizedBox(height: AppConstants.defaultPadding),
+                CustomInput(
+                  labelText: locale.email,
+                  controller: authProvider.signUpEmailController,
+                ),
+                SizedBox(height: AppConstants.defaultPadding),
+                CustomInputPassword(
+                  labelText: locale.password,
+                  controller: authProvider.signUpPasswordController,
+                ),
+              ],
+            ),
           ),
           SizedBox(height: AppConstants.defaultPadding * 0.5),
           Padding(
@@ -73,6 +81,8 @@ class _SignUpView extends ConsumerWidget {
             child: CtaButtonFilled(
               text: locale.forward,
               onPressed: () async {
+                final isValidForm = formKey.currentState?.validate() ?? false;
+                if (!isValidForm) return;
                 final response = await authProvider.signUp(
                   email: authProvider.signUpEmailController.text,
                   password: authProvider.signUpPasswordController.text,

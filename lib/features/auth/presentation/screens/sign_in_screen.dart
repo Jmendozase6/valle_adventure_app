@@ -40,6 +40,7 @@ class _SignInView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = AppLocalizations.of(context)!;
     final authProvider = ref.watch(authRepositoryProvider);
+    final formKey = ref.watch(signInFormKeyProvider);
 
     return SingleChildScrollView(
       child: Column(
@@ -50,15 +51,21 @@ class _SignInView extends ConsumerWidget {
           ),
           // Bug
           SizedBox(height: AppConstants.defaultPadding),
-          CustomInput(
-            labelText: locale.email,
-            controller: authProvider.signInEmailController,
-          ),
-          // Bug
-          SizedBox(height: AppConstants.defaultPadding),
-          CustomInputPassword(
-            labelText: locale.password,
-            controller: authProvider.signInPasswordController,
+          Form(
+            key: formKey,
+            child: Column(
+              children: [
+                CustomInput(
+                  labelText: locale.email,
+                  controller: authProvider.signInEmailController,
+                ),
+                SizedBox(height: AppConstants.defaultPadding),
+                CustomInputPassword(
+                  labelText: locale.password,
+                  controller: authProvider.signInPasswordController,
+                ),
+              ],
+            ),
           ),
           Align(
             alignment: Alignment.centerRight,
@@ -80,6 +87,8 @@ class _SignInView extends ConsumerWidget {
             child: CtaButtonFilled(
               text: locale.forward,
               onPressed: () async {
+                final isValidForm = formKey.currentState?.validate() ?? false;
+                if (!isValidForm) return;
                 final response = await authProvider.signIn(
                     email: authProvider.signInEmailController.text,
                     password: authProvider.signInPasswordController.text);

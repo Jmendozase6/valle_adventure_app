@@ -108,8 +108,8 @@ Map<String, dynamic> generatePayload(BookingModel booking) {
     'reservation_date': booking.reservationDate,
     'qty_places': booking.partners.length,
     'partners': partnersMap,
-    'tour_id': booking.tourId,
-    'user_id': booking.userId,
+    'tour_id': booking.tourId.id,
+    'user_id': booking.userId.id,
     'total': booking.total,
   };
   return data;
