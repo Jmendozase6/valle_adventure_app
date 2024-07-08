@@ -41,7 +41,7 @@
 //   }
 
 //   @override
-//   EitherListTourBool getToursByName({required String name}) async {
+//   EitherTours getToursByName({required String name}) async {
 //     // TODO: implement getToursByName
 //     throw UnimplementedError();
 //   }

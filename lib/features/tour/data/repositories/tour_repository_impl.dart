@@ -28,19 +28,10 @@ class TourRepositoryImpl implements TourRepository {
   }
 
   @override
-  EitherListTourBool getToursByCategory({required String category}) async {
-    final response = await datasource.getToursByCategory(category: category);
-    return response.fold(
-      (l) => left(false),
-      (r) => right(r),
-    );
-  }
-
-  @override
-  EitherListTourBool getToursByName({required String name}) async {
+  EitherTours getToursByName({required String name}) async {
     final response = await datasource.getToursByName(name: name);
     return response.fold(
-      (l) => left(false),
+      (l) => left([]),
       (r) => right(r),
     );
   }
@@ -66,15 +57,6 @@ class TourRepositoryImpl implements TourRepository {
   @override
   EitherBoolBool unlikeTour({required String likedTourId}) async {
     final response = await datasource.unlikeTour(likedTourId: likedTourId);
-    return response.fold(
-      (l) => left(l),
-      (r) => right(r),
-    );
-  }
-
-  @override
-  EitherBoolBool isTourLiked({required String userId, required String tourId}) async {
-    final response = await datasource.isTourLiked(userId: userId, tourId: tourId);
     return response.fold(
       (l) => left(l),
       (r) => right(r),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:valle_adventure_app/features/settings/providers/providers.dart';
+import 'package:valle_adventure_app/features/settings/presentation/providers/providers.dart';
 import 'package:valle_adventure_app/features/shared/shared.dart';
 
 class LanguageScreen extends StatelessWidget {

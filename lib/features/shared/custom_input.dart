@@ -13,6 +13,7 @@ class CustomInput extends StatelessWidget {
     this.keyboardType,
     this.enabled,
     this.initialValue,
+    this.onChanged,
   });
 
   final String? labelText;
@@ -21,6 +22,7 @@ class CustomInput extends StatelessWidget {
   final double? padding;
   final TextInputType? keyboardType;
   final bool? enabled;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class CustomInput extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         enabled: enabled,
+        onChanged: onChanged,
         decoration: InputDecoration(
           label: Text(labelText ?? ''),
           border: OutlineInputBorder(

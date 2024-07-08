@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/features/payment/data/datasources/payload_pay_data_source.dart';
-import 'package:valle_adventure_app/features/payment/data/repositories/payment_repository.dart';
+import 'package:valle_adventure_app/features/payment/data/repositories/payment_repository_impl.dart';
 
 /// Provider for the [PaymentRepository]
 ///

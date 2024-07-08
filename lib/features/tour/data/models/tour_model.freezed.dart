@@ -418,7 +418,7 @@ mixin _$TourModel {
   @JsonKey(name: "is_available")
   bool get isAvailable => throw _privateConstructorUsedError;
   @JsonKey(name: "rating")
-  String get rating => throw _privateConstructorUsedError;
+  int get rating => throw _privateConstructorUsedError;
   @JsonKey(name: "included_items")
   String get includedItems => throw _privateConstructorUsedError;
   @JsonKey(name: "not_included_items")
@@ -449,7 +449,7 @@ abstract class $TourModelCopyWith<$Res> {
       @JsonKey(name: "important") String important,
       @JsonKey(name: "id_department") DepartmentModel department,
       @JsonKey(name: "is_available") bool isAvailable,
-      @JsonKey(name: "rating") String rating,
+      @JsonKey(name: "rating") int rating,
       @JsonKey(name: "included_items") String includedItems,
       @JsonKey(name: "not_included_items") String notIncludedItems,
       @JsonKey(name: "available_dates") List<AvailableDate> availableDates,
@@ -526,7 +526,7 @@ class _$TourModelCopyWithImpl<$Res, $Val extends TourModel>
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       includedItems: null == includedItems
           ? _value.includedItems
           : includedItems // ignore: cast_nullable_to_non_nullable
@@ -573,7 +573,7 @@ abstract class _$$TourModelImplCopyWith<$Res>
       @JsonKey(name: "important") String important,
       @JsonKey(name: "id_department") DepartmentModel department,
       @JsonKey(name: "is_available") bool isAvailable,
-      @JsonKey(name: "rating") String rating,
+      @JsonKey(name: "rating") int rating,
       @JsonKey(name: "included_items") String includedItems,
       @JsonKey(name: "not_included_items") String notIncludedItems,
       @JsonKey(name: "available_dates") List<AvailableDate> availableDates,
@@ -649,7 +649,7 @@ class __$$TourModelImplCopyWithImpl<$Res>
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       includedItems: null == includedItems
           ? _value.includedItems
           : includedItems // ignore: cast_nullable_to_non_nullable
@@ -683,7 +683,7 @@ class _$TourModelImpl implements _TourModel {
       @JsonKey(name: "important") this.important = '',
       @JsonKey(name: "id_department") required this.department,
       @JsonKey(name: "is_available") required this.isAvailable,
-      @JsonKey(name: "rating") this.rating = '0',
+      @JsonKey(name: "rating") this.rating = 0,
       @JsonKey(name: "included_items") this.includedItems = '',
       @JsonKey(name: "not_included_items") this.notIncludedItems = '',
       @JsonKey(name: "available_dates")
@@ -730,7 +730,7 @@ class _$TourModelImpl implements _TourModel {
   final bool isAvailable;
   @override
   @JsonKey(name: "rating")
-  final String rating;
+  final int rating;
   @override
   @JsonKey(name: "included_items")
   final String includedItems;
@@ -827,7 +827,7 @@ abstract class _TourModel implements TourModel {
       @JsonKey(name: "important") final String important,
       @JsonKey(name: "id_department") required final DepartmentModel department,
       @JsonKey(name: "is_available") required final bool isAvailable,
-      @JsonKey(name: "rating") final String rating,
+      @JsonKey(name: "rating") final int rating,
       @JsonKey(name: "included_items") final String includedItems,
       @JsonKey(name: "not_included_items") final String notIncludedItems,
       @JsonKey(name: "available_dates")
@@ -866,7 +866,7 @@ abstract class _TourModel implements TourModel {
   bool get isAvailable;
   @override
   @JsonKey(name: "rating")
-  String get rating;
+  int get rating;
   @override
   @JsonKey(name: "included_items")
   String get includedItems;

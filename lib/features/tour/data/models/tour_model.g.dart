@@ -53,7 +53,7 @@ _$TourModelImpl _$$TourModelImplFromJson(Map<String, dynamic> json) =>
       department: DepartmentModel.fromJson(
           json['id_department'] as Map<String, dynamic>),
       isAvailable: json['is_available'] as bool,
-      rating: json['rating'] as String? ?? '0',
+      rating: (json['rating'] as num?)?.toInt() ?? 0,
       includedItems: json['included_items'] as String? ?? '',
       notIncludedItems: json['not_included_items'] as String? ?? '',
       availableDates: (json['available_dates'] as List<dynamic>)

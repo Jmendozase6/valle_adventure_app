@@ -94,9 +94,9 @@ class PayloadPayDataSource extends PaymentDataSource {
 }
 
 Map<String, dynamic> generatePayload(BookingModel booking) {
-  final partnersMap = booking.partners.map((name) {
+  final partnersMap = booking.partners.map((partner) {
     return {
-      'name': name,
+      'name': partner.name,
     };
   }).toList();
 

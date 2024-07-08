@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:qs/qs.dart' as qs;
 import 'package:valle_adventure_app/core/config/constants/app_enviroment.dart';
 import 'package:valle_adventure_app/features/tour/data/datasources/tours/tour_data_source.dart';
 import 'package:valle_adventure_app/features/tour/data/models/liked_tour_model.dart';
@@ -54,15 +55,23 @@ class PayloadTourDataSourceImpl implements TourDataSource {
   }
 
   @override
-  EitherListTourBool getToursByCategory({required String category}) {
-    // TODO: implement getToursByCategory
-    throw UnimplementedError();
-  }
-
-  @override
-  EitherListTourBool getToursByName({required String name}) {
-    // TODO: implement getToursByName
-    throw UnimplementedError();
+  EitherTours getToursByName({required String name}) async {
+    if (name.isEmpty) return right([]);
+    try {
+      final query = {
+        'name': {
+          'contains': name,
+        }
+      };
+      final qsEncoder = qs.Encoder();
+      final queryString = qsEncoder.encode(query);
+      final response = await _payloadCMS.get('/tours$queryString', queryParameters: query);
+      final payloadResponse = PayloadResponseModel.fromJson(response.data as Map<String, dynamic>);
+      final tours = payloadResponse.docs.map((tour) => Tour.fromModel(tour)).toList();
+      return right(tours);
+    } catch (e) {
+      return left([]);
+    }
   }
 
   @override
@@ -80,12 +89,6 @@ class PayloadTourDataSourceImpl implements TourDataSource {
     } catch (e) {
       return left(false);
     }
-  }
-
-  @override
-  EitherBoolBool isTourLiked({required String userId, required String tourId}) {
-    // TODO: implement isTourLiked
-    throw UnimplementedError();
   }
 
   @override

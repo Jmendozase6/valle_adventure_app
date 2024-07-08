@@ -6,15 +6,10 @@ abstract class TourRepository {
   /// Returns a [List<Tour>] with the list of tours
   EitherListTourBool getTours({required String orderType, required int limit, String userId = ''});
 
-  /// Get the list of tours by category
-  ///
-  /// Returns a [List<Tour>] with the list of tours
-  EitherListTourBool getToursByCategory({required String category});
-
   /// Get the list of tours by name
   ///
   /// Returns a [List<Tour>] with the list of tours
-  EitherListTourBool getToursByName({required String name});
+  EitherTours getToursByName({required String name});
 
   /// Get the list of tours by id
   ///
@@ -35,11 +30,6 @@ abstract class TourRepository {
   ///
   /// Returns a [bool] with the result of the operation
   EitherBoolBool unlikeTour({required String likedTourId});
-
-  /// Get if a tour is liked
-  ///
-  /// Returns a [bool] with the result of the operation
-  EitherBoolBool isTourLiked({required String userId, required String tourId});
 
   /// Get liked tour id
   ///

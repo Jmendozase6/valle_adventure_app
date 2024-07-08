@@ -9,7 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // State management
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:valle_adventure_app/features/auth/presentation/providers/auth_repository_provider.dart';
-import 'package:valle_adventure_app/features/settings/providers/providers.dart';
+import 'package:valle_adventure_app/features/settings/presentation/providers/providers.dart';
 
 // Responsive
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,6 +26,10 @@ import 'package:valle_adventure_app/core/config/theme/app_theme.dart';
 // Supabase
 import 'package:valle_adventure_app/features/supabase/supabase_service.dart';
 
+// Firebase
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
@@ -34,6 +38,9 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await ScreenUtil.ensureScreenSize();
   runApp(
     const ProviderScope(

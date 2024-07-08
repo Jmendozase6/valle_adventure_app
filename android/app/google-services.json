@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "422592395589",
+    "project_id": "valle-adventure-app-19475",
+    "storage_bucket": "valle-adventure-app-19475.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422592395589:android:e083fcac3b389f3b79662c",
+        "android_client_info": {
+          "package_name": "com.jmendoza.se.valle_adventure_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEkx_K7gn8yAAfJ_X-AWwtpxiG_fe7B_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

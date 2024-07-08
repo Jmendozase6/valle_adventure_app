@@ -34,12 +34,12 @@ class CustomBottomNavBar extends ConsumerWidget {
             activeColor: AppColors.darkColor,
             inactiveColor: AppColors.darkColor20,
           ),
-          FlashyTabBarItem(
-            icon: const Icon(FontAwesomeIcons.magnifyingGlass),
-            title: Text(locale.search),
-            activeColor: AppColors.darkColor,
-            inactiveColor: AppColors.darkColor20,
-          ),
+          // FlashyTabBarItem(
+          //   icon: const Icon(FontAwesomeIcons.magnifyingGlass),
+          //   title: Text(locale.search),
+          //   activeColor: AppColors.darkColor,
+          //   inactiveColor: AppColors.darkColor20,
+          // ),
           FlashyTabBarItem(
             icon: const Icon(FontAwesomeIcons.user),
             title: Text(locale.profile),
@@ -66,16 +66,16 @@ class CustomBottomNavBar extends ConsumerWidget {
             case 0:
               router.goNamed(AppRoutes.home.name);
               break;
+            // case 1:
+            //   router.goNamed(AppRoutes.search.name);
+            //   break;
             case 1:
-              router.goNamed(AppRoutes.search.name);
-              break;
-            case 2:
               router.goNamed(AppRoutes.profile.name);
               break;
-            case 3:
+            case 2:
               router.goNamed(AppRoutes.userBookings.name);
               break;
-            case 4:
+            case 3:
               router.goNamed(AppRoutes.saved.name);
               break;
           }

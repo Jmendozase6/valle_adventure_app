@@ -18,3 +18,7 @@ final signInFormKeyProvider = Provider<GlobalKey<FormState>>((ref) {
 final signUpFormKeyProvider = Provider<GlobalKey<FormState>>((ref) {
   return GlobalKey<FormState>();
 });
+
+final recoverPasswordProvider = Provider<GlobalKey<FormState>>((ref) {
+  return GlobalKey<FormState>();
+});

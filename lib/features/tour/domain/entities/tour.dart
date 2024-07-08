@@ -43,7 +43,7 @@ class Tour {
         important: model.important,
         department: model.department.name,
         isAvailable: model.isAvailable,
-        rating: double.parse(model.rating.isEmpty ? '0' : model.rating),
+        rating: model.rating.toDouble(),
         includedItems: model.includedItems,
         notIncludedItems: model.notIncludedItems,
         availableDates: model.availableDates.map((e) => e.date.toString()).toList(),

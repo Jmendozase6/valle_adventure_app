@@ -39,10 +39,10 @@ class _SettingsView extends ConsumerWidget {
           onTap: () => router.pushNamed(AppRoutes.language.name),
         ),
         // Notifications
-        ListTile(
-          title: Text(locale.notifications),
-          trailing: Switch(value: true, onChanged: (value) {}),
-        ),
+        // ListTile(
+        //   title: Text(locale.notifications),
+        //   trailing: Switch(value: true, onChanged: (value) {}),
+        // ),
         // Privacy
         ListTile(
           title: Text(locale.privacy_policy),
@@ -56,11 +56,11 @@ class _SettingsView extends ConsumerWidget {
           onTap: () => router.pushNamed(AppRoutes.terms.name),
         ),
         // About
-        ListTile(
-          title: Text(locale.about_us),
-          trailing: const Icon(Icons.arrow_forward_ios),
-          onTap: () => router.pushNamed(AppRoutes.about.name),
-        ),
+        // ListTile(
+        //   title: Text(locale.about_us),
+        //   trailing: const Icon(Icons.arrow_forward_ios),
+        //   onTap: () => router.pushNamed(AppRoutes.about.name),
+        // ),
         if (authProvider.isAuthenticated())
           ListTile(
             title: Text(

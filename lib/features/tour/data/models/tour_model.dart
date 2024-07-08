@@ -45,7 +45,7 @@ class TourModel with _$TourModel {
     @Default('') @JsonKey(name: "important") String important,
     @JsonKey(name: "id_department") required DepartmentModel department,
     @JsonKey(name: "is_available") required bool isAvailable,
-    @Default('0') @JsonKey(name: "rating") String rating,
+    @Default(0) @JsonKey(name: "rating") int rating,
     @Default('') @JsonKey(name: "included_items") String includedItems,
     @Default('') @JsonKey(name: "not_included_items") String notIncludedItems,
     @JsonKey(name: "available_dates") required List<AvailableDate> availableDates,
