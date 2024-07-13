@@ -97,13 +97,12 @@ Dev dependencies
 ## Installation
 
 Run this steps in order
-
+```bash
+    dart run build_runner build --delete-conflicting-outputs
+```
 ```bash
     flutter clean
 ```
 ```bash
     flutter pub get
-```
-```bash
-    dart run build_runner build --delete-conflicting-outputs
 ```
