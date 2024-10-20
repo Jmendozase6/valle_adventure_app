@@ -52,30 +52,34 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
 
   @override
   EitherStringBool signInWithGoogle() async {
-    initGoogleSignIn();
+    try {
+      initGoogleSignIn();
 
-    final googleUser = await googleSignIn.signIn();
-    if (googleUser == null) {
-      return left('No Google User found.');
+      final googleUser = await googleSignIn.signIn();
+      if (googleUser == null) {
+        return left('No Google User found.');
+      }
+      final googleAuth = await googleUser.authentication;
+      final accessToken = googleAuth.accessToken;
+      final idToken = googleAuth.idToken;
+
+      if (accessToken == null) {
+        return left('No Access Token found.');
+      }
+      if (idToken == null) {
+        return left('No ID Token found.');
+      }
+
+      await _supabase.auth.signInWithIdToken(
+        provider: OAuthProvider.google,
+        idToken: idToken,
+        accessToken: accessToken,
+      );
+
+      return right(true);
+    } catch (e) {
+      return left('Error');
     }
-    final googleAuth = await googleUser.authentication;
-    final accessToken = googleAuth.accessToken;
-    final idToken = googleAuth.idToken;
-
-    if (accessToken == null) {
-      return left('No Access Token found.');
-    }
-    if (idToken == null) {
-      return left('No ID Token found.');
-    }
-
-    await _supabase.auth.signInWithIdToken(
-      provider: OAuthProvider.google,
-      idToken: idToken,
-      accessToken: accessToken,
-    );
-
-    return right(true);
   }
 
   @override
