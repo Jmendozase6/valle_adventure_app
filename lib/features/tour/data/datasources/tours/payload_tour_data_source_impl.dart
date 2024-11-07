@@ -10,7 +10,7 @@ import 'package:valle_adventure_app/features/tour/domain/entities/tour.dart';
 import 'package:valle_adventure_app/utils/types/type_defs.dart';
 
 class PayloadTourDataSourceImpl implements TourDataSource {
-  final _payloadCMS = Dio(
+  static final _payloadCMS = Dio(
     BaseOptions(
       baseUrl: AppEnviroment.PAYLOAD_BASE_URL,
       headers: {
@@ -20,6 +20,7 @@ class PayloadTourDataSourceImpl implements TourDataSource {
       },
     ),
   );
+
   @override
   EitherBoolTour getTourById({required String id}) async {
     try {
